@@ -1,4 +1,1 @@
-SaveWise v1
-
-Open index.html through an HTTPS host (GitHub Pages) or localhost for full PWA install support.
-Data is stored locally in the browser. Phase 2 will add deeper analytics, subscription intelligence, and AI Money Coach features.
+SaveWise v2 custom categories update. Custom categories are stored separately so existing transaction/profile data is preserved. Replace index.html and sw.js; keep manifest.webmanifest and icon.svg.
