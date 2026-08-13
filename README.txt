@@ -1,1 +1,5 @@
-SaveWise v2 custom categories update. Custom categories are stored separately so existing transaction/profile data is preserved. Replace index.html and sw.js; keep manifest.webmanifest and icon.svg.
+# SaveWise
+
+SaveWise is a privacy-first personal finance PWA for tracking expenses, subscriptions, budgets, and savings goals.
+
+This version includes working navigation, settings, profiles, savings goals, and custom expense categories with emojis.
