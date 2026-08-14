@@ -1,87 +1,51 @@
-const VERSION = "v3";
+const VERSION = 'v18';
 const CACHE_NAME = `savewise-${VERSION}`;
-
 const APP_FILES = [
-  "./",
-  "./index.html",
-  "./icon.svg",
-  "./manifest.webmanifest"
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './icon.svg',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
-// Install the new version
-self.addEventListener("install", (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(APP_FILES);
-    })
-  );
-
-  // Activate the new worker immediately
-  self.skipWaiting();
-});
-
-// Remove old SaveWise caches and take control immediately
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name.startsWith("savewise-") && name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
-      );
-    }).then(() => self.clients.claim())
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_FILES))
+      .then(() => self.skipWaiting())
   );
 });
 
-// Fetch strategy
-self.addEventListener("fetch", (event) => {
-  const request = event.request;
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(key => key.startsWith('savewise-') && key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      ))
+      .then(() => self.clients.claim())
+  );
+});
 
-  // Always try the network first for HTML pages.
-  // This prevents an old index.html from being stuck in cache.
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, copy);
-          });
+  const url = new URL(event.request.url);
+  const isAppShell = url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
 
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request).then((cached) => {
-            return cached || caches.match("./index.html");
-          });
-        })
-    );
-
-    return;
-  }
-
-  // For other files:
-  // use cache first, then network.
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return fetch(request).then((response) => {
-        if (!response || response.status !== 200) {
-          return response;
-        }
-
-        const copy = response.clone();
-
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(request, copy);
+    (isAppShell ? fetch(event.request, { cache: 'no-store' }) : caches.match(event.request))
+      .then(response => {
+        if (response) return response;
+        return fetch(event.request).then(networkResponse => {
+          if (networkResponse && networkResponse.ok && url.origin === location.origin) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+          }
+          return networkResponse;
         });
-
-        return response;
-      });
-    })
+      })
+      .catch(() => caches.match('./index.html'))
   );
 });

@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#050505" name="theme-color"/>
+<meta content="SaveWise — track spending, plan goals, and save smarter." name="description"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<title>SaveWise — Premium Motion Preview v18</title>
+<style>
+:root{--bg:#050505;--surface:rgba(18,18,20,.72);--surface2:rgba(28,28,31,.62);--text:#f7f7f8;--muted:#a3a3ad;--line:rgba(255,255,255,.10);--green:#22c55e;--green2:#16a34a;--indigo:#ff334f;--red:#ff1744;--amber:#ffb020;--shadow:0 22px 70px rgba(0,0,0,.48);--glass:rgba(255,255,255,.055)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#050505;color:var(--text)}body{background:radial-gradient(circle at 12% 0%,rgba(255,23,68,.12),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,23,68,.08),transparent 28%),#050505;overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer;transition:transform .18s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease,color .22s ease}button:active{transform:scale(.97)}
+.app{max-width:1180px;margin:auto;padding:22px 18px 110px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:11px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,#ff1744,#a50022);display:grid;place-items:center;color:white;font-size:22px;font-weight:900;box-shadow:0 12px 34px rgba(255,23,68,.28),inset 0 1px 0 rgba(255,255,255,.22);animation:logoIn .6s ease both}.brand h1{font-size:24px;margin:0;letter-spacing:-.5px}.brand small{color:var(--muted)}
+/* ===== SaveWise premium logo + motion layer ===== */
+.logo{position:relative;overflow:hidden;isolation:isolate;flex:0 0 auto;animation:swLogoEnter .72s cubic-bezier(.16,1,.3,1) both;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.logo::after{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.28) 48%,transparent 58%);transform:translateX(-65%) rotate(8deg);animation:swLogoShine 2.8s ease 1.1s both;pointer-events:none;z-index:2}
+.logo-svg{width:100%;height:100%;display:block;position:relative;z-index:1}
+.brand:hover .logo{transform:translateY(-2px) rotate(-2deg) scale(1.035);box-shadow:0 16px 42px rgba(255,23,68,.38),inset 0 1px 0 rgba(255,255,255,.24)}
+@keyframes swLogoEnter{0%{opacity:0;transform:translateY(12px) scale(.72) rotate(-12deg);filter:blur(4px)}65%{opacity:1;transform:translateY(-3px) scale(1.04) rotate(2deg);filter:blur(0)}100%{transform:translateY(0) scale(1) rotate(0)}}
+@keyframes swLogoShine{0%{transform:translateX(-65%) rotate(8deg);opacity:0}12%{opacity:1}45%,100%{transform:translateX(65%) rotate(8deg);opacity:0}}
+
+.actions{display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:rgba(22,22,24,.64);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:14px;padding:10px 12px;color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.07)}.iconbtn:hover{border-color:rgba(255,23,68,.45);box-shadow:0 12px 35px rgba(255,23,68,.12)}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.balance,.coach,.card{background:linear-gradient(145deg,rgba(22,22,24,.78),rgba(10,10,11,.68));border:1px solid rgba(255,255,255,.09);border-radius:24px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.balance:hover,.coach:hover,.card:hover{border-color:rgba(255,23,68,.22);box-shadow:0 25px 75px rgba(0,0,0,.52),0 0 40px rgba(255,23,68,.045),inset 0 1px 0 rgba(255,255,255,.05)}.balance{padding:26px;position:relative;overflow:hidden}.balance:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-130px;background:radial-gradient(circle,rgba(255,23,68,.20),rgba(255,23,68,0) 70%);pointer-events:none}.eyebrow{font-size:11px;color:#b6b6bf;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.amount{font-size:46px;font-weight:950;margin:5px 0 18px;letter-spacing:-1.8px}.flow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.flow div{padding:13px 14px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}.flow span{font-size:11px;color:var(--muted);display:block}.income{color:#34d399}.expense{color:#ff3152}.coach{padding:24px;background:linear-gradient(145deg,rgba(30,30,34,.82),rgba(12,12,14,.70));position:relative;overflow:hidden}.coach:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;right:-90px;bottom:-130px;background:radial-gradient(circle,rgba(255,23,68,.18),transparent 68%);pointer-events:none}.coach h3{margin:8px 0;font-size:22px}.coach p{margin:5px 0;color:#c0c0c8;line-height:1.55;font-size:14px}.coach b{color:#ff3152}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.card{padding:19px}.cardhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.card h3{margin:0;font-size:16px}.link{border:0;background:none;color:#ff4962;font-weight:850;font-size:12px;padding:7px 8px;border-radius:9px}.link:hover{background:rgba(255,23,68,.09);color:#ff7185}.bars{display:grid;gap:11px}.barrow{display:grid;grid-template-columns:90px 1fr 65px;align-items:center;gap:8px;font-size:12px}.track{height:9px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.track i{display:block;height:100%;background:linear-gradient(90deg,#ff1744,#ff5b73);border-radius:99px;box-shadow:0 0 15px rgba(255,23,68,.25)}.goal{padding:13px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);border-radius:15px;margin-bottom:10px;transition:transform .2s ease,border-color .2s ease}.goal:hover{transform:translateY(-2px);border-color:rgba(255,23,68,.2)}.goaltop{display:flex;justify-content:space-between;font-size:13px;font-weight:800}.goal small{color:var(--muted)}.goalbar{height:8px;background:rgba(255,255,255,.07);border-radius:99px;margin:9px 0;overflow:hidden}.goalbar i{display:block;height:100%;background:linear-gradient(90deg,#ff1744,#ff6680);border-radius:99px;box-shadow:0 0 14px rgba(255,23,68,.22)}.goalfoot{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.transactions{display:grid;gap:2px}.tx{display:flex;align-items:center;justify-content:space-between;padding:11px 2px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .2s ease}.tx:hover{background:rgba(255,255,255,.025);transform:translateX(2px)}.tx:last-child{border:0}.txleft{display:flex;align-items:center;gap:10px}.txicon{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);display:grid;place-items:center}.txname{font-size:13px;font-weight:750}.txdate{font-size:10px;color:var(--muted)}.txamt{font-weight:850;font-size:13px}
+.btn{border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 16px;font-weight:850}.primary{background:linear-gradient(135deg,#ff1744,#d9042b);color:#fff;border-color:rgba(255,255,255,.10);box-shadow:0 10px 26px rgba(255,23,68,.22)}.primary:hover{box-shadow:0 13px 32px rgba(255,23,68,.32);filter:brightness(1.05)}.secondary{background:rgba(255,255,255,.045);color:var(--text);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}.secondary:hover{background:rgba(255,23,68,.09);border-color:rgba(255,23,68,.25)}
+.fab{position:fixed;right:24px;bottom:92px;width:60px;height:60px;border:1px solid rgba(255,255,255,.15);border-radius:19px;background:linear-gradient(145deg,#ff1744,#d9042b);color:#fff;font-size:29px;box-shadow:0 16px 40px rgba(255,23,68,.32),inset 0 1px 0 rgba(255,255,255,.24);z-index:5}.fab:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 48px rgba(255,23,68,.42)}
+.nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:min(600px,calc(100% - 24px));background:rgba(12,12,14,.72);border:1px solid rgba(255,255,255,.10);border-radius:20px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;justify-content:space-around;padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:4;box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}.nav button{border:0;background:none;color:#8f8f99;font-size:10px;padding:7px 15px;border-radius:12px}.nav button.active{background:rgba(255,23,68,.12);color:#ff4962;font-weight:900;box-shadow:inset 0 0 0 1px rgba(255,23,68,.12)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:20;align-items:flex-end;justify-content:center}.modal.show{display:flex;animation:fadeIn .2s ease}.sheet{background:linear-gradient(145deg,rgba(25,25,28,.96),rgba(10,10,12,.96));border:1px solid rgba(255,255,255,.10);width:min(620px,100%);border-radius:25px 25px 0 0;padding:22px 18px 28px;box-shadow:0 -20px 70px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);animation:sheetUp .28s cubic-bezier(.2,.8,.2,1)}.sheet h2{margin:0 0 15px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:12px}.field label{font-size:11px;color:#a8a8b0;font-weight:800;display:block;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:var(--text);padding:12px;border-radius:12px;outline:0}.field input:focus,.field select:focus{border-color:rgba(255,23,68,.7);box-shadow:0 0 0 3px rgba(255,23,68,.12)}.field select option{background:#151517;color:#fff}.formactions{display:flex;gap:8px;justify-content:flex-end}.empty{color:var(--muted);font-size:13px;padding:10px 0}.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);background:rgba(24,24,27,.92);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:white;padding:10px 15px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:30;box-shadow:0 15px 40px rgba(0,0,0,.45)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.dark{--bg:#050505;--surface:rgba(18,18,20,.72);--surface2:rgba(28,28,31,.62);--text:#f7f7f8;--muted:#a3a3ad;--line:rgba(255,255,255,.10);--shadow:0 22px 70px rgba(0,0,0,.48)}
+/* ===== Real Light/Dark theme support ===== */
+body.light{
+  --bg:#f4f5f7;--surface:rgba(255,255,255,.82);--surface2:rgba(247,248,250,.88);
+  --text:#15161a;--muted:#666b76;--line:rgba(20,22,28,.12);--shadow:0 18px 55px rgba(20,25,35,.12);
+  background:radial-gradient(circle at 12% 0%,rgba(255,23,68,.08),transparent 30%),
+             radial-gradient(circle at 90% 20%,rgba(255,23,68,.055),transparent 28%),#f4f5f7;
+  color:var(--text);
+}
+body.light .iconbtn{background:rgba(255,255,255,.78);color:var(--text);border-color:rgba(20,22,28,.12);box-shadow:0 8px 24px rgba(20,25,35,.08),inset 0 1px 0 rgba(255,255,255,.8)}
+body.light .balance,body.light .coach,body.light .card{background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(247,248,250,.82));border-color:rgba(20,22,28,.10);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .flow div,body.light .goal,body.light .txicon,body.light .sw-setting-card,body.light .sw-goal-card{background:rgba(20,22,28,.035);border-color:rgba(20,22,28,.09)}
+body.light .coach p,body.light .sw-setting-card p,body.light .sw-goal-card p{color:#656a75}
+body.light .track,body.light .goalbar{background:rgba(20,22,28,.08)}
+body.light .nav{background:rgba(255,255,255,.80);border-color:rgba(20,22,28,.10);box-shadow:0 18px 50px rgba(20,25,35,.14),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .nav button{color:#707581}
+body.light .secondary{background:rgba(20,22,28,.045);color:var(--text);border-color:rgba(20,22,28,.10)}
+body.light .secondary:hover{background:rgba(255,23,68,.08)}
+body.light .modal{background:rgba(30,34,42,.32)}
+body.light .sheet{background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(247,248,250,.97));border-color:rgba(20,22,28,.10);box-shadow:0 -20px 70px rgba(20,25,35,.18),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .field input,body.light .field select{background:rgba(20,22,28,.035);color:var(--text);border-color:rgba(20,22,28,.12)}
+body.light .field select option{background:#fff;color:#15161a}
+body.light .sw-page-layer{background:#f4f5f7}
+body.light .sw-page-top{background:linear-gradient(#f4f5f7 72%,transparent)}
+body.light .sw-back{background:rgba(20,22,28,.045);color:var(--text);border-color:rgba(20,22,28,.10)}
+body.light .sw-setting-card,body.light .sw-goal-card{background:rgba(255,255,255,.78);border-color:rgba(20,22,28,.10);box-shadow:0 12px 35px rgba(20,25,35,.06)}
+body.light .sw-legal{color:#4f545e}
+body.light .sw-legal h3{color:#15161a}
+body.light .sw-consent{background:rgba(20,24,30,.32)}
+body.light .sw-consent-card{background:#fff;border-color:rgba(255,23,68,.20);box-shadow:0 30px 100px rgba(20,25,35,.22)}
+body.light .toast{background:rgba(255,255,255,.94);color:#15161a;border-color:rgba(20,22,28,.10);box-shadow:0 15px 40px rgba(20,25,35,.16)}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes sheetUp{from{transform:translateY(24px);opacity:.7}to{transform:translateY(0);opacity:1}}@keyframes logoIn{from{transform:scale(.8) rotate(-6deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+@media(max-width:760px){.hero,.grid{grid-template-columns:1fr}.amount{font-size:36px}.app{padding-top:15px}.top{margin-bottom:15px}.card{padding:16px}.fab{right:18px;bottom:88px}.nav{bottom:8px}}
+
+/* ===== SaveWise v2: time, month navigation & AI insights ===== */
+.timebar{margin:16px 0;padding:15px 18px;border:1px solid rgba(255,23,68,.18);border-radius:20px;background:linear-gradient(145deg,rgba(18,18,20,.78),rgba(8,8,10,.68));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;box-shadow:0 18px 55px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.04)}
+.monthnav{display:flex;align-items:center;gap:10px}.monthnav button{width:42px;height:42px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);color:#fff;border-radius:13px;font-size:20px}.monthnav button:hover{border-color:rgba(255,23,68,.45);background:rgba(255,23,68,.10)}.monthinfo{text-align:center;min-width:190px}.monthinfo strong{display:block;font-size:18px}.monthinfo small{color:var(--muted);font-size:11px}.clockinfo{text-align:right}.clockinfo strong{display:block;font-size:16px;letter-spacing:.2px}.clockinfo small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.syncbtn{margin-top:6px;border:1px solid rgba(255,23,68,.22);background:rgba(255,23,68,.08);color:#ff7185;border-radius:9px;padding:6px 9px;font-size:10px;font-weight:850}.syncbtn:hover{background:rgba(255,23,68,.14)}
+.insights-modal{align-items:flex-end}.insights-sheet{width:min(760px,100%);max-height:min(82vh,760px);overflow:hidden;border-radius:26px 26px 0 0;padding:0;display:flex;flex-direction:column}.sheet-handle{width:44px;height:5px;border-radius:99px;background:rgba(255,255,255,.22);margin:10px auto 4px}.insights-head{padding:10px 20px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:10px}.insights-head h2{margin:0;font-size:20px}.closex{width:36px;height:36px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.045);color:#fff;border-radius:12px;font-size:18px}.insights-body{overflow:auto;padding:18px 20px 24px}.ai-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:99px;background:rgba(255,23,68,.10);border:1px solid rgba(255,23,68,.18);color:#ff6b80;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.ai-summary{margin:12px 0 16px;padding:16px;border-radius:17px;background:linear-gradient(145deg,rgba(255,23,68,.09),rgba(255,255,255,.035));border:1px solid rgba(255,23,68,.14)}.ai-summary h3{margin:0 0 6px;font-size:18px}.ai-summary p{margin:0;color:#c7c7ce;font-size:13px;line-height:1.55}.insight-list{display:grid;gap:10px}.insight-item{padding:14px;border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.035);border-radius:16px}.insight-item strong{display:block;margin-bottom:5px}.insight-item p{margin:0;color:#bdbdc5;font-size:12px;line-height:1.5}.askbox{margin-top:16px;padding:14px;border:1px solid rgba(255,23,68,.15);background:rgba(255,255,255,.025);border-radius:17px}.askbox label{font-size:11px;font-weight:850;color:#aaaab3;display:block;margin-bottom:7px}.askrow{display:flex;gap:8px}.askrow input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:#fff;padding:12px;border-radius:12px;outline:0}.askrow input:focus{border-color:rgba(255,23,68,.65);box-shadow:0 0 0 3px rgba(255,23,68,.10)}.askanswer{margin-top:10px;color:#c9c9d0;font-size:12px;line-height:1.55;display:none;padding:11px;border-radius:12px;background:rgba(255,255,255,.035)}.askanswer.show{display:block;animation:fadeIn .2s ease}
+@media(max-width:760px){.timebar{grid-template-columns:1fr;gap:10px}.monthnav{justify-content:center}.clockinfo{text-align:center}.monthinfo{min-width:0}.insights-sheet{max-height:88vh}.insights-body{padding-bottom:32px}.askrow{flex-direction:column}}
+
+
+/* ===== SaveWise Insights v3 preview ===== */
+.insights-modal{align-items:center!important;padding:12px}
+.insights-sheet{
+  width:min(920px,calc(100% - 12px))!important;
+  max-height:92vh!important;
+  height:min(92vh,900px);
+  border-radius:28px!important;
+  border:1px solid rgba(255,23,68,.20)!important;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 30px 100px rgba(0,0,0,.72),0 0 70px rgba(255,23,68,.07);
+  animation:insightsPageIn .34s cubic-bezier(.2,.8,.2,1) both!important;
+}
+.insights-modal:not(.show) .insights-sheet{animation:none}
+.insights-head{
+  position:relative;
+  padding:16px 20px!important;
+  background:linear-gradient(180deg,rgba(255,23,68,.07),rgba(255,255,255,.015));
+}
+.insights-head .headcopy{display:flex;align-items:center;gap:11px}
+.insights-head .headicon{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,23,68,.12);border:1px solid rgba(255,23,68,.22);
+  box-shadow:0 8px 28px rgba(255,23,68,.12);font-size:20px
+}
+.insights-head h2{font-size:21px!important}
+.insights-head p{margin:3px 0 0;color:#9999a4;font-size:11px}
+.insights-body{padding:20px!important;scroll-behavior:smooth}
+.insights-overview{
+  display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:stretch;
+  margin-bottom:18px
+}
+.insight-chart-card,.insight-stat-card{
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+  animation:riseIn .45s ease both
+}
+.insight-chart-card{display:grid;place-items:center;min-height:300px}
+.donut-wrap{display:grid;place-items:center;position:relative}
+.donut{
+  width:205px;height:205px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 0 50px rgba(255,23,68,.12);
+  transition:transform .35s ease,filter .35s ease
+}
+.donut:hover{transform:scale(1.035);filter:brightness(1.08)}
+.donut-hole{
+  width:132px;height:132px;border-radius:50%;background:#0b0b0d;
+  border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;
+  align-content:center;text-align:center;box-shadow:inset 0 0 30px rgba(0,0,0,.35)
+}
+.donut-hole strong{font-size:24px;line-height:1.1}
+.donut-hole span{font-size:10px;color:#9999a4;margin-top:5px;text-transform:uppercase;letter-spacing:.08em}
+.donut-caption{margin-top:13px;text-align:center;color:#a9a9b2;font-size:11px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.insight-stat{padding:14px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.insight-stat small{display:block;color:#92929c;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.insight-stat strong{display:block;margin-top:5px;font-size:17px}
+.insight-stat.spent strong{color:#ff3152}.insight-stat.income strong{color:#34d399}
+.legend{display:grid;gap:9px;max-height:245px;overflow:auto;padding-right:2px}
+.legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.025);transition:transform .2s ease,background .2s ease}
+.legend-row:hover{transform:translateX(2px);background:rgba(255,23,68,.055)}
+.legend-dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 10px currentColor}
+.legend-name{font-size:12px;font-weight:800}.legend-meta{font-size:10px;color:#9999a4;margin-top:2px}
+.legend-amount{text-align:right;font-size:11px;font-weight:850}
+.ai-insight-list{display:grid;gap:10px}
+.ai-insight-card{
+  padding:15px;border-radius:17px;border:1px solid rgba(255,23,68,.13);
+  background:linear-gradient(145deg,rgba(255,23,68,.075),rgba(255,255,255,.025));
+  animation:riseIn .5s ease both
+}
+.ai-insight-card:nth-child(2){animation-delay:.06s}.ai-insight-card:nth-child(3){animation-delay:.12s}.ai-insight-card:nth-child(4){animation-delay:.18s}
+.ai-insight-card strong{display:block;margin-bottom:5px;font-size:13px}.ai-insight-card p{margin:0;color:#bdbdc6;font-size:12px;line-height:1.55}
+.insight-section-title{margin:20px 0 10px;font-size:13px;color:#e7e7eb}
+.insight-ai-fab{
+  position:absolute;right:20px;bottom:20px;z-index:8;width:58px;height:58px;border-radius:19px;
+  border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#ff1744,#c90029);
+  color:#fff;font-size:22px;box-shadow:0 16px 42px rgba(255,23,68,.38),inset 0 1px 0 rgba(255,255,255,.24);
+  animation:aiPulse 2.4s ease-in-out infinite
+}
+.insight-ai-fab:hover{transform:translateY(-3px) scale(1.03)}
+.ai-panel{
+  position:absolute;right:20px;bottom:88px;width:min(410px,calc(100% - 40px));z-index:9;
+  padding:15px;border-radius:20px;border:1px solid rgba(255,23,68,.22);
+  background:rgba(15,15,18,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:0 22px 70px rgba(0,0,0,.62);display:none;animation:aiPanelIn .22s ease both
+}
+.ai-panel.show{display:block}
+.ai-panel-title{font-weight:900;font-size:13px;margin-bottom:4px}.ai-panel-sub{font-size:10px;color:#92929c;margin-bottom:10px}
+.ai-panel .askrow{display:flex;gap:8px}.ai-panel input{flex:1;min-width:0}
+.ai-panel .askanswer{max-height:150px;overflow:auto}
+.insights-scroll-hint{text-align:center;color:#70707a;font-size:10px;margin-top:17px;padding-bottom:45px}
+@keyframes insightsPageIn{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aiPanelIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes aiPulse{0%,100%{box-shadow:0 16px 42px rgba(255,23,68,.32),inset 0 1px 0 rgba(255,255,255,.24)}50%{box-shadow:0 16px 55px rgba(255,23,68,.52),0 0 0 7px rgba(255,23,68,.05),inset 0 1px 0 rgba(255,255,255,.24)}}
+@media(max-width:760px){
+  .insights-modal{padding:6px}
+  .insights-sheet{width:100%!important;height:95vh;max-height:95vh!important;border-radius:24px!important}
+  .insights-overview{grid-template-columns:1fr}
+  .insight-chart-card{min-height:250px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .insight-ai-fab{right:15px;bottom:15px}.ai-panel{right:15px;bottom:82px;width:calc(100% - 30px)}
+  .insights-body{padding:15px!important}
+}
+
+
+/* ===== SaveWise page navigation / legal / AI v4 ===== */
+.sw-page-layer{
+  position:fixed;inset:0;z-index:10000;display:none;background:var(--bg);
+  color:var(--text);
+  overflow:auto;overscroll-behavior:contain;
+  opacity:0;transform:translateY(18px);
+}
+.sw-page-layer.show{display:block;animation:swPageIn .32s cubic-bezier(.2,.8,.2,1) forwards;pointer-events:auto}.sw-page-layer:not(.show){pointer-events:none}
+.sw-page-inner{min-height:100%;max-width:920px;margin:auto;padding:18px 18px 48px}
+.sw-page-top{
+  position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;
+  padding:12px 0 16px;background:linear-gradient(var(--bg) 72%,transparent)
+}
+.sw-back{
+  width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.045);color:#fff;font-size:19px;cursor:pointer
+}
+.sw-page-title{font-size:21px;font-weight:900}
+.sw-page-sub{font-size:11px;color:#96969f;margin-top:3px}
+.sw-page-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.sw-setting-card,.sw-goal-card{
+  border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.035);
+  border-radius:19px;padding:16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+.sw-setting-card{position:relative;z-index:1;cursor:default}.sw-setting-card button{position:relative;z-index:5;pointer-events:auto;cursor:pointer}.sw-setting-card:hover,.sw-goal-card:hover{transform:translateY(-2px);border-color:rgba(255,23,68,.28);box-shadow:0 14px 38px rgba(0,0,0,.25)}
+.sw-setting-row{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.sw-setting-card h3,.sw-goal-card h3{margin:0;font-size:13px}.sw-setting-card p,.sw-goal-card p{margin:5px 0 0;color:#9999a4;font-size:11px;line-height:1.5}
+.sw-danger{border-color:rgba(255,23,68,.18)}
+.sw-legal{line-height:1.65;color:#c5c5cc;font-size:12px}
+.sw-legal h3{color:#fff;margin:22px 0 7px;font-size:14px}.sw-legal p{margin:0 0 9px}
+.sw-consent{
+  position:fixed;inset:0;z-index:11000;background:rgba(0,0,0,.82);backdrop-filter:blur(18px);
+  display:none;align-items:center;justify-content:center;padding:16px
+}
+.sw-consent.show{display:flex;animation:swFade .25s ease}
+.sw-consent-card{
+  width:min(760px,100%);max-height:90vh;overflow:auto;border-radius:26px;
+  background:#0b0b0d;border:1px solid rgba(255,23,68,.22);padding:22px;
+  box-shadow:0 30px 100px rgba(0,0,0,.75)
+}
+.sw-check{display:flex;gap:10px;align-items:flex-start;margin-top:17px;padding:12px;border-radius:14px;background:rgba(255,255,255,.035);font-size:12px;color:#d7d7dc}
+.sw-check input{margin-top:3px;accent-color:#ff1744}.sw-consent-actions{display:flex;gap:10px;margin-top:15px}
+.sw-consent-actions button{flex:1}
+.sw-ai-msg{padding:10px 12px;border-radius:14px;margin-top:9px;line-height:1.5;font-size:12px}
+.sw-ai-user{background:rgba(255,23,68,.10);border:1px solid rgba(255,23,68,.14)}
+.sw-ai-bot{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+@keyframes swPageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swFade{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.sw-page-grid{grid-template-columns:1fr}.sw-page-inner{padding:12px 13px 35px}}
+
+
+
+/* ===== SaveWise Easter Egg: long-press logo micro-game ===== */
+.logo{--sw-charge:0%;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.logo::before{content:"";position:absolute;inset:-4px;border-radius:20px;padding:3px;background:conic-gradient(#fff var(--sw-charge),rgba(255,255,255,.12) 0);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transform:scale(.92);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:4}
+.logo.longpressing::before{opacity:1;transform:scale(1)}
+.logo.longpressing{animation:swLogoCharge .9s ease-in-out infinite alternate;box-shadow:0 0 0 5px rgba(255,23,68,.08),0 18px 48px rgba(255,23,68,.45),inset 0 1px 0 rgba(255,255,255,.24)}
+@keyframes swLogoCharge{from{transform:scale(1)}to{transform:scale(1.06) rotate(1deg)}}
+.logo.sw-egg-burst{animation:swEggBurst .55s cubic-bezier(.2,.9,.2,1) both!important}
+@keyframes swEggBurst{0%{transform:scale(1)}35%{transform:scale(1.25) rotate(-5deg);filter:brightness(1.45)}70%{transform:scale(.88) rotate(4deg)}100%{transform:scale(1);filter:brightness(1)}}
+.sw-game-overlay{position:fixed;inset:0;z-index:80;background:radial-gradient(circle at 50% 15%,rgba(255,23,68,.16),transparent 35%),rgba(2,3,8,.94);backdrop-filter:none;-webkit-backdrop-filter:none;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.sw-game-overlay.show{opacity:1;pointer-events:auto}
+.sw-game-shell{width:min(760px,100%);height:min(760px,calc(100dvh - 36px));min-height:520px;border:1px solid rgba(255,255,255,.12);border-radius:30px;background:linear-gradient(145deg,rgba(18,18,24,.9),rgba(5,6,12,.88));box-shadow:0 30px 100px rgba(0,0,0,.65),0 0 70px rgba(255,23,68,.08);overflow:hidden;position:relative;transform:translateY(22px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.sw-game-overlay.show .sw-game-shell{transform:translateY(0) scale(1)}
+.sw-game-head{position:absolute;left:0;right:0;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:linear-gradient(180deg,rgba(5,6,12,.9),rgba(5,6,12,0));pointer-events:none}
+.sw-game-title{font-weight:950;letter-spacing:-.4px}.sw-game-score{font-weight:900;color:#ff5b73}.sw-game-close{pointer-events:auto;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;width:40px;height:40px;border-radius:13px;font-size:20px}.sw-game-close:hover{background:rgba(255,23,68,.13);border-color:rgba(255,23,68,.35)}
+#swGameCanvas{width:100%;height:100%;display:block;touch-action:none}
+.sw-game-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.28);border-radius:999px;color:#aeb0bc;font-size:11px;white-space:nowrap;pointer-events:none}
+.sw-game-result{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,3,8,.58);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:5}.sw-game-result.show{opacity:1;pointer-events:auto}.sw-game-result-card{text-align:center;width:min(330px,calc(100% - 40px));padding:26px;border:1px solid rgba(255,255,255,.11);border-radius:24px;background:rgba(17,18,25,.9);box-shadow:0 20px 60px rgba(0,0,0,.5)}.sw-game-result-card h2{margin:0 0 8px}.sw-game-result-card p{color:#aeb0bc;margin:6px 0 18px}.sw-game-actions{display:flex;gap:9px;justify-content:center}.sw-game-actions button{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 15px;font-weight:850}.sw-game-replay{background:linear-gradient(135deg,#ff1744,#d9042b);color:#fff}.sw-game-exit{background:rgba(255,255,255,.05);color:#fff}
+.sw-confetti{position:fixed;width:7px;height:13px;z-index:100;pointer-events:none;border-radius:2px;animation:swConfetti 900ms cubic-bezier(.15,.75,.25,1) forwards}
+@keyframes swConfetti{0%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(.7)}}
+@media(max-width:600px){.sw-game-overlay{padding:0}.sw-game-shell{width:100%;height:100dvh;min-height:0;border-radius:0;border:0}.sw-game-hint{bottom:calc(14px + env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){.logo.longpressing{animation:none}.sw-game-overlay,.sw-game-shell,.sw-game-result{transition:none}}
+
+
+/* ===== SaveWise Easter Egg: 3D portal transition ===== */
+.portal-transition{
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  overflow:hidden; display:none;
+  perspective:1200px;
+  background:radial-gradient(circle at center, rgba(255,23,68,.12), rgba(0,0,0,.92) 58%, #000 100%);
+}
+.portal-transition.active{display:block}
+.portal-circle{
+  position:absolute; left:50%; top:50%;
+  width:var(--s); height:var(--s);
+  border-radius:50%;
+  transform:translate(-50%,-50%) translate3d(var(--x),var(--y),0) scale(.08) rotateX(0deg);
+  opacity:0;
+  background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.65), var(--c) 34%, rgba(0,0,0,.12) 72%);
+  box-shadow:0 0 12px var(--c),0 0 28px var(--c);
+  animation:portalRush 1250ms cubic-bezier(.22,.78,.18,1) var(--d) both;
+  transform-style:preserve-3d;
+  filter:saturate(1.2);
+}
+.portal-circle:nth-child(3n){border:1px solid rgba(255,255,255,.22)}
+.portal-circle:nth-child(4n){filter:blur(.35px) saturate(1.3)}
+.portal-core{
+  position:absolute;left:50%;top:50%;width:18px;height:18px;border-radius:50%;
+  transform:translate(-50%,-50%) scale(.1);
+  background:#fff;
+  box-shadow:0 0 18px #fff,0 0 60px #ff1744,0 0 130px rgba(255,23,68,.8);
+  animation:coreBurst 1450ms cubic-bezier(.18,.72,.16,1) 760ms both;
+}
+.portal-ring{
+  position:absolute;left:50%;top:50%;width:40px;height:40px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.9);
+  transform:translate(-50%,-50%) scale(.1);
+  animation:ringBurst 1550ms cubic-bezier(.18,.7,.16,1) 720ms both;
+}
+.portal-flash{
+  position:absolute;inset:-20%;background:#fff;opacity:0;
+  animation:portalFlash 1500ms ease 900ms both;
+}
+@keyframes portalRush{
+  0%{opacity:0;transform:translate(-50%,-50%) translate3d(var(--x),var(--y),-400px) scale(.08) rotateZ(var(--r))}
+  22%{opacity:.95}
+  82%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-50%) translate3d(0,0,700px) scale(5.8) rotateZ(calc(var(--r) * -1))}
+}
+@keyframes coreBurst{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.1)}
+  55%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(28)}
+}
+@keyframes ringBurst{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.1)}
+  35%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(25)}
+}
+@keyframes portalFlash{
+  0%,65%{opacity:0}
+  78%{opacity:.18}
+  88%{opacity:.75}
+  100%{opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .portal-circle,.portal-core,.portal-ring,.portal-flash{animation-duration:1ms!important}
+}
+
+
+/* ===== Centered bottom navigation ===== */
+.bottom-nav, .bottomNav, nav.bottom-nav, .app-bottom-nav {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  width: min(92vw, 620px) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.bottom-nav .nav-items, .bottomNav .nav-items, .bottom-nav ul, .bottomNav ul {
+  justify-content: center !important;
+}
+
+</style>
+<style id="sw-transition-extra">
+button,.btn,.nav button,.fab,.quick-btn{transition:transform .18s ease,opacity .18s ease,box-shadow .22s ease,background .22s ease}
+button:active,.btn:active{transform:scale(.97)}
+</style>
+<style id="sw-profile-style">
+.sw-profile-hero{display:flex;align-items:center;gap:18px;padding:22px;border:1px solid rgba(255,23,68,.18);background:linear-gradient(135deg,rgba(255,23,68,.12),rgba(255,255,255,.025));border-radius:24px;margin-bottom:14px}
+.sw-profile-hero h2{margin:0 0 5px;font-size:26px}.sw-profile-hero p{margin:0;color:#a8a8b3;font-size:13px}
+.sw-avatar-big{width:82px;height:82px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:#15151a;font-size:45px;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 35px rgba(255,23,68,.12)}
+.sw-avatar-grid{display:grid;grid-template-columns:repeat(8,minmax(42px,1fr));gap:9px;margin-top:14px}
+.sw-avatar-choice{height:48px;border-radius:15px;border:1px solid rgba(255,255,255,.08);background:#141419;font-size:25px;cursor:pointer}
+.sw-avatar-choice.active{border-color:#ff1744;box-shadow:0 0 0 2px rgba(255,23,68,.15);background:rgba(255,23,68,.12)}
+.sw-form-grid{display:grid;gap:12px;margin:15px 0}.sw-form-grid label{font-size:12px;font-weight:700;color:#bdbdc7;display:grid;gap:6px}
+.sw-form-grid input,.sw-form-grid textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.10);background:#0e0e12;color:#f5f5f7;border-radius:13px;padding:12px;font:inherit;outline:none}
+.sw-form-grid textarea{min-height:90px;resize:vertical}.sw-form-grid input:focus,.sw-form-grid textarea:focus{border-color:#ff1744;box-shadow:0 0 0 3px rgba(255,23,68,.10)}
+.sw-muted{color:#858590;font-size:11px}
+@media(max-width:700px){.sw-avatar-grid{grid-template-columns:repeat(6,minmax(42px,1fr))}}
+.nav{left:50%!important;right:auto!important;transform:translateX(-50%)!important;margin-left:0!important;margin-right:0!important;will-change:opacity}.nav button{touch-action:manipulation}
+@media(max-width:760px){.nav{width:min(560px,calc(100% - 24px));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.balance,.coach,.card,.iconbtn{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
+</style>
+<style id="sw-premium-motion">
+/* Page / card choreography */
+.app{animation:swAppEnter .7s cubic-bezier(.16,1,.3,1) both}
+.top{animation:swDrop .55s .04s cubic-bezier(.16,1,.3,1) both}
+.hero > *, .timebar, .grid > *, .fab{animation:swRise .62s cubic-bezier(.16,1,.3,1) both}.nav{animation:swNavIn .62s cubic-bezier(.16,1,.3,1) both}
+.hero > *:nth-child(2){animation-delay:.08s}.timebar{animation-delay:.13s}.grid > *:nth-child(1){animation-delay:.18s}.grid > *:nth-child(2){animation-delay:.23s}.fab{animation-delay:.28s}.nav{animation-delay:.34s}
+.balance,.coach,.card,.sw-setting-card,.sw-goal-card{will-change:transform}
+.balance:hover,.coach:hover,.card:hover,.sw-setting-card:hover,.sw-goal-card:hover{transform:translateY(-4px)}
+.nav button{position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.2,.8,.2,1),color .22s ease,background .22s ease}
+.nav button::after{content:"";position:absolute;left:50%;bottom:3px;width:0;height:2px;border-radius:99px;background:#ff1744;transform:translateX(-50%);transition:width .25s ease,opacity .25s ease}
+.nav button.active::after{width:22px}
+.fab{animation:swRise .62s cubic-bezier(.16,1,.3,1) both,swFabBreath 3.2s ease-in-out 1.1s infinite}
+.primary{position:relative;overflow:hidden;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,filter .22s ease}
+.primary:hover{transform:translateY(-2px)}
+.primary:active{transform:translateY(1px) scale(.97)}
+button:not(.nav button):not(.fab):not(.iconbtn){transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background .22s ease,border-color .22s ease}
+.sw-page-layer.show{animation:swPageEnter .42s cubic-bezier(.16,1,.3,1) both}
+.sw-page-layer.show .sw-page-inner{animation:swPageContent .5s .04s cubic-bezier(.16,1,.3,1) both}
+.modal.show .sheet{animation:swSheetEnter .38s cubic-bezier(.16,1,.3,1) both}
+@keyframes swAppEnter{from{opacity:0}to{opacity:1}}
+@keyframes swDrop{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swRise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes swPageEnter{from{opacity:0;transform:translateY(20px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes swPageContent{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swSheetEnter{from{opacity:0;transform:translateY(34px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes swNavIn{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:blur(0)}}
+@keyframes swFabBreath{0%,100%{box-shadow:0 16px 40px rgba(255,23,68,.32),inset 0 1px 0 rgba(255,255,255,.24)}50%{box-shadow:0 20px 52px rgba(255,23,68,.46),0 0 0 6px rgba(255,23,68,.045),inset 0 1px 0 rgba(255,255,255,.24)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="portal-transition" id="portalTransition" aria-hidden="true">
+  <div class="portal-flash"></div>
+  <div class="portal-ring"></div>
+  <div class="portal-core"></div>
+</div>
+
+<div class="app">
+<header class="top"><div class="brand"><div class="logo" aria-label="SaveWise logo">
+<svg class="logo-svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="swLogoGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff4965"/>
+      <stop offset="0.55" stop-color="#ff1744"/>
+      <stop offset="1" stop-color="#a90025"/>
+    </linearGradient>
+    <linearGradient id="swLogoShine" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".34"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#swLogoGrad)"/>
+  <rect x="4" y="4" width="56" height="28" rx="18" fill="url(#swLogoShine)"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+  <path d="M22 39c4.5 4 13.5 4.2 18.3.2 3.2-2.7 2.2-6.8-2-8.1l-9.2-2.8c-3.7-1.1-4.4-4.1-1.4-6.1 4.1-2.8 10.6-1.8 14.2 1.1" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M42 18v8h-8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div><div><h1>SaveWise</h1><small>Your money. Your goals. Smarter choices.</small></div></div><div class="actions"><button class="iconbtn" id="headerAvatar" title="Profile">🙂</button><button class="iconbtn" id="themeBtn">☀️</button></div></header>
+<section class="hero">
+<div class="balance"><div class="eyebrow">Available balance</div><div class="amount" id="balance">₹0</div><div class="flow"><div><span>Income this month</span><b class="income" id="income">+ ₹0</b></div><div><span>Expenses this month</span><b class="expense" id="expense">− ₹0</b></div></div></div>
+<div class="coach"><div class="eyebrow">🤖 Money Coach</div><h3 id="coachTitle">Let's get started</h3><p id="coachText">Add your income and first expense. SaveWise will begin finding useful patterns.</p></div>
+</section>
+<section aria-label="Date and time" class="timebar">
+<div class="monthnav"><button aria-label="Previous month" id="prevMonth">‹</button></div>
+<div class="monthinfo"><strong id="monthLabel">Current month</strong><small id="monthMeta">Loading month data…</small></div>
+<div class="clockinfo"><strong id="clockLabel">--:--:--</strong><small id="dateLabel">Loading date…</small><small id="tzLabel">Device time zone</small><button class="syncbtn" id="syncTimeBtn">📍 Sync time &amp; location</button></div>
+<div class="monthnav"><button aria-label="Next month" id="nextMonth">›</button></div>
+</section>
+<div class="grid">
+<section class="card"><div class="cardhead"><h3>📊 Monthly spending</h3><button class="link" id="allInsights">Insights</button></div><div class="bars" id="bars"></div></section>
+<section class="card"><div class="cardhead"><h3>🐷 Savings goals</h3><button class="link" id="addGoal">+ Goal</button></div><div id="goals"></div></section>
+<section class="card"><div class="cardhead"><h3>🧾 Recent transactions</h3><button class="link" id="addExpenseLink">+ Add</button></div><div class="transactions" id="transactions"></div></section>
+<section class="card"><div class="cardhead"><h3>💡 Quick actions</h3></div><div class="row"><button class="btn secondary" id="incomeBtn">＋ Income</button><button class="btn secondary" id="expenseBtn">− Expense</button><button class="btn secondary" id="budgetBtn">🎯 Set Budget</button><button class="btn secondary" id="settingsBtn">⚙️ Settings</button></div></section>
+</div>
+</div>
+<button class="fab" id="fab">＋</button>
+<nav class="nav"><button class="active">🏠<br/>Home</button><button id="insightsNav">📊<br/>Insights</button><button id="goalsNav">🐷<br/>Goals</button><button id="settingsNav">⚙️<br/>Settings</button></nav>
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="modal insights-modal" id="insightsModal">
+<div class="sheet insights-sheet" id="insightsSheet">
+<div class="sheet-handle"></div>
+<div class="insights-head">
+<div class="headcopy">
+<div class="headicon">✦</div>
+<div><h2>SaveWise Insights</h2><p id="insightPeriod">Your monthly money overview</p></div>
+</div>
+<button aria-label="Close insights" class="closex" id="closeInsights">×</button>
+</div>
+<div class="insights-body" id="insightsBody"></div>
+<button aria-label="Ask SaveWise AI" class="insight-ai-fab" id="insightAiFab">✦</button>
+<div class="ai-panel" id="aiPanel">
+<div class="ai-panel-title">✦ Ask SaveWise</div>
+<div class="ai-panel-sub">Ask about this month's spending, budget, income or ways to save.</div>
+<div class="askrow">
+<input id="aiQuestion" placeholder="e.g. Where can I save money?"/>
+<button class="btn primary" id="askAiBtn">Ask</button>
+</div>
+<div class="askanswer" id="aiAnswer"></div>
+</div>
+</div>
+</div>
+
+<!-- SaveWise Easter Egg micro-game -->
+<div class="sw-game-overlay" id="swGameOverlay" aria-hidden="true">
+  <div class="sw-game-shell">
+    <div class="sw-game-head">
+      <div><div class="sw-game-title">⚡ Neon Dodge</div><small style="color:#8f929f">SaveWise secret arcade</small></div>
+      <div style="display:flex;align-items:center;gap:10px"><div class="sw-game-score" id="swGameScore">0</div><button class="sw-game-close" id="swGameClose" aria-label="Close game">×</button></div>
+    </div>
+    <canvas id="swGameCanvas"></canvas>
+    <div class="sw-game-hint">Drag / move your finger to dodge • survive 15 seconds</div>
+    <div class="sw-game-result" id="swGameResult">
+      <div class="sw-game-result-card">
+        <div style="font-size:38px">🏆</div><h2 id="swGameResultTitle">Nice!</h2><p id="swGameResultText">You survived the round.</p>
+        <div class="sw-game-actions"><button class="sw-game-replay" id="swGameReplay">Play again</button><button class="sw-game-exit" id="swGameExit">Back to SaveWise</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const CURRENCIES={INR:"₹",USD:"$",EUR:"€",GBP:"£",AED:"د.إ",CAD:"C$",AUD:"A$",JPY:"¥",CHF:"CHF",SGD:"S$"};
+const cats={Food:"🍔",Transport:"🚕",Shopping:"🛍️",Subscriptions:"📱",Bills:"🏠",Entertainment:"🎮",Education:"📚",Health:"💊",Travel:"✈️",Other:"•"};
+const KEY="savewise_v1";
+const DEFAULT_PROFILE=()=>({id:1,name:"You",currency:"INR",balance:0,income:0,budget:0,transactions:[],goals:[]});
+function loadDB(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    const parsed=raw?JSON.parse(raw):null;
+    const base=parsed&&typeof parsed==="object"?parsed:{};
+    base.profiles=Array.isArray(base.profiles)&&base.profiles.length?base.profiles:[DEFAULT_PROFILE()];
+    base.profiles=base.profiles.map((p,i)=>({
+      ...DEFAULT_PROFILE(),
+      ...p,
+      id:p?.id??(i+1),
+      name:String(p?.name||"You"),
+      currency:CURRENCIES[p?.currency]?p.currency:"INR",
+      balance:Number(p?.balance)||0,
+      income:Number(p?.income)||0,
+      budget:Number(p?.budget)||0,
+      transactions:Array.isArray(p?.transactions)?p.transactions:[],
+      goals:Array.isArray(p?.goals)?p.goals:[],
+      email:String(p?.email||""),
+      about:String(p?.about||""),
+      avatar:String(p?.avatar||"🙂")
+    }));
+    base.active=base.profiles.some(p=>p.id===base.active)?base.active:base.profiles[0].id;
+    base.theme=["dark","light","system"].includes(base.theme)?base.theme:"dark";
+    return base;
+  }catch(e){
+    return {profiles:[DEFAULT_PROFILE()],active:1,theme:"dark"};
+  }
+}
+let db=loadDB();
+const $=id=>document.getElementById(id), save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+function profile(){return db.profiles.find(p=>p.id===db.active)||db.profiles[0]}
+function money(n){return (CURRENCIES[profile().currency]||"")+Number(n||0).toLocaleString(undefined,{maximumFractionDigits:2})}
+let selectedMonth={year:new Date().getFullYear(),month:new Date().getMonth()};
+let clockTimer=null;
+function monthDate(){return new Date(selectedMonth.year,selectedMonth.month,1)}
+function monthTx(){const p=profile();return (p.transactions||[]).filter(t=>{const x=new Date(t.date);return !Number.isNaN(x.getTime())&&x.getMonth()===selectedMonth.month&&x.getFullYear()===selectedMonth.year})}
+function monthName(){return monthDate().toLocaleDateString(undefined,{month:"long",year:"numeric"})}
+window.SaveWiseTime={
+  timezone:()=>Intl.DateTimeFormat().resolvedOptions().timeZone||"Local",
+  now:()=>new Date()
+};
+function updateClock(){const now=new Date();const timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone||"Local time";$('clockLabel').textContent=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});$('dateLabel').textContent=now.toLocaleDateString([], {weekday:'long',day:'numeric',month:'short',year:'numeric'});$('tzLabel').textContent=`🕐 ${timeZone}`;if(now.getDate()===1&&now.getHours()===0&&now.getMinutes()===0){selectedMonth={year:now.getFullYear(),month:now.getMonth()};render()}}
+function syncTimeLocation(){const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"your device time zone";const done=()=>{updateClock();showToast(`Time synced to ${tz} ✓`)};if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>done(),()=>{done();showToast(`Using device time zone: ${tz}`)},{enableHighAccuracy:false,timeout:7000,maximumAge:600000})}else done()}
+function showToast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$('toast').classList.remove('show'),2300)}
+function render(){
+const p=profile(); p.transactions=Array.isArray(p.transactions)?p.transactions:[]; p.goals=Array.isArray(p.goals)?p.goals:[]; const tx=p.transactions,m=monthTx(),inc=m.filter(x=>x.type==="income").reduce((a,x)=>a+Number(x.amount||0),0),exp=m.filter(x=>x.type==="expense").reduce((a,x)=>a+Number(x.amount||0),0);
+if($("profileName")) $("profileName").textContent=p.name;$("balance").textContent=money(p.balance);$("income").textContent="+ "+money(inc);$("expense").textContent="− "+money(exp);
+$("monthLabel").textContent=monthName();const now=new Date(),isCurrent=selectedMonth.year===now.getFullYear()&&selectedMonth.month===now.getMonth();$("monthMeta").textContent=`${m.length} transaction${m.length===1?'':'s'} ${isCurrent?'this month':'in this month'}`;
+const totals={};m.filter(x=>x.type==="expense").forEach(x=>totals[x.category]=(totals[x.category]||0)+x.amount);const max=Math.max(...Object.values(totals),1);
+$("bars").innerHTML=Object.keys(totals).length?Object.entries(totals).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([c,v])=>`<div class="barrow"><span>${cats[c]||"•"} ${esc(c)}</span><div class="track"><i style="width:${v/max*100}%"></i></div><b>${money(v)}</b></div>`).join(""):`<div class="empty">No spending recorded for ${monthName()}.</div>`;
+const mt=tx.filter(t=>{const x=new Date(t.date);return x.getMonth()===selectedMonth.month&&x.getFullYear()===selectedMonth.year});
+$("transactions").innerHTML=mt.length?mt.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5).map(t=>`<div class="tx"><div class="txleft"><div class="txicon">${t.type==="income"?"💰":cats[t.category]||"•"}</div><div><div class="txname">${esc(t.note||t.category||"Transaction")}</div><div class="txdate">${new Date(t.date).toLocaleDateString()}</div></div></div><div class="txamt ${t.type==="income"?"income":"expense"}">${t.type==="income"?"+":"−"} ${money(t.amount)}</div></div>`).join(""):`<div class="empty">No transactions in ${monthName()}. Tap + to add one.</div>`;
+$("goals").innerHTML=p.goals.length?p.goals.map(g=>{const pct=Math.min(100,g.saved/g.target*100);const remain=Math.max(0,g.target-g.saved);const weeks=Math.max(1,Math.ceil((new Date(g.date)-new Date())/604800000));return `<div class="goal"><div class="goaltop"><span>${g.icon} ${esc(g.name)}</span><span>${Math.round(pct)}%</span></div><small>${money(g.saved)} of ${money(g.target)}</small><div class="goalbar"><i style="width:${pct}%"></i></div><div class="goalfoot"><span>${money(remain)} left</span><span>≈ ${money(remain/weeks)}/week</span></div></div>`}).join(""):`<div class="empty">Create a goal and SaveWise will calculate how much to save.</div>`;
+let coachTitle="You're ready to build your money picture",coachText=`Add transactions for ${monthName()} and SaveWise will look for useful patterns.`;
+if(exp>0&&p.budget>0){const pct=exp/p.budget*100;coachTitle=pct>=90?"⚠️ Budget nearly used":"💚 Spending looks manageable";coachText=pct>=90?`You've used ${Math.round(pct)}% of the budget. Open Insights for practical ways to reduce spending.`:`You've used ${Math.round(pct)}% of the budget. Keep your current pace and check Insights for savings ideas.`}
+else if(inc>0){coachTitle="💡 Nice start";coachText=`You've recorded ${money(inc)} of income in ${monthName()}. Add your regular expenses to uncover savings opportunities.`}
+$("coachTitle").textContent=coachTitle;$("coachText").textContent=coachText;applyTheme();save();updateClock();
+}
+function changeMonth(delta){selectedMonth.month+=delta;const d=monthDate();selectedMonth={year:d.getFullYear(),month:d.getMonth()};render()}
+function currentMonth(){const d=new Date();selectedMonth={year:d.getFullYear(),month:d.getMonth()};render()}
+function insightData(){const p=profile(),m=monthTx(),expenses=m.filter(t=>t.type==="expense"),income=m.filter(t=>t.type==="income").reduce((a,x)=>a+x.amount,0),spent=expenses.reduce((a,x)=>a+x.amount,0),totals={};expenses.forEach(x=>totals[x.category]=(totals[x.category]||0)+x.amount);const top=Object.entries(totals).sort((a,b)=>b[1]-a[1]);return {p,m,expenses,income,spent,totals,top,budget:p.budget||0}}
+function buildInsights(){const d=insightData(),ideas=[];if(!d.m.length){ideas.push(["Start with visibility","Add a few income and expense entries. Once SaveWise has data, it can point out your biggest spending areas."]);ideas.push(["Use specific descriptions","Write things like “₹320 lunch at college” instead of a vague label. Your future review will be much easier."]);ideas.push(["Set a monthly budget","A budget gives SaveWise a threshold to compare against and makes warnings more useful."]);}else{if(d.top[0])ideas.push([`Watch ${d.top[0][0]}`,`${money(d.top[0][1])} went to ${d.top[0][0]} in ${monthName()}. Try a small reduction here first; even 10% would save about ${money(d.top[0][1]*.1)}.`]);if(d.top[1])ideas.push([`Review ${d.top[1][0]}`,`${money(d.top[1][1])} was spent here. Look for repeat purchases, subscriptions or purchases you could delay.`]);if(d.budget){const pct=d.spent/d.budget*100;ideas.push([pct>=90?"Slow down before the limit":"Keep your current pace",`You've used ${Math.round(pct)}% of your ${money(d.budget)} budget for ${monthName()}. ${pct>=90?'Prioritize essentials for the rest of the month.':'A small buffer now can prevent a rush at month-end.'}`]);}else ideas.push(["Set a budget target","Add a monthly budget so SaveWise can tell you when spending is approaching the limit."]);if(d.income>0&&d.spent>0){const rate=Math.max(0,(d.income-d.spent)/d.income*100);ideas.push(["Protect your leftover money",`Your recorded income minus expenses leaves about ${money(d.income-d.spent)} in ${monthName()} — roughly ${Math.round(rate)}% of recorded income. Consider moving part of it toward a goal.`]);}}
+const summary=d.spent?`For ${monthName()}, you've recorded ${money(d.spent)} in expenses across ${d.expenses.length} transaction${d.expenses.length===1?'':'s'}.`:`There isn't enough spending data for ${monthName()} yet, so these are starter recommendations.`;return {summary,ideas}}
+function openInsights(){
+  const d=insightData();
+  const colors=["#ff1744","#ff7a00","#ffd166","#34d399","#38bdf8","#a78bfa","#f472b6","#94a3b8"];
+  const entries=Object.entries(d.totals).sort((a,b)=>b[1]-a[1]);
+  let angle=0;
+  const slices=entries.map(([cat,val],i)=>{
+    const pct=d.spent?val/d.spent*100:0;
+    const start=angle; angle+=pct;
+    return `${colors[i%colors.length]} ${start}% ${angle}%`;
+  });
+  const donutBg=entries.length?`conic-gradient(${slices.join(",")})`:`conic-gradient(#2a2a2e 0 100%)`;
+  const leftover=d.income-d.spent;
+  const incomePct=d.income?Math.round(d.spent/d.income*100):0;
+  const summary=d.spent
+    ? `You've recorded ${money(d.spent)} in expenses across ${d.expenses.length} transaction${d.expenses.length===1?"":"s"} for ${monthName()}.`
+    : `No expenses are recorded for ${monthName()} yet. Add transactions to unlock a useful spending breakdown.`;
+  const built=buildInsights();
+
+  $("insightPeriod").textContent=`${monthName()} • ${d.income?money(d.income)+" income":"No income recorded"}`;
+  $("insightsBody").innerHTML=`
+    <div class="insights-overview">
+      <div class="insight-chart-card">
+        <div class="donut-wrap">
+          <div class="donut" style="background:${donutBg}">
+            <div class="donut-hole"><strong>${money(d.spent)}</strong><span>Total spent</span></div>
+          </div>
+          <div class="donut-caption">${d.income?`${incomePct}% of recorded income spent`:"Spending distribution by category"}</div>
+        </div>
+      </div>
+      <div class="insight-stat-card">
+        <div class="stat-grid">
+          <div class="insight-stat spent"><small>Total spent</small><strong>${money(d.spent)}</strong></div>
+          <div class="insight-stat income"><small>Total income</small><strong>${money(d.income)}</strong></div>
+          <div class="insight-stat"><small>Left after spending</small><strong>${money(leftover)}</strong></div>
+        </div>
+        <div class="insight-section-title">Spending by category</div>
+        <div class="legend">
+          ${entries.length?entries.map(([cat,val],i)=>{
+            const pct=d.spent?Math.round(val/d.spent*100):0;
+            const ofIncome=d.income?Math.round(val/d.income*100):0;
+            return `<div class="legend-row">
+              <span class="legend-dot" style="background:${colors[i%colors.length]};color:${colors[i%colors.length]}"></span>
+              <div><div class="legend-name">${cats[cat]||"•"} ${esc(cat)}</div><div class="legend-meta">${pct}% of expenses${d.income?` • ${ofIncome}% of income`:""}</div></div>
+              <div class="legend-amount">${money(val)}</div>
+            </div>`;
+          }).join(""):`<div class="empty">No category spending yet.</div>`}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-summary">
+      <span class="ai-badge">✦ Money coach</span>
+      <h3>${d.spent?`Your ${monthName()} spending check`:`Let's build your ${monthName()} picture`}</h3>
+      <p>${esc(summary)}</p>
+    </div>
+
+    <div class="insight-section-title">Ways SaveWise can help you save</div>
+    <div class="ai-insight-list">
+      ${built.ideas.map((x,i)=>`<div class="ai-insight-card"><strong>${i+1}. ${esc(x[0])}</strong><p>${esc(x[1])}</p></div>`).join("")}
+    </div>
+    <div class="insights-scroll-hint">Scroll for more • Ask SaveWise anytime with ✦</div>
+  `;
+  $("aiPanel").classList.remove("show");
+  $("insightsModal").classList.add("show");
+}
+
+function askAI(){
+  const q=$("aiQuestion").value.trim().toLowerCase(),d=insightData();
+  if(!q)return;
+  let ans;
+  if(q.includes("where")||q.includes("save")||q.includes("saving")){
+    if(d.top[0]) ans=`Your biggest recorded expense area is ${d.top[0][0]} at ${money(d.top[0][1])}. Start there: set a smaller limit, compare alternatives, and delay non-essential purchases. A 10% reduction would save about ${money(d.top[0][1]*.1)}.`;
+    else ans=`Start by recording expenses for ${monthName()}. Then I can identify your biggest categories and show where a reduction could have the biggest impact.`;
+  }else if(q.includes("budget")){
+    ans=d.budget?`Your budget is ${money(d.budget)} and recorded spending is ${money(d.spent)}, so you've used ${Math.round(d.spent/d.budget*100)}%.`:"You haven't set a monthly budget yet. Set one from Quick Actions so SaveWise can track your progress.";
+  }else if(q.includes("expense")||q.includes("spent")||q.includes("spend")){
+    ans=d.spent?`You've recorded ${money(d.spent)} of expenses in ${monthName()}. Your largest category is ${d.top[0]?.[0]||"not available"}.`:`No expenses are recorded for ${monthName()} yet.`;
+  }else if(q.includes("income")){
+    ans=`Recorded income for ${monthName()} is ${money(d.income)}.`;
+  }else if(q.includes("left")||q.includes("remaining")||q.includes("leftover")){
+    ans=`Based on recorded transactions, you have ${money(d.income-d.spent)} left after ${monthName()} spending.`;
+  }else{
+    ans=`I can help with spending, budgets, saving ideas, income, categories and goals. Try “Where can I save money?”, “How much have I spent?” or “How much is left?”`;
+  }
+  $("aiAnswer").textContent=ans;
+  $("aiAnswer").classList.add("show");
+}
+
+function closeInsights(){$("insightsModal").classList.remove("show")}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function openSheet(type){
+const p=profile();let title="",body="";
+if(type==="tx")body=`<h2>＋ Add transaction</h2><div class="row"><div class="field"><label>TYPE</label><select id="fType"><option value="expense">Expense</option><option value="income">Income</option></select></div><div class="field"><label>AMOUNT</label><input id="fAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" autofocus></div></div><div class="field"><label>CATEGORY</label><select id="fCat">${Object.keys(cats).map(c=>`<option>${c}</option>`).join("")}</select></div><div class="field"><label>DESCRIPTION</label><input id="fNote" placeholder="e.g. Dinner with friends"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveTx()">Save transaction</button></div>`;
+if(type==="goal")body=`<h2>🐷 Create savings goal</h2><div class="field"><label>WHAT ARE YOU SAVING FOR?</label><input id="gName" placeholder="e.g. Goa Trip"></div><div class="row"><div class="field"><label>TARGET AMOUNT</label><input id="gTarget" type="number" min="1" placeholder="50000"></div><div class="field"><label>ALREADY SAVED</label><input id="gSaved" type="number" min="0" placeholder="0"></div></div><div class="row"><div class="field"><label>GOAL DATE</label><input id="gDate" type="date"></div><div class="field"><label>ICON</label><select id="gIcon"><option>✈️</option><option>💍</option><option>📱</option><option>💻</option><option>🚗</option><option>🎓</option><option>🚨</option><option>🎮</option></select></div></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveGoal()">Create goal</button></div>`;
+if(type==="budget")body=`<h2>🎯 Monthly budget</h2><div class="field"><label>HOW MUCH CAN YOU SPEND THIS MONTH?</label><input id="fBudget" type="number" min="0" value="${p.budget||""}" placeholder="25000"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveBudget()">Save budget</button></div>`;
+if(type==="profiles")body=`<h2>👥 Profiles</h2><div>${db.profiles.map(x=>`<button class="btn ${x.id===db.active?"primary":"secondary"}" style="width:100%;margin:4px 0;text-align:left" onclick="switchProfile(${x.id})">${x.id===db.active?"🟢":"⚪"} ${esc(x.name)}</button>`).join("")}</div><p class="empty">Up to 3 profiles are supported on this device.</p><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Close</button><button class="btn primary" onclick="addProfile()" ${db.profiles.length>=3?"disabled":""}>＋ Add profile</button></div>`;
+if(type==="settings")body=`<h2>⚙️ Settings</h2><div class="field"><label>APPEARANCE</label><select id="themeSelect"><option value="system" ${db.theme==="system"?"selected":""}>🖥️ System Default</option><option value="light" ${db.theme==="light"?"selected":""}>☀️ Light</option><option value="dark" ${db.theme==="dark"?"selected":""}>🌙 Dark</option></select></div><div class="field"><label>CURRENCY</label><select id="currencySelect">${Object.keys(CURRENCIES).map(c=>`<option value="${c}" ${p.currency===c?"selected":""}>${c} — ${CURRENCIES[c]}</option>`).join("")}</select></div><div class="field"><label>PROFILE NAME</label><input id="profileEdit" value="${esc(p.name)}"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveSettings()">Save settings</button></div>`;
+$("sheet").innerHTML=body;$("modal").classList.add("show");setTimeout(()=>{const f=$("fAmount")||$("gName");if(f)f.focus()},50)
+}
+function closeSheet(){$("modal").classList.remove("show")}
+function saveTx(){const a=Number($("fAmount").value);if(!a||a<0)return showToast("Enter a valid amount.");const p=profile(),type=$("fType").value;const t={id:Date.now(),type,amount:a,category:$("fCat").value,note:$("fNote").value,date:new Date().toISOString()};p.transactions.push(t);p.balance+=type==="income"?a:-a;closeSheet();render();showToast("Transaction saved ✓")}
+function saveGoal(){const name=$("gName").value.trim(),target=Number($("gTarget").value),saved=Number($("gSaved").value)||0,date=$("gDate").value;if(!name||!target||!date)return showToast("Complete the goal details.");profile().goals.push({id:Date.now(),name,target,saved,date,icon:$("gIcon").value});closeSheet();render();showToast("Savings goal created 🐷")}
+function saveBudget(){profile().budget=Number($("fBudget").value)||0;closeSheet();render();showToast("Budget updated ✓")}
+function saveSettings(){db.theme=$("themeSelect").value;profile().currency=$("currencySelect").value;profile().name=$("profileEdit").value.trim()||"You";closeSheet();render();showToast("Settings saved ✓")}
+function addProfile(){if(db.profiles.length>=3)return;const name=prompt("Profile name?");if(!name)return;const id=Date.now();db.profiles.push({id,name:name.trim(),currency:profile().currency,balance:0,income:0,budget:0,transactions:[],goals:[]});db.active=id;closeSheet();render();showToast("Profile created ✓")}
+function switchProfile(id){db.active=id;closeSheet();render()}
+function applyTheme(){
+  const system=matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDark=db.theme==="dark"||(db.theme==="system"&&system);
+  document.body.classList.toggle("dark",isDark);
+  document.body.classList.toggle("light",!isDark);
+  const themeBtn=$("themeBtn"); if(themeBtn) themeBtn.textContent=isDark?"🌙":"☀️";
+  const swThemeBtn=$("swThemeBtn"); if(swThemeBtn){
+    swThemeBtn.textContent=isDark?"Switch to Light":"Switch to Dark";
+    swThemeBtn.setAttribute("aria-label",isDark?"Switch to light theme":"Switch to dark theme");
+  }
+}
+window.openPage=window.openPage||function(){};
+$("insightAiFab").onclick=()=>{$("aiPanel").classList.toggle("show");if($("aiPanel").classList.contains("show"))setTimeout(()=>$("aiQuestion")?.focus(),80)};
+$("askAiBtn").onclick=askAI;
+$("aiQuestion").onkeydown=e=>{if(e.key==="Enter")askAI()};
+$("fab").onclick=()=>openSheet("tx");$("expenseBtn").onclick=()=>openSheet("tx");$("incomeBtn").onclick=()=>{openSheet("tx");setTimeout(()=>{$("fType").value="income"},50)};$("addExpenseLink").onclick=()=>openSheet("tx");$("addGoal").onclick=()=>openSheet("goal");$("budgetBtn").onclick=()=>openSheet("budget");if($("profileBtn")) $("profileBtn").onclick=()=>openSheet("profiles");$("settingsBtn").onclick=()=>openSheet("settings");$("settingsNav").onclick=()=>openPage?.("settingsPage");$("goalsNav").onclick=()=>openPage?.("goalsPage");$("insightsNav").onclick=openInsights;$("allInsights").onclick=openInsights;$("themeBtn").onclick=()=>{db.theme=db.theme==="dark"?"light":"dark";save();applyTheme();showToast(db.theme==="dark"?"Dark theme enabled ✓":"Light theme enabled ✓")};$("prevMonth").onclick=()=>changeMonth(-1);$("nextMonth").onclick=()=>changeMonth(1);$("syncTimeBtn").onclick=syncTimeLocation;$("modal").onclick=e=>{if(e.target.id==="modal")closeSheet()};$("insightsModal").onclick=e=>{if(e.target.id==="insightsModal")closeInsights()};$("closeInsights").onclick=closeInsights;
+let insightTouchStart=0;$("insightsSheet").addEventListener("touchstart",e=>{insightTouchStart=e.touches[0].clientY},{passive:true});$("insightsSheet").addEventListener("touchend",e=>{const dy=e.changedTouches[0].clientY-insightTouchStart;if(dy>90&&$("insightsBody").scrollTop<=0)closeInsights()},{passive:true});
+window.addEventListener("focus",()=>{updateClock();const d=new Date();if(selectedMonth.year!==d.getFullYear()||selectedMonth.month!==d.getMonth()){} });if(clockTimer)clearInterval(clockTimer);clockTimer=setInterval(updateClock,1000);if(window.matchMedia){const mq=matchMedia("(prefers-color-scheme: dark)"); if(mq.addEventListener) mq.addEventListener("change",applyTheme); else if(mq.addListener) mq.addListener(applyTheme);}
+render();
+</script>
+
+<!-- SaveWise Settings Page -->
+<div aria-hidden="true" class="sw-page-layer" id="settingsPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="settingsPage">‹</button>
+<div><div class="sw-page-title">Settings</div><div class="sw-page-sub">Control how SaveWise works for you</div></div>
+</div>
+<div class="sw-page-grid">
+<div class="sw-setting-card"><div class="sw-setting-row"><div><h3>🌙 Appearance</h3><p>Switch between Light, Dark or System mode.</p></div><button class="btn secondary" id="swThemeBtn">Dark</button></div></div>
+<div class="sw-setting-card"><div class="sw-setting-row"><div><h3>🕐 Date &amp; Time</h3><p id="swSettingsTimezone">Using device timezone</p></div><button class="btn secondary" id="swSyncTimeBtn">Sync</button></div></div>
+<div class="sw-setting-card" data-sw-action="notifications"><div class="sw-setting-row"><div><h3>🔔 Notifications</h3><p>Manage reminders and money alerts.</p></div><button class="btn secondary" id="swNotifyBtn" type="button">Manage</button></div></div>
+<div class="sw-setting-card" data-sw-action="backup"><div class="sw-setting-row"><div><h3>💾 Backup</h3><p>Export or restore your local SaveWise data.</p></div><button class="btn secondary" id="swBackupBtn" type="button">Backup</button></div></div>
+<div class="sw-setting-card" data-sw-action="profile"><div class="sw-setting-row"><div><h3>👤 Profile</h3><p>Set your name, Bitmoji-style avatar and personal details.</p></div><button class="btn secondary" id="swProfileBtn" type="button">Open profile</button></div></div>
+<div class="sw-setting-card" data-sw-action="privacy"><div class="sw-setting-row"><div><h3>🔒 Privacy</h3><p>Review how local data and permissions work.</p></div><button class="btn secondary" type="button" data-open-legal="privacy">Open</button></div></div>
+<div class="sw-setting-card" data-sw-action="terms"><div class="sw-setting-row"><div><h3>📜 Terms &amp; Conditions</h3><p>Review the rules for using SaveWise.</p></div><button class="btn secondary" type="button" data-open-legal="terms">Open</button></div></div>
+<div class="sw-setting-card sw-danger" data-sw-action="reset"><div class="sw-setting-row"><div><h3>⚠️ Reset local data</h3><p>Permanently erase SaveWise data stored on this device.</p></div><button class="btn secondary" id="swResetBtn" type="button">Reset</button></div></div>
+</div>
+</div>
+</div>
+<!-- SaveWise Goals Page -->
+<div aria-hidden="true" class="sw-page-layer" id="goalsPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="goalsPage">‹</button>
+<div><div class="sw-page-title">Savings Goals</div><div class="sw-page-sub">Plan what you're saving for</div></div>
+<button class="btn primary" id="swAddGoalBtn" style="margin-left:auto">＋ Goal</button>
+</div>
+<div id="swGoalsContent"></div>
+</div>
+</div>
+<!-- Dedicated Goal Creation Page: never uses the old transaction modal -->
+<div aria-hidden="true" class="sw-page-layer" id="goalCreatePage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" id="swGoalCreateBack" type="button">‹</button>
+<div><div class="sw-page-title">Create savings goal</div><div class="sw-page-sub">Give your goal a name, target and deadline</div></div>
+</div>
+<div class="sw-setting-card" style="max-width:900px;margin:0 auto">
+<div class="field"><label>WHAT ARE YOU SAVING FOR?</label><input autocomplete="off" id="swGoalName" placeholder="e.g. Goa Trip"/></div>
+<div class="row">
+<div class="field"><label>TARGET AMOUNT</label><input id="swGoalTarget" inputmode="decimal" min="1" placeholder="50000" step="1" type="number"/></div>
+<div class="field"><label>ALREADY SAVED</label><input id="swGoalSaved" inputmode="decimal" min="0" placeholder="0" step="1" type="number"/></div>
+</div>
+<div class="row">
+<div class="field"><label>GOAL DATE</label><input id="swGoalDate" type="date"/></div>
+<div class="field"><label>ICON</label>
+<select id="swGoalIcon">
+<option>✈️</option><option>💍</option><option>📱</option><option>💻</option>
+<option>🚗</option><option>🎓</option><option>🏠</option><option>🎮</option>
+<option>💰</option><option>🏖️</option><option>🛍️</option><option>🚨</option>
+</select>
+</div>
+</div>
+<div class="formactions">
+<button class="btn secondary" id="swGoalCancel" type="button">Cancel</button>
+<button class="btn primary" id="swGoalSave" type="button">Create goal</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Legal pages -->
+<div aria-hidden="true" class="sw-page-layer" id="legalPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="legalPage">‹</button>
+<div><div class="sw-page-title" id="legalTitle">Privacy</div><div class="sw-page-sub">SaveWise information</div></div>
+</div>
+<div class="sw-setting-card sw-legal" id="legalContent"></div>
+</div>
+</div>
+<!-- First-run Terms + Privacy consent -->
+<div class="sw-consent" id="firstRunConsent">
+<div class="sw-consent-card">
+<div style="font-size:24px;font-weight:950">Welcome to SaveWise 🔴</div>
+<p style="color:#a5a5ae;line-height:1.55">Before you start, please review the Privacy Notice and Terms &amp; Conditions. SaveWise is a personal budgeting tool and stores core financial records locally on your device.</p>
+<div class="sw-setting-card sw-legal">
+<h3>Privacy Notice — summary</h3>
+<p>SaveWise is designed to keep core transaction and budgeting data on the user's device. Optional permissions, such as location, are requested only when needed for a feature such as timezone/location assistance. SaveWise should not collect precise location merely to display local time.</p>
+<h3>Terms &amp; Conditions — summary</h3>
+<p>SaveWise provides budgeting and educational suggestions, not financial, investment, tax or legal advice. You are responsible for reviewing your records and decisions. Features may change as the app develops.</p>
+<p style="color:#777;font-size:10px">These are product-facing terms for the current prototype and should be reviewed by a qualified lawyer before commercial release.</p>
+</div>
+<label class="sw-check"><input id="swConsentCheck" type="checkbox"/> <span>I have read and agree to the SaveWise Privacy Notice and Terms &amp; Conditions.</span></label>
+<div class="sw-consent-actions"><button class="btn secondary" id="swReadPrivacy">Privacy</button><button class="btn secondary" id="swReadTerms">Terms</button><button class="btn primary" disabled="" id="swAccept">Continue</button></div>
+</div>
+</div>
+
+<!-- SaveWise Notifications Page -->
+<div aria-hidden="true" class="sw-page-layer" id="notificationsPage">
+<div class="sw-page-inner"><div class="sw-page-top"><button class="sw-back" data-close-page="notificationsPage" type="button">‹</button><div><div class="sw-page-title">Notifications</div><div class="sw-page-sub">Money reminders and alerts</div></div></div>
+<div class="sw-setting-card"><h3>🔔 Money alerts</h3><p>Browser notifications can be enabled when your browser allows them.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="swRequestNotifications" type="button">Enable notifications</button><button class="btn secondary" id="swTestNotification" type="button">Test</button></div><p id="swNotificationStatus" style="margin-top:10px">Status: Not requested</p></div></div></div>
+<!-- SaveWise Backup Page -->
+<div aria-hidden="true" class="sw-page-layer" id="backupPage">
+<div class="sw-page-inner"><div class="sw-page-top"><button class="sw-back" data-close-page="backupPage" type="button">‹</button><div><div class="sw-page-title">Backup</div><div class="sw-page-sub">Protect your local SaveWise records</div></div></div>
+<div class="sw-setting-card"><h3>💾 Export backup</h3><p>Download all current SaveWise data as a JSON backup.</p><button class="btn primary" id="swExportBackup" type="button">Export JSON</button></div>
+<div class="sw-setting-card" style="margin-top:12px"><h3>📥 Restore backup</h3><p>Select a SaveWise JSON backup previously exported from this app.</p><input id="swImportBackup" type="file" accept="application/json,.json" style="margin-top:10px;width:100%"/><p style="margin-top:10px">Restoring replaces the current local data on this device.</p></div></div></div>
+
+<!-- SaveWise Profile Page -->
+<div aria-hidden="true" class="sw-page-layer" id="profilePage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="profilePage">‹</button>
+<div><div class="sw-page-title">Your Profile</div><div class="sw-page-sub">Personalize your SaveWise account</div></div>
+</div>
+<div class="sw-profile-hero">
+<button aria-label="Choose avatar" class="sw-avatar-big" id="swAvatarPreview" type="button">🙂</button>
+<div>
+<h2 id="swProfilePreviewName">You</h2>
+<p>Choose an avatar and add a few details about yourself.</p>
+</div>
+</div>
+<div class="sw-setting-card">
+<h3>😊 Choose your avatar</h3>
+<p class="sw-muted">Pick a Bitmoji-style emoji avatar. It stays only on this device.</p>
+<div class="sw-avatar-grid" id="swAvatarGrid"></div>
+</div>
+<div class="sw-setting-card">
+<h3>👤 Your details</h3>
+<div class="sw-form-grid">
+<label>Display name<input id="swProfileName" maxlength="40" placeholder="Your name"/></label>
+<label>Email <span class="sw-muted">(optional)</span><input id="swProfileEmail" maxlength="100" placeholder="you@example.com" type="email"/></label>
+<label>About you <span class="sw-muted">(optional)</span><textarea id="swProfileAbout" maxlength="180" placeholder="e.g. Saving for my first car"></textarea></label>
+</div>
+<button class="btn primary" id="swSaveProfile">Save profile</button>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const CONSENT="savewise_terms_privacy_accepted_v1";
+  const AVATARS=["🙂","😎","🤓","😄","🥳","🤩","😇","🤑","😌","🧑","👨","👩","🧔","👨‍💻","👩‍💻","🧑‍🎨","🦸","🧙","🐼","🐯","🦊","🐸","🐨","🐵"];
+
+  function openPage(id){
+    document.querySelectorAll('.sw-page-layer').forEach(p=>{p.classList.remove('show');p.setAttribute('aria-hidden','true')});
+    const p=$(id); if(!p)return;
+    p.classList.add('show'); p.setAttribute('aria-hidden','false'); p.scrollTop=0;
+    document.body.style.overflow='hidden';
+    if(id==='settingsPage'){
+      const z=$('swSettingsTimezone'); if(z)z.textContent='Timezone: '+(Intl.DateTimeFormat().resolvedOptions().timeZone||'Device time');
+    }
+    if(id==='goalsPage')renderGoalsPage();
+    if(id==='profilePage')renderProfile();
+  }
+  function closePage(id){
+    const p=$(id); if(p){p.classList.remove('show');p.setAttribute('aria-hidden','true')}
+    document.body.style.overflow='';
+  }
+  window.openPage=openPage;
+  window.SaveWiseOpenPage=openPage;
+
+  // Rebind the main navigation after the original preview script has loaded.
+  if($('settingsNav'))$('settingsNav').onclick=()=>openPage('settingsPage');
+  if($('settingsBtn'))$('settingsBtn').onclick=()=>openPage('settingsPage');
+  if($('goalsNav'))$('goalsNav').onclick=()=>openPage('goalsPage');
+  if($('addGoal'))$('addGoal').onclick=()=>openPage('goalsPage');
+  if($('headerAvatar'))$('headerAvatar').onclick=()=>openPage('profilePage');
+
+  document.querySelectorAll('[data-close-page]').forEach(b=>b.onclick=()=>closePage(b.dataset.closePage));
+  document.querySelectorAll('[data-open-legal]').forEach(b=>b.onclick=()=>{openPage('legalPage');renderLegal(b.dataset.openLegal)});
+
+  function renderLegal(type){
+    if($('legalTitle'))$('legalTitle').textContent=type==='privacy'?'Privacy Notice':'Terms & Conditions';
+    if(!$('legalContent'))return;
+    $('legalContent').innerHTML=type==='privacy'?`
+      <h3>1. What SaveWise stores</h3><p>Core budgeting records are intended to remain on your device in this prototype. You control your data through the app and browser/device storage.</p>
+      <h3>2. Permissions</h3><p>Optional permissions are requested when a feature needs them. Timezone detection normally uses the device/browser timezone and does not require precise GPS.</p>
+      <h3>3. Backups</h3><p>Because local storage can be cleared or lost when a device/browser is reset, export a backup when available.</p>
+      <h3>4. AI features</h3><p>SaveWise suggestions are budgeting assistance, not professional financial, investment, tax, legal or medical advice.</p>
+      <h3>5. Privacy</h3><p>Do not enter passwords, payment card numbers, government IDs or other highly sensitive information into free-text fields.</p>`:`
+      <h3>1. Intended use</h3><p>SaveWise is a personal budgeting and expense-tracking tool. Use it lawfully and responsibly.</p>
+      <h3>2. Financial decisions</h3><p>Suggestions are informational. SaveWise does not guarantee savings, financial outcomes, investment returns or suitability.</p>
+      <h3>3. Accuracy</h3><p>You are responsible for checking transaction amounts, categories, dates and goals.</p>
+      <h3>4. Availability</h3><p>Prototype features may change or contain errors. Keep independent backups of important records.</p>
+      <h3>5. Acceptable use</h3><p>Do not use SaveWise to harass, threaten, abuse, impersonate or facilitate unlawful activity.</p>`;
+  }
+  if($('swReadPrivacy'))$('swReadPrivacy').onclick=()=>{openPage('legalPage');renderLegal('privacy')};
+  if($('swReadTerms'))$('swReadTerms').onclick=()=>{openPage('legalPage');renderLegal('terms')};
+
+  function renderGoalsPage(){
+    const host=$('swGoalsContent'); if(!host)return;
+    let p; try{p=profile()}catch(e){p=null}
+    const goals=Array.isArray(p?.goals)?p.goals:[];
+    if(!goals.length){
+      host.innerHTML='<div class="sw-setting-card" style="text-align:center;padding:35px"><div style="font-size:34px">🐷</div><h3 style="margin:10px 0 4px">No savings goals yet</h3><p>Create a goal for a trip, emergency fund, wedding, gadget or anything important to you.</p><button class="btn primary" id="swEmptyAddGoal" type="button">Create your first goal</button></div>';
+      $('swEmptyAddGoal').onclick=openGoalCreate;
+      return;
+    }
+    host.innerHTML='<div class="sw-page-grid">'+goals.map(g=>{
+      const target=Number(g.target||0), saved=Number(g.saved||0), pct=target?Math.min(100,saved/target*100):0;
+      return `<div class="sw-goal-card"><h3>${g.icon||'🎯'} ${esc(String(g.name||'Goal'))}</h3><p>${moneySafe(saved)} of ${moneySafe(target)} • ${Math.round(pct)}%</p><div class="goalbar"><i style="width:${pct}%"></i></div><p>Goal date: ${g.date?new Date(g.date+'T00:00:00').toLocaleDateString(): 'Not set'}</p></div>`;
+    }).join('')+'</div>';
+  }
+  function moneySafe(n){
+    try{return money(n)}catch(e){return '₹'+Number(n||0).toLocaleString()}
+  }
+  function openGoalCreate(){
+    openPage('goalCreatePage');
+    const date=$('swGoalDate');
+    if(date&&!date.value){const d=new Date();d.setMonth(d.getMonth()+1);date.value=d.toISOString().slice(0,10)}
+    setTimeout(()=>{$('swGoalName')?.focus()},100);
+  }
+  window.SaveWiseOpenGoalCreate=openGoalCreate;
+  if($('swAddGoalBtn'))$('swAddGoalBtn').onclick=openGoalCreate;
+  if($('swGoalCreateBack'))$('swGoalCreateBack').onclick=()=>{closePage('goalCreatePage');openPage('goalsPage')};
+  if($('swGoalCancel'))$('swGoalCancel').onclick=()=>{closePage('goalCreatePage');openPage('goalsPage')};
+  if($('swGoalSave'))$('swGoalSave').onclick=saveNewGoal;
+  function saveNewGoal(){
+    const name=($('swGoalName')?.value||'').trim(), target=Number($('swGoalTarget')?.value||0), saved=Number($('swGoalSaved')?.value||0), date=$('swGoalDate')?.value||'', icon=$('swGoalIcon')?.value||'🎯';
+    if(!name)return showToast('Please enter a goal name.');
+    if(target<=0)return showToast('Please enter a valid target amount.');
+    if(saved<0||saved>target)return showToast('Already saved must be between 0 and the target.');
+    if(!date)return showToast('Please choose a goal date.');
+    const p=profile(); if(!Array.isArray(p.goals))p.goals=[];
+    p.goals.push({id:Date.now(),name,target,saved,date,icon}); save();
+    ['swGoalName','swGoalTarget','swGoalSaved','swGoalDate'].forEach(id=>{if($(id))$(id).value=''});
+    closePage('goalCreatePage');openPage('goalsPage');renderGoalsPage();render();showToast('Savings goal created ✓');
+  }
+
+  // Settings — one destination, every visible control wired.
+  if($('swThemeBtn'))$('swThemeBtn').onclick=()=>{
+    db.theme=db.theme==='dark'?'light':'dark';
+    save();
+    applyTheme();
+    showToast(db.theme==='dark'?'Dark theme enabled ✓':'Light theme enabled ✓');
+  };
+  if($('swSyncTimeBtn'))$('swSyncTimeBtn').onclick=()=>{syncTimeLocation();const z=$('swSettingsTimezone');if(z)z.textContent='Timezone: '+(Intl.DateTimeFormat().resolvedOptions().timeZone||'Device time')};
+  if($('swNotifyBtn'))$('swNotifyBtn').onclick=()=>{
+    if(!('Notification' in window))return showToast('Notifications are not supported by this browser.');
+    Notification.requestPermission().then(r=>showToast(r==='granted'?'Notifications enabled ✓':'Notifications permission not granted.'));
+  };
+  if($('swBackupBtn'))$('swBackupBtn').onclick=()=>{
+    try{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='savewise-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);showToast('Backup downloaded ✓')}catch(e){showToast('Backup could not be created.')}
+  };
+  if($('swResetBtn'))$('swResetBtn').onclick=()=>{if(confirm('Reset SaveWise data on this device? This cannot be undone.')){localStorage.removeItem('savewise_v1');localStorage.removeItem(CONSENT);location.reload()}};
+  if($('swProfileBtn'))$('swProfileBtn').onclick=()=>openPage('profilePage');
+
+  // Profile — the only profile destination.
+  function renderProfile(){
+    const p=profile();if(!p)return;
+    const avatar=p.avatar||'🙂',name=p.name||'You';
+    if($('swProfileName'))$('swProfileName').value=name;
+    if($('swProfileEmail'))$('swProfileEmail').value=p.email||'';
+    if($('swProfileAbout'))$('swProfileAbout').value=p.about||'';
+    if($('swProfilePreviewName'))$('swProfilePreviewName').textContent=name;
+    if($('swAvatarPreview'))$('swAvatarPreview').textContent=avatar;
+    if($('headerAvatar'))$('headerAvatar').textContent=avatar;
+    const grid=$('swAvatarGrid');if(!grid)return;
+    grid.innerHTML=AVATARS.map(a=>`<button type="button" class="sw-avatar-choice ${a===avatar?'active':''}" data-avatar="${a}">${a}</button>`).join('');
+    grid.querySelectorAll('[data-avatar]').forEach(b=>b.onclick=()=>{p.avatar=b.dataset.avatar;grid.querySelectorAll('.sw-avatar-choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');if($('swAvatarPreview'))$('swAvatarPreview').textContent=p.avatar;if($('headerAvatar'))$('headerAvatar').textContent=p.avatar;save()});
+  }
+  if($('swSaveProfile'))$('swSaveProfile').onclick=()=>{
+    const p=profile();p.name=($('swProfileName')?.value||'You').trim()||'You';p.email=($('swProfileEmail')?.value||'').trim();p.about=($('swProfileAbout')?.value||'').trim();p.avatar=p.avatar||'🙂';save();if($('headerAvatar'))$('headerAvatar').textContent=p.avatar;render();showToast('Profile saved ✓');
+  };
+
+  // Consent gate for first run.
+  if($('swConsentCheck')&&$('swAccept')){
+    $('swConsentCheck').onchange=()=>{$('swAccept').disabled=!$('swConsentCheck').checked};
+    $('swAccept').onclick=()=>{if(!$('swConsentCheck').checked)return;localStorage.setItem(CONSENT,'yes');$('firstRunConsent')?.classList.remove('show')};
+  }
+  if(localStorage.getItem(CONSENT)!=='yes')$('firstRunConsent')?.classList.add('show');
+
+  // Robust settings event delegation. This intentionally handles clicks at document level so
+  // re-rendering or other preview handlers cannot disconnect the Settings controls.
+  function exportBackup(){
+    try{
+      const payload=JSON.stringify(db,null,2), blob=new Blob([payload],{type:'application/json'});
+      const url=URL.createObjectURL(blob), a=document.createElement('a');
+      a.href=url; a.download='savewise-backup-'+new Date().toISOString().slice(0,10)+'.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),500); showToast('Backup exported ✓');
+    }catch(e){showToast('Backup export failed.');}
+  }
+  function requestNotifications(){
+    const status=$('swNotificationStatus');
+    if(!('Notification' in window)){if(status)status.textContent='Status: Notifications are not supported in this browser.';return showToast('Notifications are not supported here.')}
+    Notification.requestPermission().then(r=>{if(status)status.textContent='Status: '+(r==='granted'?'Enabled ✓':r);showToast(r==='granted'?'Notifications enabled ✓':'Notification permission was not granted.')}).catch(()=>{if(status)status.textContent='Status: Permission request unavailable in this preview.';showToast('Notification permission is unavailable in this preview.')});
+  }
+  function resetData(){
+    if(!confirm('Reset SaveWise data on this device? This cannot be undone.'))return;
+    localStorage.removeItem('savewise_v1');localStorage.removeItem(CONSENT);location.reload();
+  }
+  document.addEventListener('click',function(e){
+    const el=e.target.closest('[data-sw-action],#swNotifyBtn,#swBackupBtn,#swProfileBtn,#swResetBtn,#swRequestNotifications,#swExportBackup,[data-open-legal]');
+    if(!el)return;
+    e.preventDefault(); e.stopPropagation();
+    const action=el.dataset.swAction;
+    if(action==='notifications'||el.id==='swNotifyBtn'){openPage('notificationsPage');return}
+    if(action==='backup'||el.id==='swBackupBtn'){openPage('backupPage');return}
+    if(action==='profile'||el.id==='swProfileBtn'){openPage('profilePage');return}
+    if(action==='privacy'||el.dataset.openLegal==='privacy'){openPage('legalPage');renderLegal('privacy');return}
+    if(action==='terms'||el.dataset.openLegal==='terms'){openPage('legalPage');renderLegal('terms');return}
+    if(action==='reset'||el.id==='swResetBtn'){resetData();return}
+    if(el.id==='swRequestNotifications'){requestNotifications();return}
+    if(el.id==='swExportBackup'){exportBackup();return}
+  },true);
+  if($('swImportBackup'))$('swImportBackup').onchange=(e)=>{
+    const file=e.target.files?.[0];if(!file)return;
+    const reader=new FileReader();reader.onload=()=>{try{const incoming=JSON.parse(reader.result);if(!incoming||typeof incoming!=='object'||!Array.isArray(incoming.profiles))throw new Error();localStorage.setItem('savewise_v1',JSON.stringify(incoming));location.reload()}catch(err){showToast('Invalid SaveWise backup file.')}};reader.readAsText(file);
+  };
+
+  // Apply the persisted theme immediately, including the full interface.
+  applyTheme();
+
+  // Initial header/profile sync.
+  try{const p=profile();if(p&&$('headerAvatar'))$('headerAvatar').textContent=p.avatar||'🙂'}catch(e){}
+})();
+</script>
+<script>
+/* ===== SaveWise Easter Egg controller ===== */
+(function(){
+  const logo=document.querySelector('.logo');
+  const overlay=document.getElementById('swGameOverlay');
+  const canvas=document.getElementById('swGameCanvas');
+  const scoreEl=document.getElementById('swGameScore');
+  const result=document.getElementById('swGameResult');
+  const resultTitle=document.getElementById('swGameResultTitle');
+  const resultText=document.getElementById('swGameResultText');
+  const closeBtn=document.getElementById('swGameClose');
+  const replayBtn=document.getElementById('swGameReplay');
+  const exitBtn=document.getElementById('swGameExit');
+  if(!logo||!overlay||!canvas)return;
+
+  const HOLD_MS=1500;
+  let holdTimer=null,holdRaf=null,holdStart=0,game=null,raf=0;
+  const ctx=canvas.getContext('2d');
+  const palettes=[
+    {bg:'#050812',player:'#65f7ff',enemy:'#ff335f',accent:'#8b5cf6'},
+    {bg:'#0b0508',player:'#ffed7a',enemy:'#ff1744',accent:'#ff6b9d'},
+    {bg:'#050b08',player:'#6dffb2',enemy:'#ff5b73',accent:'#34d399'},
+    {bg:'#08050d',player:'#d9a7ff',enemy:'#ff4965',accent:'#60a5fa'}
+  ];
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const vibrate=(pattern)=>{try{if(navigator.vibrate)navigator.vibrate(pattern)}catch(e){}};
+
+  function chargeLoop(){
+    const pct=Math.min(1,(performance.now()-holdStart)/HOLD_MS);
+    logo.style.setProperty('--sw-charge',(pct*100).toFixed(1)+'%');
+    if(pct>=1){
+      cancelHold();
+      logo.classList.add('sw-egg-burst');
+      vibrate([25,30,50]);
+      burstConfetti();
+      setTimeout(()=>logo.classList.remove('sw-egg-burst'),650);
+      openGame();
+      return;
+    }
+    holdRaf=requestAnimationFrame(chargeLoop);
+  }
+  function startHold(e){
+    if(e.button!==undefined && e.button!==0)return;
+    if(overlay.classList.contains('show'))return;
+    cancelHold(); holdStart=performance.now(); logo.classList.add('longpressing'); vibrate(8); holdRaf=requestAnimationFrame(chargeLoop); holdTimer=setTimeout(()=>{},HOLD_MS+50);
+  }
+  function cancelHold(){
+    if(holdTimer){clearTimeout(holdTimer);holdTimer=null}
+    if(holdRaf){cancelAnimationFrame(holdRaf);holdRaf=null}
+    logo.classList.remove('longpressing');logo.style.setProperty('--sw-charge','0%');
+  }
+  logo.addEventListener('pointerdown',startHold,{passive:true});
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>logo.addEventListener(ev,cancelHold,{passive:true}));
+  logo.addEventListener('contextmenu',e=>e.preventDefault());
+
+  function burstConfetti(){
+    const r=logo.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+    for(let i=0;i<24;i++){
+      const p=document.createElement('span');p.className='sw-confetti';
+      p.style.left=cx+'px';p.style.top=cy+'px';
+      p.style.setProperty('--dx',rand(-150,150)+'px');p.style.setProperty('--dy',rand(-120,180)+'px');p.style.setProperty('--rot',rand(-540,540)+'deg');
+      p.style.background=['#ff1744','#ffb020','#65f7ff','#a78bfa','#6dffb2'][i%5];document.body.appendChild(p);setTimeout(()=>p.remove(),1000);
+    }
+  }
+
+  function sizeCanvas(){
+    const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,1.5);
+    canvas.width=Math.max(1,Math.floor(rect.width*dpr));canvas.height=Math.max(1,Math.floor(rect.height*dpr));ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function openGame(){
+    overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');result.classList.remove('show');
+    sizeCanvas();startRound();setTimeout(()=>canvas.focus?.(),50);
+  }
+  window.openEasterEggGame=openGame;
+    function closeGame(){
+    stopGame();overlay.classList.remove('show');overlay.setAttribute('aria-hidden','true');result.classList.remove('show');
+  }
+  closeBtn.addEventListener('click',closeGame);exitBtn.addEventListener('click',closeGame);replayBtn.addEventListener('click',()=>{result.classList.remove('show');startRound()});
+  window.addEventListener('resize',()=>{if(overlay.classList.contains('show'))sizeCanvas()});
+
+  function startRound(){
+    sizeCanvas();
+    const rect=canvas.getBoundingClientRect(),w=rect.width,h=rect.height,pal=palettes[Math.floor(Math.random()*palettes.length)];
+    game={w,h,pal,score:0,time:0,last:performance.now(),player:{x:w/2,y:h-82,r:17,targetX:w/2},obstacles:[],sparks:[],spawn:0,seed:Math.random(),alive:true};window.SaveWiseSound?.play('start');
+    scoreEl.textContent='0';
+    stopLoopOnly();
+    raf=requestAnimationFrame(loop);
+  }
+  function stopLoopOnly(){if(raf){cancelAnimationFrame(raf);raf=0}}
+  function stopGame(){stopLoopOnly();game=null}
+
+  function spawnObstacle(){
+    const g=game;const size=rand(12,30);g.obstacles.push({x:rand(size,g.w-size),y:-size-10,r:size,v:rand(170,270)*(1+g.time/55),rot:rand(0,Math.PI*2),spin:rand(-2,2),shape:Math.random()<.5?'square':'diamond'});
+  }
+  function loop(now){
+    if(!game||!game.alive)return;
+    const g=game,dt=Math.min(.035,(now-g.last)/1000);g.last=now;g.time+=dt;
+    update(g,dt);draw(g);
+    if(g.time>=15){endRound(true);return}
+    raf=requestAnimationFrame(loop);
+  }
+  function update(g,dt){
+    const p=g.player;
+    p.x+=(p.targetX-p.x)*Math.min(1,dt*12);
+    p.x=Math.max(p.r,Math.min(g.w-p.r,p.x));
+    g.spawn-=dt;if(g.spawn<=0){spawnObstacle();g.spawn=Math.max(.22,.52-g.time*.012)+rand(-.08,.08)}
+    for(let i=g.obstacles.length-1;i>=0;i--){
+      const o=g.obstacles[i];o.y+=o.v*dt;o.rot+=o.spin*dt;
+      const dx=o.x-p.x,dy=o.y-p.y,hit=dx*dx+dy*dy<(o.r+p.r-3)*(o.r+p.r-3);
+      if(hit){g.alive=false;vibrate([40,40,100]);window.SaveWiseSound?.play('hit');endRound(false);return}
+      if(o.y-o.r>g.h){g.obstacles.splice(i,1);g.score++;scoreEl.textContent=g.score;window.SaveWiseSound?.play('score');}
+    }
+    for(let i=g.sparks.length-1;i>=0;i--){const s=g.sparks[i];s.x+=s.vx*dt;s.y+=s.vy*dt;s.life-=dt;if(s.life<=0)g.sparks.splice(i,1)}
+    if(Math.random()<dt*4)g.sparks.push({x:rand(0,g.w),y:rand(0,g.h),vx:rand(-8,8),vy:rand(8,30),life:rand(.5,1.5),a:rand(.15,.45)});
+  }
+  function draw(g){
+    const w=g.w,h=g.h,pal=g.pal,p=g.player;
+    ctx.clearRect(0,0,w,h);ctx.fillStyle=pal.bg;ctx.fillRect(0,0,w,h);
+    const grd=ctx.createRadialGradient(w*.5,h*.8,0,w*.5,h*.8,Math.max(w,h)*.75);grd.addColorStop(0,'rgba(255,23,68,.10)');grd.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);
+    ctx.globalAlpha=.25;ctx.strokeStyle=pal.accent;ctx.lineWidth=1;for(let x=20;x<w;x+=40){ctx.beginPath();ctx.moveTo(x,70);ctx.lineTo(x,h);ctx.stroke()}ctx.globalAlpha=1;
+    g.sparks.forEach(s=>{ctx.globalAlpha=s.a;ctx.fillStyle=pal.player;ctx.fillRect(s.x,s.y,2,2)});ctx.globalAlpha=1;
+    g.obstacles.forEach(o=>{ctx.save();ctx.globalAlpha=.14;ctx.fillStyle=pal.enemy;ctx.beginPath();ctx.arc(o.x,o.y,o.r*1.65,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.translate(o.x,o.y);ctx.rotate(o.rot);ctx.fillStyle=pal.enemy;if(o.shape==='square')ctx.fillRect(-o.r,-o.r,o.r*2,o.r*2);else{ctx.beginPath();ctx.moveTo(0,-o.r);ctx.lineTo(o.r,0);ctx.lineTo(0,o.r);ctx.lineTo(-o.r,0);ctx.closePath();ctx.fill()}ctx.restore()});
+    ctx.save();ctx.globalAlpha=.16;ctx.fillStyle=pal.player;ctx.beginPath();ctx.arc(p.x,p.y,p.r*2.05,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.translate(p.x,p.y);ctx.fillStyle=pal.player;ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(-5,-5,5,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='700 11px system-ui';ctx.fillText('SURVIVE',18,76);ctx.fillText(Math.max(0,15-g.time).toFixed(1)+'s',18,94);
+  }
+
+  function movePlayer(clientX){const r=canvas.getBoundingClientRect();if(game)game.player.targetX=Math.max(18,Math.min(r.width-18,clientX-r.left))}
+  canvas.addEventListener('pointermove',e=>movePlayer(e.clientX));
+  canvas.addEventListener('pointerdown',e=>{movePlayer(e.clientX);canvas.setPointerCapture?.(e.pointerId);vibrate(5)});
+  canvas.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+
+  function endRound(survived){
+    if(!game)return;stopLoopOnly();
+    const score=game.score;
+    resultTitle.textContent=survived?'🏆 Perfect run!': '💥 Nice try!';
+    resultText.textContent=survived?`You survived the full 15 seconds and dodged ${score} obstacles.`:`You dodged ${score} obstacles. Try beating your score!`;
+    result.classList.add('show');window.SaveWiseSound?.play(survived?'win':'hit');
+  }
+})();
+</script>
+
+<script>
+/* ===== v16 Easter Egg Portal Controller ===== */
+(function(){
+  const LOGO_SELECTOR = '.logo, .brand .logo, [data-logo]';
+  const HOLD_MS = 1500;
+  let timer = null, fired = false, progressEl = null;
+
+  function vibrate(pattern){
+    try{
+      if(navigator.vibrate) navigator.vibrate(pattern);
+    }catch(e){}
+  }
+
+  function makePortal(){
+    const portal = document.getElementById('portalTransition');
+    if(!portal) return Promise.resolve();
+
+    portal.querySelectorAll('.portal-circle').forEach(e=>e.remove());
+
+    const colors = ['#ff1744','#ff3d5a','#ff6b7d','#ffffff','#d9042b','#ff8fa0'];
+    const count = 22;
+
+    for(let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.className = 'portal-circle';
+
+      const angle = (Math.PI*2/count)*i + (Math.random()-.5)*.45;
+      const distance = Math.max(innerWidth,innerHeight)*(.62 + Math.random()*.75);
+      const x = Math.cos(angle)*distance;
+      const y = Math.sin(angle)*distance;
+      const size = 20 + Math.random()*110;
+
+      el.style.setProperty('--x', `${x}px`);
+      el.style.setProperty('--y', `${y}px`);
+      el.style.setProperty('--s', `${size}px`);
+      el.style.setProperty('--c', colors[Math.floor(Math.random()*colors.length)]);
+      el.style.setProperty('--d', `${Math.random()*180}ms`);
+      el.style.setProperty('--r', `${(Math.random()-.5)*120}deg`);
+      portal.appendChild(el);
+    }
+
+    portal.classList.add('active');
+    vibrate([20,25,35,20,70]);
+
+    return new Promise(resolve=>{
+      setTimeout(resolve, 1850);
+    });
+  }
+
+  function launchGame(){
+    if(fired) return;
+    fired = true;
+    clearTimeout(timer);
+
+    const logo = document.querySelector(LOGO_SELECTOR);
+    if(logo) logo.classList.add('logo-portal-active');
+
+    makePortal().then(()=>{
+      const closePortal = document.getElementById('portalTransition');
+      if(closePortal) closePortal.classList.remove('active');
+
+      // Call the existing game launcher if the current preview provides one.
+      if(typeof window.openEasterEggGame === 'function'){
+        window.openEasterEggGame();
+      }else if(typeof window.openMiniGame === 'function'){
+        window.openMiniGame();
+      }else{
+        // Compatible fallback: click the existing Easter egg/game trigger.
+        const gameBtn = document.querySelector('[data-easter-egg], #easterEgg, .easter-egg-launch');
+        if(gameBtn) gameBtn.click();
+      }
+
+      setTimeout(()=>{ fired=false; }, 300);
+    });
+  }
+
+  function startHold(){
+    fired = false;
+    vibrate(18);
+
+    clearTimeout(timer);
+    timer = setTimeout(launchGame, HOLD_MS);
+
+    // Lightweight hold feedback without requiring an existing progress UI.
+    const logo = document.querySelector(LOGO_SELECTOR);
+    if(logo){
+      logo.style.setProperty('--hold-progress','1');
+      logo.classList.add('logo-holding');
+    }
+  }
+
+  function cancelHold(){
+    clearTimeout(timer);
+    const logo = document.querySelector(LOGO_SELECTOR);
+    if(logo) logo.classList.remove('logo-holding');
+    if(!fired) vibrate(8);
+  }
+
+  function bind(){
+    const logo = document.querySelector(LOGO_SELECTOR);
+    if(!logo || logo.dataset.portalBound) return;
+    logo.dataset.portalBound = '1';
+
+    logo.addEventListener('pointerdown', startHold, {passive:true});
+    logo.addEventListener('pointerup', cancelHold, {passive:true});
+    logo.addEventListener('pointercancel', cancelHold, {passive:true});
+    logo.addEventListener('pointerleave', cancelHold, {passive:true});
+    logo.addEventListener('contextmenu', e=>e.preventDefault());
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .logo{transform-style:preserve-3d;transition:transform .2s ease,filter .2s ease}
+    .logo.logo-holding{
+      animation:logoCharge .55s ease-in-out infinite alternate;
+      filter:drop-shadow(0 0 13px rgba(255,23,68,.8));
+    }
+    .logo.logo-portal-active{transform:scale(1.08) rotateY(10deg)}
+    @keyframes logoCharge{
+      from{transform:scale(1) rotateZ(0deg)}
+      to{transform:scale(1.12) rotateZ(-4deg)}
+    }
+  `;
+  document.head.appendChild(style);
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bind);
+  }else bind();
+
+  // Rebind if the header is re-rendered.
+  new MutationObserver(bind).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<script>
+/* v17: keep the primary navigation centered even after page re-renders */
+(function(){
+  function centerBottomNav(){
+    const selectors = [
+      '.bottom-nav',
+      '.bottomNav',
+      'nav.bottom-nav',
+      '.app-bottom-nav',
+      '[data-bottom-nav]'
+    ];
+    document.querySelectorAll(selectors.join(',')).forEach(nav=>{
+      nav.style.left='50%';
+      nav.style.right='auto';
+      nav.style.transform='translateX(-50%)';
+      nav.style.marginLeft='0';
+      nav.style.marginRight='0';
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', centerBottomNav);
+  } else centerBottomNav();
+  new MutationObserver(centerBottomNav).observe(document.body,{childList:true,subtree:true});
+  window.addEventListener('resize', centerBottomNav);
+})();
+</script>
+
+
+<script>
+/* SaveWise v18 experience layer: one long-press controller, low-cost portal, sound + haptics. */
+(function(){
+  const logoSelector='.logo';
+  const HOLD_MS=1650;
+  let timer=0,raf=0,start=0,holding=false,launched=false,lastPulse=0;
+  const getLogo=()=>document.querySelector(logoSelector);
+  const pref=()=>{try{return JSON.parse(localStorage.getItem('savewise_experience')||'{"sound":true,"haptics":true}')}catch(e){return {sound:true,haptics:true}}};
+  const setPref=x=>localStorage.setItem('savewise_experience',JSON.stringify(x));
+  function haptic(pattern){try{if(pref().haptics&&navigator.vibrate)navigator.vibrate(pattern)}catch(e){}}
+  let audio=null;
+  function ensureAudio(){
+    if(!pref().sound)return null;
+    try{
+      const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;
+      if(!audio)audio=new AC(); if(audio.state==='suspended')audio.resume(); return audio;
+    }catch(e){return null}
+  }
+  function tone(type){
+    const a=ensureAudio();if(!a)return;
+    const now=a.currentTime, o=a.createOscillator(), g=a.createGain();o.connect(g);g.connect(a.destination);
+    const map={tick:[520,.055,'sine'],charge:[660,.07,'triangle'],launch:[180,.34,'sine'],start:[420,.12,'sine'],score:[760,.06,'sine'],hit:[120,.24,'sawtooth'],win:[560,.18,'sine']};
+    const [f,d,w]=map[type]||map.tick;o.type=w;o.frequency.setValueAtTime(f,now);
+    if(type==='launch'){o.frequency.exponentialRampToValueAtTime(980,now+d)}
+    else if(type==='win'){o.frequency.setValueAtTime(560,now);o.frequency.setValueAtTime(740,now+.07);o.frequency.setValueAtTime(980,now+.14)}
+    g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(type==='hit'?.045:.035,now+.012);g.gain.exponentialRampToValueAtTime(.0001,now+d);o.start(now);o.stop(now+d+.03);
+  }
+  window.SaveWiseSound={play:tone};
+  function portal(){
+    const p=document.getElementById('portalTransition');if(!p)return Promise.resolve();
+    p.querySelectorAll('.portal-circle,.portal-core,.portal-ring,.portal-flash').forEach(x=>x.remove());
+    const colors=['#ff1744','#ff4965','#ff8fa0','#ffffff','#d9042b'];
+    const n=22;
+    for(let i=0;i<n;i++){
+      const el=document.createElement('div');el.className='portal-circle';
+      const angle=(Math.PI*2/n)*i+(Math.random()-.5)*.22;
+      const dist=Math.hypot(innerWidth,innerHeight)*(.55+Math.random()*.58);
+      el.style.setProperty('--x',Math.cos(angle)*dist+'px');el.style.setProperty('--y',Math.sin(angle)*dist+'px');
+      el.style.setProperty('--s',(24+Math.random()*82)+'px');el.style.setProperty('--c',colors[(Math.random()*colors.length)|0]);el.style.setProperty('--d',(Math.random()*220)+'ms');el.style.setProperty('--r',((Math.random()-.5)*90)+'deg');p.appendChild(el);
+    }
+    const core=document.createElement('div');core.className='portal-core';p.appendChild(core);
+    const ring=document.createElement('div');ring.className='portal-ring';p.appendChild(ring);
+    const flash=document.createElement('div');flash.className='portal-flash';p.appendChild(flash);
+    p.classList.add('active');haptic([18,24,32,28,60]);tone('launch');
+    return new Promise(r=>setTimeout(r,1650));
+  }
+  function cancel(){clearTimeout(timer);cancelAnimationFrame(raf);timer=0;raf=0;holding=false;const l=getLogo();if(l){l.classList.remove('longpressing','logo-holding');l.style.setProperty('--sw-charge','0%')}}
+  function charge(now){if(!holding)return;const l=getLogo();if(!l)return cancel();const pct=Math.min(1,(now-start)/HOLD_MS);l.style.setProperty('--sw-charge',(pct*100).toFixed(1)+'%');if(pct-lastPulse>=.25){lastPulse=pct;haptic(7);tone('tick')}if(pct>=1){holding=false;launched=true;cancelAnimationFrame(raf);l.classList.add('sw-egg-burst');haptic([25,30,55,40,90]);tone('charge');setTimeout(()=>l.classList.remove('sw-egg-burst'),650);portal().then(()=>{document.getElementById('portalTransition')?.classList.remove('active');window.openEasterEggGame?.();setTimeout(()=>launched=false,500)});return}raf=requestAnimationFrame(charge)}
+  function down(e){const l=e.target.closest?.(logoSelector);if(!l||document.getElementById('swGameOverlay')?.classList.contains('show'))return;e.preventDefault();e.stopImmediatePropagation();cancel();holding=true;start=performance.now();lastPulse=0;l.classList.add('longpressing','logo-holding');haptic(12);tone('charge');raf=requestAnimationFrame(charge)}
+  function up(e){if(!holding&&!launched)return;const l=getLogo();e.preventDefault();e.stopImmediatePropagation();if(holding){haptic(8);tone('tick')}cancel()}
+  document.addEventListener('pointerdown',down,true);document.addEventListener('pointerup',up,true);document.addEventListener('pointercancel',up,true);document.addEventListener('contextmenu',e=>{if(e.target.closest?.(logoSelector))e.preventDefault()},true);
+  document.addEventListener('click',async e=>{const b=e.target.closest?.('#swTestNotification');if(!b)return;if(!('Notification' in window))return alert('Notifications are not supported in this browser.');let p=Notification.permission;if(p!=='granted')p=await Notification.requestPermission();if(p!=='granted')return;try{const reg=await navigator.serviceWorker?.ready;if(reg?.showNotification){await reg.showNotification('SaveWise',{body:'This is a SaveWise money reminder test.',icon:'./icon-192.png',badge:'./icon-192.png',tag:'savewise-test',vibrate:[80,60,120]})}else new Notification('SaveWise',{body:'This is a SaveWise money reminder test.'});haptic([20,30,50]);tone('score')}catch(err){}});
+  function refreshExperienceButton(){const b=document.getElementById('swExperienceBtn');if(b){const x=pref();b.textContent=(x.sound||x.haptics)?'On':'Off';b.title=`Sound ${x.sound?'on':'off'} · Haptics ${x.haptics?'on':'off'}`}}
+  document.addEventListener('click',e=>{const b=e.target.closest?.('#swExperienceBtn');if(!b)return;const x=pref();x.sound=!x.sound;x.haptics=!x.haptics;setPref(x);if(x.sound)tone('score');if(x.haptics)haptic(12);refreshExperienceButton()});
+  refreshExperienceButton();
+})();
+</script>
+<script>
+/* SaveWise v18 PWA update registration. */
+(function(){
+  if(!('serviceWorker' in navigator))return;
+  window.addEventListener('load',async()=>{try{const r=await navigator.serviceWorker.register('./sw.js?v=18',{updateViaCache:'none'});await r.update()}catch(e){}});
+})();
+</script>
+
+</body></html>
