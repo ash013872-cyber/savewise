@@ -1,59 +1,790 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#10b981"><meta name="description" content="SaveWise — track spending, build goals and make smarter money decisions.">
-<link rel="manifest" href="manifest.webmanifest"><title>SaveWise — Money, made smarter</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#070707" name="theme-color"/>
+<meta content="SaveWise — track spending, plan goals, and save smarter." name="description"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<title>SaveWise — Insights v3 Preview</title>
 <style>
-:root{--bg:#f6f8f7;--surface:#fff;--surface2:#f0f5f2;--text:#0b1220;--muted:#6b7280;--line:#e4e9e6;--green:#10b981;--green2:#059669;--indigo:#6366f1;--red:#ef4444;--amber:#f59e0b;--shadow:0 18px 50px rgba(15,23,42,.08);--radius:24px}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1240px;margin:auto;padding:20px 18px 100px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#10b981,#6366f1);color:#fff;display:grid;place-items:center;font-size:23px;font-weight:900;box-shadow:0 10px 28px #10b98130}.brand h1{margin:0;font-size:24px;letter-spacing:-.5px}.brand small{color:var(--muted)}.actions{display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:14px;padding:10px 13px;box-shadow:0 4px 14px #0f172a08}.profilechip{display:flex;align-items:center;gap:7px}
-.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.balance,.coach{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.balance{padding:26px;background:linear-gradient(135deg,#fff 0%,#f0fdf8 100%);position:relative;overflow:hidden}.balance:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-80px;background:#10b98118}.eyebrow{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}.amount{font-size:46px;font-weight:950;letter-spacing:-1.8px;margin:5px 0 18px}.flow{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px}.flow div{padding:12px 14px;background:#ffffffa8;border:1px solid #ffffff;border-radius:15px}.flow span{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.income{color:var(--green2)}.expense{color:var(--red)}.coach{padding:24px;background:linear-gradient(135deg,#111827,#18233a);color:#fff;position:relative;overflow:hidden}.coach:after{content:"";position:absolute;width:230px;height:230px;right:-110px;bottom:-120px;border-radius:50%;background:#6366f133}.coach .eyebrow{color:#a7f3d0}.coach h3{font-size:20px;margin:8px 0}.coach p{color:#cbd5e1;line-height:1.55;margin:0 0 15px;font-size:14px}.coach button{border:1px solid #ffffff20;background:#ffffff12;color:#fff;border-radius:12px;padding:9px 12px;font-weight:800}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.kpi{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 8px 25px #0f172a06}.kpi small{color:var(--muted);display:block;font-size:11px}.kpi b{font-size:18px;display:block;margin-top:4px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:19px;box-shadow:var(--shadow)}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.card h3{margin:0;font-size:16px}.link{border:0;background:none;color:var(--indigo);font-weight:900;font-size:12px}.bars{display:grid;gap:11px}.barrow{display:grid;grid-template-columns:105px 1fr 70px;gap:8px;align-items:center;font-size:12px}.track,.goalbar{background:#e9efec;border-radius:99px;overflow:hidden}.track{height:9px}.track i,.goalbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),#34d399)}.goal{padding:13px;border:1px solid var(--line);border-radius:16px;margin-bottom:10px}.goaltop,.goalfoot{display:flex;justify-content:space-between}.goaltop{font-size:13px;font-weight:900}.goal small,.goalfoot{color:var(--muted)}.goalbar{height:8px;margin:9px 0}.goalfoot{font-size:11px}.tx{display:flex;justify-content:space-between;align-items:center;padding:11px 2px;border-bottom:1px solid #eef1ef}.tx:last-child{border:0}.txleft{display:flex;gap:10px;align-items:center}.txicon{width:37px;height:37px;border-radius:12px;background:var(--surface2);display:grid;place-items:center}.txname{font-size:13px;font-weight:850}.txdate{font-size:10px;color:var(--muted);margin-top:2px}.txamt{font-size:13px;font-weight:900}.sub{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--line);border-radius:15px;margin-bottom:9px}.subleft{display:flex;gap:10px;align-items:center}.subicon{width:38px;height:38px;border-radius:12px;background:#f5f3ff;display:grid;place-items:center}.sub small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.pill{font-size:10px;font-weight:900;border-radius:99px;padding:5px 8px;background:#fff7ed;color:#b45309}.pill.ok{background:#ecfdf5;color:#047857}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.btn{border:0;border-radius:13px;padding:12px 13px;font-weight:900}.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--line)}.primary{background:var(--green);color:#fff}.fab{position:fixed;right:max(18px,calc((100vw - 640px)/2 + 18px));bottom:82px;width:60px;height:60px;border:0;border-radius:19px;background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-size:29px;box-shadow:0 15px 35px #10b98150;z-index:5;transition:transform .18s,box-shadow .18s,opacity .18s}.fab:hover{transform:translateY(-2px);box-shadow:0 18px 38px #10b98160}.fab.hidden{display:none}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(640px,100%);display:flex;justify-content:space-around;background:#ffffffed;border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:18px 18px 0 0;padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:4}.nav button{border:0;background:none;color:var(--muted);font-size:10px;padding:6px 16px;border-radius:12px}.nav button.active{background:#ecfdf5;color:var(--green2);font-weight:900}
-.modal{display:none;position:fixed;inset:0;background:#0b122088;backdrop-filter:blur(7px);z-index:20;align-items:flex-end;justify-content:center}.modal.show{display:flex}.sheet{width:min(680px,100%);max-height:90vh;overflow:auto;background:var(--surface);border-radius:28px 28px 0 0;padding:23px 19px 30px;box-shadow:0 -20px 60px #0003}.sheet h2{margin:0 0 17px;font-size:21px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:13px}.field label{display:block;font-size:10px;font-weight:900;color:var(--muted);margin-bottom:6px;letter-spacing:.06em}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:12px;border-radius:13px;outline:0}.field input:focus,.field select:focus{border-color:var(--green);box-shadow:0 0 0 3px #10b98118}.formactions{display:flex;justify-content:flex-end;gap:8px}.empty{color:var(--muted);font-size:13px;padding:10px 0}.insight{display:flex;gap:11px;padding:12px;border:1px solid var(--line);border-radius:15px;margin-bottom:9px}.insight b{display:block;font-size:13px}.insight p{margin:3px 0 0;color:var(--muted);font-size:11px;line-height:1.45}.notice{padding:12px;border-radius:14px;background:#f0fdf4;color:#166534;font-size:12px;margin-bottom:12px}.toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.switch{width:46px;height:25px;border-radius:99px;background:#cbd5e1;border:0;padding:3px}.switch i{display:block;width:19px;height:19px;border-radius:50%;background:#fff;transition:.2s}.switch.on{background:var(--green)}.switch.on i{transform:translateX(21px)}.toast{position:fixed;left:50%;bottom:88px;transform:translate(-50%,20px);background:#111827;color:#fff;padding:11px 15px;border-radius:13px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:30}.toast.show{opacity:1;transform:translate(-50%,0)}.monthbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px}.monthcenter{text-align:center;flex:1}.monthcenter b{display:block;font-size:16px}.monthcenter span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.monthnav{width:40px;height:40px;border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:13px;font-size:26px;line-height:1}.monthnav:disabled{opacity:.35;cursor:not-allowed}.dark .monthbar{background:var(--surface)}
-.dark{--bg:#090f1a;--surface:#111c2d;--surface2:#18263a;--text:#f8fafc;--muted:#94a3b8;--line:#26364d;--shadow:0 18px 50px #0005}.dark .balance{background:linear-gradient(135deg,#111c2d,#10332c)}.dark .flow div{background:#ffffff08;border-color:#ffffff10}.dark .nav{background:#0b1220ed}.dark .subicon{background:#29234a}.dark .notice{background:#123326;color:#a7f3d0}.dark .track,.dark .goalbar{background:#263449}
-@media(max-width:850px){.hero,.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.quick{grid-template-columns:1fr 1fr}}@media(max-width:560px){.brand small{display:none}.profilechip span{display:none}.amount{font-size:38px}.kpis{grid-template-columns:1fr 1fr}.barrow{grid-template-columns:90px 1fr 58px}.quick{grid-template-columns:1fr 1fr}.app{padding-left:12px;padding-right:12px}}
-</style></head>
-<body><div class="app">
-<header class="top"><div class="brand"><div class="logo">₹</div><div><h1>SaveWise</h1><small>Money, made smarter.</small></div></div><div class="actions"><button class="iconbtn profilechip" id="profileBtn">👤 <span id="profileName">You</span></button><button class="iconbtn" id="themeBtn">☀️</button></div></header>
-<section class="hero"><div class="balance"><div class="eyebrow">Available balance</div><div class="amount" id="balance">₹0</div><div class="flow"><div><span>Income this month</span><b class="income" id="income">+ ₹0</b></div><div><span>Expenses this month</span><b class="expense" id="expense">− ₹0</b></div></div></div><div class="coach"><div class="eyebrow">✦ Smart Money Coach</div><h3 id="coachTitle">Your money has a plan.</h3><p id="coachText">Add a few transactions and SaveWise will turn them into useful, practical suggestions.</p><button id="coachBtn">View smart insights →</button></div></section>
-<section class="kpis"><div class="kpi"><small>Savings rate</small><b id="savingsRate">0%</b></div><div class="kpi"><small>Monthly budget</small><b id="budgetKpi">Not set</b></div><div class="kpi"><small>Subscriptions</small><b id="subKpi">0 / ₹0</b></div><div class="kpi"><small>Goal progress</small><b id="goalKpi">0%</b></div></section>
-<div class="grid"><section class="card"><div class="cardhead"><h3>📊 Spending snapshot</h3><button class="link" id="insightsBtn">Smart insights</button></div><div class="bars" id="bars"></div></section><section class="card"><div class="cardhead"><h3>🐷 Savings goals</h3><button class="link" id="addGoal">+ Goal</button></div><div id="goals"></div></section><section class="card"><div class="cardhead"><h3>🧾 Recent transactions</h3><button class="link" id="addTx">+ Add</button></div><div id="transactions"></div></section><section class="card"><div class="cardhead"><h3>🔁 Subscriptions</h3><button class="link" id="addSub">+ Add</button></div><div id="subs"></div></section><section class="card"><div class="cardhead"><h3>⚡ Quick actions</h3></div><div class="quick"><button class="btn secondary" id="incomeBtn">＋ Income</button><button class="btn secondary" id="expenseBtn">− Expense</button><button class="btn secondary" id="budgetBtn">🎯 Budget</button><button class="btn secondary" id="settingsBtn">⚙️ Settings</button></div></section><section class="card"><div class="cardhead"><h3>🛡️ Privacy first</h3></div><div class="notice">Your financial data stays in this browser using local storage. No bank account is connected.</div><div class="empty">SaveWise is designed to be useful without requiring your financial data to leave your device.</div></section></div></div>
-<button class="fab" id="fab">＋</button><nav class="nav"><button class="active">🏠<br>Home</button><button id="insightsNav">✨<br>Insights</button><button id="goalsNav">🐷<br>Goals</button><button id="settingsNav">⚙️<br>Settings</button></nav><div class="modal" id="modal"><div class="sheet" id="sheet"></div></div><div class="toast" id="toast"></div>
+:root{--bg:#050505;--surface:rgba(18,18,20,.72);--surface2:rgba(28,28,31,.62);--text:#f7f7f8;--muted:#a3a3ad;--line:rgba(255,255,255,.10);--green:#22c55e;--green2:#16a34a;--indigo:#ff334f;--red:#ff1744;--amber:#ffb020;--shadow:0 22px 70px rgba(0,0,0,.48);--glass:rgba(255,255,255,.055)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#050505;color:var(--text)}body{background:radial-gradient(circle at 12% 0%,rgba(255,23,68,.12),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,23,68,.08),transparent 28%),#050505;overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer;transition:transform .18s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease,color .22s ease}button:active{transform:scale(.97)}
+.app{max-width:1180px;margin:auto;padding:22px 18px 110px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:11px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,#ff1744,#a50022);display:grid;place-items:center;color:white;font-size:22px;font-weight:900;box-shadow:0 12px 34px rgba(255,23,68,.28),inset 0 1px 0 rgba(255,255,255,.22);animation:logoIn .6s ease both}.brand h1{font-size:24px;margin:0;letter-spacing:-.5px}.brand small{color:var(--muted)}
+.actions{display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:rgba(22,22,24,.64);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:14px;padding:10px 12px;color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.07)}.iconbtn:hover{border-color:rgba(255,23,68,.45);box-shadow:0 12px 35px rgba(255,23,68,.12)}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.balance,.coach,.card{background:linear-gradient(145deg,rgba(22,22,24,.78),rgba(10,10,11,.68));border:1px solid rgba(255,255,255,.09);border-radius:24px;box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.balance:hover,.coach:hover,.card:hover{border-color:rgba(255,23,68,.22);box-shadow:0 25px 75px rgba(0,0,0,.52),0 0 40px rgba(255,23,68,.045),inset 0 1px 0 rgba(255,255,255,.05)}.balance{padding:26px;position:relative;overflow:hidden}.balance:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-130px;background:radial-gradient(circle,rgba(255,23,68,.20),rgba(255,23,68,0) 70%);pointer-events:none}.eyebrow{font-size:11px;color:#b6b6bf;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.amount{font-size:46px;font-weight:950;margin:5px 0 18px;letter-spacing:-1.8px}.flow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.flow div{padding:13px 14px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}.flow span{font-size:11px;color:var(--muted);display:block}.income{color:#34d399}.expense{color:#ff3152}.coach{padding:24px;background:linear-gradient(145deg,rgba(30,30,34,.82),rgba(12,12,14,.70));position:relative;overflow:hidden}.coach:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;right:-90px;bottom:-130px;background:radial-gradient(circle,rgba(255,23,68,.18),transparent 68%);pointer-events:none}.coach h3{margin:8px 0;font-size:22px}.coach p{margin:5px 0;color:#c0c0c8;line-height:1.55;font-size:14px}.coach b{color:#ff3152}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.card{padding:19px}.cardhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.card h3{margin:0;font-size:16px}.link{border:0;background:none;color:#ff4962;font-weight:850;font-size:12px;padding:7px 8px;border-radius:9px}.link:hover{background:rgba(255,23,68,.09);color:#ff7185}.bars{display:grid;gap:11px}.barrow{display:grid;grid-template-columns:90px 1fr 65px;align-items:center;gap:8px;font-size:12px}.track{height:9px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.track i{display:block;height:100%;background:linear-gradient(90deg,#ff1744,#ff5b73);border-radius:99px;box-shadow:0 0 15px rgba(255,23,68,.25)}.goal{padding:13px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);border-radius:15px;margin-bottom:10px;transition:transform .2s ease,border-color .2s ease}.goal:hover{transform:translateY(-2px);border-color:rgba(255,23,68,.2)}.goaltop{display:flex;justify-content:space-between;font-size:13px;font-weight:800}.goal small{color:var(--muted)}.goalbar{height:8px;background:rgba(255,255,255,.07);border-radius:99px;margin:9px 0;overflow:hidden}.goalbar i{display:block;height:100%;background:linear-gradient(90deg,#ff1744,#ff6680);border-radius:99px;box-shadow:0 0 14px rgba(255,23,68,.22)}.goalfoot{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.transactions{display:grid;gap:2px}.tx{display:flex;align-items:center;justify-content:space-between;padding:11px 2px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .2s ease}.tx:hover{background:rgba(255,255,255,.025);transform:translateX(2px)}.tx:last-child{border:0}.txleft{display:flex;align-items:center;gap:10px}.txicon{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);display:grid;place-items:center}.txname{font-size:13px;font-weight:750}.txdate{font-size:10px;color:var(--muted)}.txamt{font-weight:850;font-size:13px}
+.btn{border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 16px;font-weight:850}.primary{background:linear-gradient(135deg,#ff1744,#d9042b);color:#fff;border-color:rgba(255,255,255,.10);box-shadow:0 10px 26px rgba(255,23,68,.22)}.primary:hover{box-shadow:0 13px 32px rgba(255,23,68,.32);filter:brightness(1.05)}.secondary{background:rgba(255,255,255,.045);color:var(--text);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}.secondary:hover{background:rgba(255,23,68,.09);border-color:rgba(255,23,68,.25)}
+.fab{position:fixed;right:24px;bottom:92px;width:60px;height:60px;border:1px solid rgba(255,255,255,.15);border-radius:19px;background:linear-gradient(145deg,#ff1744,#d9042b);color:#fff;font-size:29px;box-shadow:0 16px 40px rgba(255,23,68,.32),inset 0 1px 0 rgba(255,255,255,.24);z-index:5}.fab:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 48px rgba(255,23,68,.42)}
+.nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:min(600px,calc(100% - 24px));background:rgba(12,12,14,.72);border:1px solid rgba(255,255,255,.10);border-radius:20px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;justify-content:space-around;padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:4;box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}.nav button{border:0;background:none;color:#8f8f99;font-size:10px;padding:7px 15px;border-radius:12px}.nav button.active{background:rgba(255,23,68,.12);color:#ff4962;font-weight:900;box-shadow:inset 0 0 0 1px rgba(255,23,68,.12)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:20;align-items:flex-end;justify-content:center}.modal.show{display:flex;animation:fadeIn .2s ease}.sheet{background:linear-gradient(145deg,rgba(25,25,28,.96),rgba(10,10,12,.96));border:1px solid rgba(255,255,255,.10);width:min(620px,100%);border-radius:25px 25px 0 0;padding:22px 18px 28px;box-shadow:0 -20px 70px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);animation:sheetUp .28s cubic-bezier(.2,.8,.2,1)}.sheet h2{margin:0 0 15px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:12px}.field label{font-size:11px;color:#a8a8b0;font-weight:800;display:block;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:var(--text);padding:12px;border-radius:12px;outline:0}.field input:focus,.field select:focus{border-color:rgba(255,23,68,.7);box-shadow:0 0 0 3px rgba(255,23,68,.12)}.field select option{background:#151517;color:#fff}.formactions{display:flex;gap:8px;justify-content:flex-end}.empty{color:var(--muted);font-size:13px;padding:10px 0}.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);background:rgba(24,24,27,.92);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:white;padding:10px 15px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:30;box-shadow:0 15px 40px rgba(0,0,0,.45)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.dark{--bg:#050505;--surface:rgba(18,18,20,.72);--surface2:rgba(28,28,31,.62);--text:#f7f7f8;--muted:#a3a3ad;--line:rgba(255,255,255,.10);--shadow:0 22px 70px rgba(0,0,0,.48)}
+/* ===== Real Light/Dark theme support ===== */
+body.light{
+  --bg:#f4f5f7;--surface:rgba(255,255,255,.82);--surface2:rgba(247,248,250,.88);
+  --text:#15161a;--muted:#666b76;--line:rgba(20,22,28,.12);--shadow:0 18px 55px rgba(20,25,35,.12);
+  background:radial-gradient(circle at 12% 0%,rgba(255,23,68,.08),transparent 30%),
+             radial-gradient(circle at 90% 20%,rgba(255,23,68,.055),transparent 28%),#f4f5f7;
+  color:var(--text);
+}
+body.light .iconbtn{background:rgba(255,255,255,.78);color:var(--text);border-color:rgba(20,22,28,.12);box-shadow:0 8px 24px rgba(20,25,35,.08),inset 0 1px 0 rgba(255,255,255,.8)}
+body.light .balance,body.light .coach,body.light .card{background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(247,248,250,.82));border-color:rgba(20,22,28,.10);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .flow div,body.light .goal,body.light .txicon,body.light .sw-setting-card,body.light .sw-goal-card{background:rgba(20,22,28,.035);border-color:rgba(20,22,28,.09)}
+body.light .coach p,body.light .sw-setting-card p,body.light .sw-goal-card p{color:#656a75}
+body.light .track,body.light .goalbar{background:rgba(20,22,28,.08)}
+body.light .nav{background:rgba(255,255,255,.80);border-color:rgba(20,22,28,.10);box-shadow:0 18px 50px rgba(20,25,35,.14),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .nav button{color:#707581}
+body.light .secondary{background:rgba(20,22,28,.045);color:var(--text);border-color:rgba(20,22,28,.10)}
+body.light .secondary:hover{background:rgba(255,23,68,.08)}
+body.light .modal{background:rgba(30,34,42,.32)}
+body.light .sheet{background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(247,248,250,.97));border-color:rgba(20,22,28,.10);box-shadow:0 -20px 70px rgba(20,25,35,.18),inset 0 1px 0 rgba(255,255,255,.9)}
+body.light .field input,body.light .field select{background:rgba(20,22,28,.035);color:var(--text);border-color:rgba(20,22,28,.12)}
+body.light .field select option{background:#fff;color:#15161a}
+body.light .sw-page-layer{background:#f4f5f7}
+body.light .sw-page-top{background:linear-gradient(#f4f5f7 72%,transparent)}
+body.light .sw-back{background:rgba(20,22,28,.045);color:var(--text);border-color:rgba(20,22,28,.10)}
+body.light .sw-setting-card,body.light .sw-goal-card{background:rgba(255,255,255,.78);border-color:rgba(20,22,28,.10);box-shadow:0 12px 35px rgba(20,25,35,.06)}
+body.light .sw-legal{color:#4f545e}
+body.light .sw-legal h3{color:#15161a}
+body.light .sw-consent{background:rgba(20,24,30,.32)}
+body.light .sw-consent-card{background:#fff;border-color:rgba(255,23,68,.20);box-shadow:0 30px 100px rgba(20,25,35,.22)}
+body.light .toast{background:rgba(255,255,255,.94);color:#15161a;border-color:rgba(20,22,28,.10);box-shadow:0 15px 40px rgba(20,25,35,.16)}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes sheetUp{from{transform:translateY(24px);opacity:.7}to{transform:translateY(0);opacity:1}}@keyframes logoIn{from{transform:scale(.8) rotate(-6deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+@media(max-width:760px){.hero,.grid{grid-template-columns:1fr}.amount{font-size:36px}.app{padding-top:15px}.top{margin-bottom:15px}.card{padding:16px}.fab{right:18px;bottom:88px}.nav{bottom:8px}}
+
+/* ===== SaveWise v2: time, month navigation & AI insights ===== */
+.timebar{margin:16px 0;padding:15px 18px;border:1px solid rgba(255,23,68,.18);border-radius:20px;background:linear-gradient(145deg,rgba(18,18,20,.78),rgba(8,8,10,.68));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;box-shadow:0 18px 55px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.04)}
+.monthnav{display:flex;align-items:center;gap:10px}.monthnav button{width:42px;height:42px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);color:#fff;border-radius:13px;font-size:20px}.monthnav button:hover{border-color:rgba(255,23,68,.45);background:rgba(255,23,68,.10)}.monthinfo{text-align:center;min-width:190px}.monthinfo strong{display:block;font-size:18px}.monthinfo small{color:var(--muted);font-size:11px}.clockinfo{text-align:right}.clockinfo strong{display:block;font-size:16px;letter-spacing:.2px}.clockinfo small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.syncbtn{margin-top:6px;border:1px solid rgba(255,23,68,.22);background:rgba(255,23,68,.08);color:#ff7185;border-radius:9px;padding:6px 9px;font-size:10px;font-weight:850}.syncbtn:hover{background:rgba(255,23,68,.14)}
+.insights-modal{align-items:flex-end}.insights-sheet{width:min(760px,100%);max-height:min(82vh,760px);overflow:hidden;border-radius:26px 26px 0 0;padding:0;display:flex;flex-direction:column}.sheet-handle{width:44px;height:5px;border-radius:99px;background:rgba(255,255,255,.22);margin:10px auto 4px}.insights-head{padding:10px 20px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:10px}.insights-head h2{margin:0;font-size:20px}.closex{width:36px;height:36px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.045);color:#fff;border-radius:12px;font-size:18px}.insights-body{overflow:auto;padding:18px 20px 24px}.ai-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:99px;background:rgba(255,23,68,.10);border:1px solid rgba(255,23,68,.18);color:#ff6b80;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.ai-summary{margin:12px 0 16px;padding:16px;border-radius:17px;background:linear-gradient(145deg,rgba(255,23,68,.09),rgba(255,255,255,.035));border:1px solid rgba(255,23,68,.14)}.ai-summary h3{margin:0 0 6px;font-size:18px}.ai-summary p{margin:0;color:#c7c7ce;font-size:13px;line-height:1.55}.insight-list{display:grid;gap:10px}.insight-item{padding:14px;border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.035);border-radius:16px}.insight-item strong{display:block;margin-bottom:5px}.insight-item p{margin:0;color:#bdbdc5;font-size:12px;line-height:1.5}.askbox{margin-top:16px;padding:14px;border:1px solid rgba(255,23,68,.15);background:rgba(255,255,255,.025);border-radius:17px}.askbox label{font-size:11px;font-weight:850;color:#aaaab3;display:block;margin-bottom:7px}.askrow{display:flex;gap:8px}.askrow input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:#fff;padding:12px;border-radius:12px;outline:0}.askrow input:focus{border-color:rgba(255,23,68,.65);box-shadow:0 0 0 3px rgba(255,23,68,.10)}.askanswer{margin-top:10px;color:#c9c9d0;font-size:12px;line-height:1.55;display:none;padding:11px;border-radius:12px;background:rgba(255,255,255,.035)}.askanswer.show{display:block;animation:fadeIn .2s ease}
+@media(max-width:760px){.timebar{grid-template-columns:1fr;gap:10px}.monthnav{justify-content:center}.clockinfo{text-align:center}.monthinfo{min-width:0}.insights-sheet{max-height:88vh}.insights-body{padding-bottom:32px}.askrow{flex-direction:column}}
+
+
+/* ===== SaveWise Insights v3 preview ===== */
+.insights-modal{align-items:center!important;padding:12px}
+.insights-sheet{
+  width:min(920px,calc(100% - 12px))!important;
+  max-height:92vh!important;
+  height:min(92vh,900px);
+  border-radius:28px!important;
+  border:1px solid rgba(255,23,68,.20)!important;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 30px 100px rgba(0,0,0,.72),0 0 70px rgba(255,23,68,.07);
+  animation:insightsPageIn .34s cubic-bezier(.2,.8,.2,1) both!important;
+}
+.insights-modal:not(.show) .insights-sheet{animation:none}
+.insights-head{
+  position:relative;
+  padding:16px 20px!important;
+  background:linear-gradient(180deg,rgba(255,23,68,.07),rgba(255,255,255,.015));
+}
+.insights-head .headcopy{display:flex;align-items:center;gap:11px}
+.insights-head .headicon{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,23,68,.12);border:1px solid rgba(255,23,68,.22);
+  box-shadow:0 8px 28px rgba(255,23,68,.12);font-size:20px
+}
+.insights-head h2{font-size:21px!important}
+.insights-head p{margin:3px 0 0;color:#9999a4;font-size:11px}
+.insights-body{padding:20px!important;scroll-behavior:smooth}
+.insights-overview{
+  display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:stretch;
+  margin-bottom:18px
+}
+.insight-chart-card,.insight-stat-card{
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+  animation:riseIn .45s ease both
+}
+.insight-chart-card{display:grid;place-items:center;min-height:300px}
+.donut-wrap{display:grid;place-items:center;position:relative}
+.donut{
+  width:205px;height:205px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 0 50px rgba(255,23,68,.12);
+  transition:transform .35s ease,filter .35s ease
+}
+.donut:hover{transform:scale(1.035);filter:brightness(1.08)}
+.donut-hole{
+  width:132px;height:132px;border-radius:50%;background:#0b0b0d;
+  border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;
+  align-content:center;text-align:center;box-shadow:inset 0 0 30px rgba(0,0,0,.35)
+}
+.donut-hole strong{font-size:24px;line-height:1.1}
+.donut-hole span{font-size:10px;color:#9999a4;margin-top:5px;text-transform:uppercase;letter-spacing:.08em}
+.donut-caption{margin-top:13px;text-align:center;color:#a9a9b2;font-size:11px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.insight-stat{padding:14px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.insight-stat small{display:block;color:#92929c;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.insight-stat strong{display:block;margin-top:5px;font-size:17px}
+.insight-stat.spent strong{color:#ff3152}.insight-stat.income strong{color:#34d399}
+.legend{display:grid;gap:9px;max-height:245px;overflow:auto;padding-right:2px}
+.legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:9px;align-items:center;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.025);transition:transform .2s ease,background .2s ease}
+.legend-row:hover{transform:translateX(2px);background:rgba(255,23,68,.055)}
+.legend-dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 10px currentColor}
+.legend-name{font-size:12px;font-weight:800}.legend-meta{font-size:10px;color:#9999a4;margin-top:2px}
+.legend-amount{text-align:right;font-size:11px;font-weight:850}
+.ai-insight-list{display:grid;gap:10px}
+.ai-insight-card{
+  padding:15px;border-radius:17px;border:1px solid rgba(255,23,68,.13);
+  background:linear-gradient(145deg,rgba(255,23,68,.075),rgba(255,255,255,.025));
+  animation:riseIn .5s ease both
+}
+.ai-insight-card:nth-child(2){animation-delay:.06s}.ai-insight-card:nth-child(3){animation-delay:.12s}.ai-insight-card:nth-child(4){animation-delay:.18s}
+.ai-insight-card strong{display:block;margin-bottom:5px;font-size:13px}.ai-insight-card p{margin:0;color:#bdbdc6;font-size:12px;line-height:1.55}
+.insight-section-title{margin:20px 0 10px;font-size:13px;color:#e7e7eb}
+.insight-ai-fab{
+  position:absolute;right:20px;bottom:20px;z-index:8;width:58px;height:58px;border-radius:19px;
+  border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#ff1744,#c90029);
+  color:#fff;font-size:22px;box-shadow:0 16px 42px rgba(255,23,68,.38),inset 0 1px 0 rgba(255,255,255,.24);
+  animation:aiPulse 2.4s ease-in-out infinite
+}
+.insight-ai-fab:hover{transform:translateY(-3px) scale(1.03)}
+.ai-panel{
+  position:absolute;right:20px;bottom:88px;width:min(410px,calc(100% - 40px));z-index:9;
+  padding:15px;border-radius:20px;border:1px solid rgba(255,23,68,.22);
+  background:rgba(15,15,18,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:0 22px 70px rgba(0,0,0,.62);display:none;animation:aiPanelIn .22s ease both
+}
+.ai-panel.show{display:block}
+.ai-panel-title{font-weight:900;font-size:13px;margin-bottom:4px}.ai-panel-sub{font-size:10px;color:#92929c;margin-bottom:10px}
+.ai-panel .askrow{display:flex;gap:8px}.ai-panel input{flex:1;min-width:0}
+.ai-panel .askanswer{max-height:150px;overflow:auto}
+.insights-scroll-hint{text-align:center;color:#70707a;font-size:10px;margin-top:17px;padding-bottom:45px}
+@keyframes insightsPageIn{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aiPanelIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes aiPulse{0%,100%{box-shadow:0 16px 42px rgba(255,23,68,.32),inset 0 1px 0 rgba(255,255,255,.24)}50%{box-shadow:0 16px 55px rgba(255,23,68,.52),0 0 0 7px rgba(255,23,68,.05),inset 0 1px 0 rgba(255,255,255,.24)}}
+@media(max-width:760px){
+  .insights-modal{padding:6px}
+  .insights-sheet{width:100%!important;height:95vh;max-height:95vh!important;border-radius:24px!important}
+  .insights-overview{grid-template-columns:1fr}
+  .insight-chart-card{min-height:250px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .insight-ai-fab{right:15px;bottom:15px}.ai-panel{right:15px;bottom:82px;width:calc(100% - 30px)}
+  .insights-body{padding:15px!important}
+}
+
+
+/* ===== SaveWise page navigation / legal / AI v4 ===== */
+.sw-page-layer{
+  position:fixed;inset:0;z-index:10000;display:none;background:var(--bg);
+  color:var(--text);
+  overflow:auto;overscroll-behavior:contain;
+  opacity:0;transform:translateY(18px);
+}
+.sw-page-layer.show{display:block;animation:swPageIn .32s cubic-bezier(.2,.8,.2,1) forwards;pointer-events:auto}.sw-page-layer:not(.show){pointer-events:none}
+.sw-page-inner{min-height:100%;max-width:920px;margin:auto;padding:18px 18px 48px}
+.sw-page-top{
+  position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;
+  padding:12px 0 16px;background:linear-gradient(var(--bg) 72%,transparent)
+}
+.sw-back{
+  width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.045);color:#fff;font-size:19px;cursor:pointer
+}
+.sw-page-title{font-size:21px;font-weight:900}
+.sw-page-sub{font-size:11px;color:#96969f;margin-top:3px}
+.sw-page-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.sw-setting-card,.sw-goal-card{
+  border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.035);
+  border-radius:19px;padding:16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+.sw-setting-card{position:relative;z-index:1;cursor:default}.sw-setting-card button{position:relative;z-index:5;pointer-events:auto;cursor:pointer}.sw-setting-card:hover,.sw-goal-card:hover{transform:translateY(-2px);border-color:rgba(255,23,68,.28);box-shadow:0 14px 38px rgba(0,0,0,.25)}
+.sw-setting-row{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.sw-setting-card h3,.sw-goal-card h3{margin:0;font-size:13px}.sw-setting-card p,.sw-goal-card p{margin:5px 0 0;color:#9999a4;font-size:11px;line-height:1.5}
+.sw-danger{border-color:rgba(255,23,68,.18)}
+.sw-legal{line-height:1.65;color:#c5c5cc;font-size:12px}
+.sw-legal h3{color:#fff;margin:22px 0 7px;font-size:14px}.sw-legal p{margin:0 0 9px}
+.sw-consent{
+  position:fixed;inset:0;z-index:11000;background:rgba(0,0,0,.82);backdrop-filter:blur(18px);
+  display:none;align-items:center;justify-content:center;padding:16px
+}
+.sw-consent.show{display:flex;animation:swFade .25s ease}
+.sw-consent-card{
+  width:min(760px,100%);max-height:90vh;overflow:auto;border-radius:26px;
+  background:#0b0b0d;border:1px solid rgba(255,23,68,.22);padding:22px;
+  box-shadow:0 30px 100px rgba(0,0,0,.75)
+}
+.sw-check{display:flex;gap:10px;align-items:flex-start;margin-top:17px;padding:12px;border-radius:14px;background:rgba(255,255,255,.035);font-size:12px;color:#d7d7dc}
+.sw-check input{margin-top:3px;accent-color:#ff1744}.sw-consent-actions{display:flex;gap:10px;margin-top:15px}
+.sw-consent-actions button{flex:1}
+.sw-ai-msg{padding:10px 12px;border-radius:14px;margin-top:9px;line-height:1.5;font-size:12px}
+.sw-ai-user{background:rgba(255,23,68,.10);border:1px solid rgba(255,23,68,.14)}
+.sw-ai-bot{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+@keyframes swPageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swFade{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.sw-page-grid{grid-template-columns:1fr}.sw-page-inner{padding:12px 13px 35px}}
+
+</style>
+<style id="sw-transition-extra">
+button,.btn,.nav button,.fab,.quick-btn{transition:transform .18s ease,opacity .18s ease,box-shadow .22s ease,background .22s ease}
+button:active,.btn:active{transform:scale(.97)}
+</style>
+<style id="sw-profile-style">
+.sw-profile-hero{display:flex;align-items:center;gap:18px;padding:22px;border:1px solid rgba(255,23,68,.18);background:linear-gradient(135deg,rgba(255,23,68,.12),rgba(255,255,255,.025));border-radius:24px;margin-bottom:14px}
+.sw-profile-hero h2{margin:0 0 5px;font-size:26px}.sw-profile-hero p{margin:0;color:#a8a8b3;font-size:13px}
+.sw-avatar-big{width:82px;height:82px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:#15151a;font-size:45px;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 35px rgba(255,23,68,.12)}
+.sw-avatar-grid{display:grid;grid-template-columns:repeat(8,minmax(42px,1fr));gap:9px;margin-top:14px}
+.sw-avatar-choice{height:48px;border-radius:15px;border:1px solid rgba(255,255,255,.08);background:#141419;font-size:25px;cursor:pointer}
+.sw-avatar-choice.active{border-color:#ff1744;box-shadow:0 0 0 2px rgba(255,23,68,.15);background:rgba(255,23,68,.12)}
+.sw-form-grid{display:grid;gap:12px;margin:15px 0}.sw-form-grid label{font-size:12px;font-weight:700;color:#bdbdc7;display:grid;gap:6px}
+.sw-form-grid input,.sw-form-grid textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.10);background:#0e0e12;color:#f5f5f7;border-radius:13px;padding:12px;font:inherit;outline:none}
+.sw-form-grid textarea{min-height:90px;resize:vertical}.sw-form-grid input:focus,.sw-form-grid textarea:focus{border-color:#ff1744;box-shadow:0 0 0 3px rgba(255,23,68,.10)}
+.sw-muted{color:#858590;font-size:11px}
+@media(max-width:700px){.sw-avatar-grid{grid-template-columns:repeat(6,minmax(42px,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">₹</div><div><h1>SaveWise</h1><small>Your money. Your goals. Smarter choices.</small></div></div><div class="actions"><button class="iconbtn" id="headerAvatar" title="Profile">🙂</button><button class="iconbtn" id="themeBtn">☀️</button></div></header>
+<section class="hero">
+<div class="balance"><div class="eyebrow">Available balance</div><div class="amount" id="balance">₹0</div><div class="flow"><div><span>Income this month</span><b class="income" id="income">+ ₹0</b></div><div><span>Expenses this month</span><b class="expense" id="expense">− ₹0</b></div></div></div>
+<div class="coach"><div class="eyebrow">🤖 Money Coach</div><h3 id="coachTitle">Let's get started</h3><p id="coachText">Add your income and first expense. SaveWise will begin finding useful patterns.</p></div>
+</section>
+<section aria-label="Date and time" class="timebar">
+<div class="monthnav"><button aria-label="Previous month" id="prevMonth">‹</button></div>
+<div class="monthinfo"><strong id="monthLabel">Current month</strong><small id="monthMeta">Loading month data…</small></div>
+<div class="clockinfo"><strong id="clockLabel">--:--:--</strong><small id="dateLabel">Loading date…</small><small id="tzLabel">Device time zone</small><button class="syncbtn" id="syncTimeBtn">📍 Sync time &amp; location</button></div>
+<div class="monthnav"><button aria-label="Next month" id="nextMonth">›</button></div>
+</section>
+<div class="grid">
+<section class="card"><div class="cardhead"><h3>📊 Monthly spending</h3><button class="link" id="allInsights">Insights</button></div><div class="bars" id="bars"></div></section>
+<section class="card"><div class="cardhead"><h3>🐷 Savings goals</h3><button class="link" id="addGoal">+ Goal</button></div><div id="goals"></div></section>
+<section class="card"><div class="cardhead"><h3>🧾 Recent transactions</h3><button class="link" id="addExpenseLink">+ Add</button></div><div class="transactions" id="transactions"></div></section>
+<section class="card"><div class="cardhead"><h3>💡 Quick actions</h3></div><div class="row"><button class="btn secondary" id="incomeBtn">＋ Income</button><button class="btn secondary" id="expenseBtn">− Expense</button><button class="btn secondary" id="budgetBtn">🎯 Set Budget</button><button class="btn secondary" id="settingsBtn">⚙️ Settings</button></div></section>
+</div>
+</div>
+<button class="fab" id="fab">＋</button>
+<nav class="nav"><button class="active">🏠<br/>Home</button><button id="insightsNav">📊<br/>Insights</button><button id="goalsNav">🐷<br/>Goals</button><button id="settingsNav">⚙️<br/>Settings</button></nav>
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="modal insights-modal" id="insightsModal">
+<div class="sheet insights-sheet" id="insightsSheet">
+<div class="sheet-handle"></div>
+<div class="insights-head">
+<div class="headcopy">
+<div class="headicon">✦</div>
+<div><h2>SaveWise Insights</h2><p id="insightPeriod">Your monthly money overview</p></div>
+</div>
+<button aria-label="Close insights" class="closex" id="closeInsights">×</button>
+</div>
+<div class="insights-body" id="insightsBody"></div>
+<button aria-label="Ask SaveWise AI" class="insight-ai-fab" id="insightAiFab">✦</button>
+<div class="ai-panel" id="aiPanel">
+<div class="ai-panel-title">✦ Ask SaveWise</div>
+<div class="ai-panel-sub">Ask about this month's spending, budget, income or ways to save.</div>
+<div class="askrow">
+<input id="aiQuestion" placeholder="e.g. Where can I save money?"/>
+<button class="btn primary" id="askAiBtn">Ask</button>
+</div>
+<div class="askanswer" id="aiAnswer"></div>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
 <script>
-const C={INR:"₹",USD:"$",EUR:"€",GBP:"£",AED:"د.إ",CAD:"C$",AUD:"A$",JPY:"¥",CHF:"CHF",SGD:"S$"};const cats={Food:"🍔",Transport:"🚕",Shopping:"🛍️",Subscriptions:"📱",Bills:"🏠",Entertainment:"🎮",Education:"📚",Health:"💊",Travel:"✈️",Other:"•"};const KEY="savewise_v2", CUSTOM_KEY="savewise_custom_categories";
-let db=JSON.parse(localStorage.getItem(KEY)||"null")||{profiles:[{id:1,name:"You",currency:"INR",balance:0,budget:0,transactions:[],goals:[],subs:[]}],active:1,theme:"system",notifications:false,budgetAlerts:true};const $=id=>document.getElementById(id);const p=()=>db.profiles.find(x=>x.id===db.active)||db.profiles[0];const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
-function money(n){return(C[p().currency]||"")+Number(n||0).toLocaleString(undefined,{maximumFractionDigits:2})}let viewMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);function monthKey(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")}function monthLabel(d){return d.toLocaleDateString(undefined,{month:"long",year:"numeric"})}function localDateTimeValue(d=new Date()){let x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,16)}function mtx(){let y=viewMonth.getFullYear(),m=viewMonth.getMonth();return p().transactions.filter(t=>{let x=new Date(t.date||Date.now());return x.getMonth()===m&&x.getFullYear()===y})}function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
-function render(){let q=p(),m=mtx(),inc=m.filter(x=>x.type==='income').reduce((a,x)=>a+x.amount,0),exp=m.filter(x=>x.type==='expense').reduce((a,x)=>a+x.amount,0),saveAmt=Math.max(0,inc-exp);let now=new Date(),currentMonth=new Date(now.getFullYear(),now.getMonth(),1),isCurrent=monthKey(viewMonth)===monthKey(currentMonth),daysInMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,0).getDate(),elapsed=isCurrent?now.getDate():daysInMonth,remaining=Math.max(0,daysInMonth-elapsed);$("monthLabel").textContent=monthLabel(viewMonth);$("monthMeta").textContent=isCurrent?`${elapsed} day${elapsed===1?'':'s'} elapsed · ${remaining} day${remaining===1?'':'s'} remaining`:`${m.length} transaction${m.length===1?'':'s'} in this month`;$("nextMonth").disabled=isCurrent;$("profileName").textContent=q.name;$("balance").textContent=money(q.balance);$("income").textContent="+ "+money(inc);$("expense").textContent="− "+money(exp);$("savingsRate").textContent=inc?Math.max(0,Math.round(saveAmt/inc*100))+"%":"0%";$("budgetKpi").textContent=q.budget?money(q.budget):"Not set";let subTotal=q.subs.reduce((a,x)=>a+x.amount,0);$("subKpi").textContent=q.subs.length+" / "+money(subTotal);let gp=q.goals.length?q.goals.reduce((a,g)=>a+Math.min(1,g.saved/g.target),0)/q.goals.length:0;$("goalKpi").textContent=Math.round(gp*100)+"%";
-let totals={};m.filter(x=>x.type==='expense').forEach(x=>totals[x.category]=(totals[x.category]||0)+x.amount);let max=Math.max(...Object.values(totals),1);$("bars").innerHTML=Object.keys(totals).length?Object.entries(totals).sort((a,b)=>b[1]-a[1]).slice(0,7).map(([c,v])=>`<div class="barrow"><span>${cats[c]||'•'} ${c}</span><div class="track"><i style="width:${v/max*100}%"></i></div><b>${money(v)}</b></div>`).join(""):"<div class=empty>No spending yet — your first category will appear here.</div>";
-$("transactions").innerHTML=q.transactions.length?q.transactions.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5).map(t=>`<div class=tx><div class=txleft><div class=txicon>${t.type==='income'?'💰':cats[t.category]||'•'}</div><div><div class=txname>${esc(t.note||t.category||'Transaction')}</div><div class=txdate>${new Date(t.date||Date.now()).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})+" · "+new Date(t.date||Date.now()).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}</div></div></div><div class="txamt ${t.type==='income'?'income':'expense'}">${t.type==='income'?'+':'−'} ${money(t.amount)}</div></div>`).join(""):"<div class=empty>No transactions yet. Tap + to start.</div>";
-$("goals").innerHTML=q.goals.length?q.goals.map(g=>{let pct=Math.min(100,g.saved/g.target*100),rem=Math.max(0,g.target-g.saved),weeks=Math.max(1,Math.ceil((new Date(g.date)-new Date())/604800000));return`<div class=goal><div class=goaltop><span>${g.icon} ${esc(g.name)}</span><span>${Math.round(pct)}%</span></div><small>${money(g.saved)} of ${money(g.target)}</small><div class=goalbar><i style="width:${pct}%"></i></div><div class=goalfoot><span>${money(rem)} left</span><span>≈ ${money(rem/weeks)}/week</span></div></div>`}).join(""):"<div class=empty>Create a goal and get a weekly saving target.</div>";
-$("subs").innerHTML=q.subs.length?q.subs.map(s=>`<div class=sub><div class=subleft><div class=subicon>🔁</div><div><b>${esc(s.name)}</b><small>${money(s.amount)} / ${s.cycle} · next ${esc(s.next||'not set')}</small></div></div><span class="pill ${s.used?'ok':''}">${s.used?'Active':'Review'}</span></div>`).join(""):"<div class=empty>Add subscriptions to see recurring costs and review them.</div>";
-let title="Your money has a plan.",text="Add a few transactions and SaveWise will turn them into useful, practical suggestions.";if(q.budget&&exp>=q.budget*.9){title="⚠️ Budget alert";text=`You've used ${Math.round(exp/q.budget*100)}% of your monthly budget. Consider delaying a non-essential purchase.`}else if(q.subs.some(s=>!s.used)){title="🔁 Subscription check";text="You have a subscription marked for review. If you aren't using it, cancelling it could free money for a goal."}else if(q.goals.length){let g=q.goals[0],rem=Math.max(0,g.target-g.saved);title="🐷 Keep the goal moving";text=`Your next useful target is ${money(rem)} remaining for ${g.name}. Aim for the weekly amount shown above.`}else if(inc){title="💚 Good start";text=`You've recorded ${money(inc)} of income this month. Add regular expenses so your spending recommendations become more useful.`}$("coachTitle").textContent=title;$("coachText").textContent=text;applyTheme();save()}
-function showToast(s){toast(s)}
-function profile(){return p()}
-function getCustomCategories(){try{return JSON.parse(localStorage.getItem(CUSTOM_KEY)||"[]")}catch(e){return []}}
-function saveCustomCategories(list){localStorage.setItem(CUSTOM_KEY,JSON.stringify(list))}
-function openSheet(mode){if(mode==="tx")txForm();else closeSheet()}
-function insights(){let q=p(),m=mtx(),inc=m.filter(x=>x.type==='income').reduce((a,x)=>a+x.amount,0),exp=m.filter(x=>x.type==='expense').reduce((a,x)=>a+x.amount,0),tot={};m.filter(x=>x.type==='expense').forEach(x=>tot[x.category]=(tot[x.category]||0)+x.amount);let top=Object.entries(tot).sort((a,b)=>b[1]-a[1])[0],arr=[];if(top)arr.push(['📌','Largest spending area',`${top[0]} is your biggest category this month at ${money(top[1])}. Review one or two purchases here before cutting essentials.`]);if(q.budget){let pct=exp/q.budget*100;arr.push([pct>=90?'⚠️':'🎯','Budget check',`You've used ${Math.round(pct)}% of your ${money(q.budget)} monthly budget.`])}if(inc)arr.push(['💚','Savings opportunity',`At the current pace, your recorded income minus expenses leaves about ${money(Math.max(0,inc-exp))} this month.`]);q.subs.filter(s=>!s.used).forEach(s=>arr.push(['🔁','Subscription to review',`${s.name} costs ${money(s.amount)} per ${s.cycle}. If you don't use it, consider cancelling it.`]));if(!arr.length)arr.push(['✨','Start your money picture','Add an income, expense, subscription or goal and SaveWise will generate practical suggestions.']);open(`<h2>✨ Smart insights</h2>${arr.map(x=>`<div class=insight><div>${x[0]}</div><div><b>${x[1]}</b><p>${x[2]}</p></div></div>`).join('')}<div class=formactions><button class="btn secondary" onclick="closeSheet()">Done</button></div>`)}
-function open(html){$("sheet").innerHTML=html;$("modal").classList.add('show');$("fab").classList.add('hidden')}function closeSheet(){$("modal").classList.remove('show');$("fab").classList.remove('hidden')}
-function txForm(selectedCategory=""){const custom=getCustomCategories();const options=Object.keys(cats).map(x=>`<option value="${esc(x)}" ${selectedCategory===x?"selected":""}>${cats[x]} ${x}</option>`).join("")+custom.map(c=>`<option value="${esc(c.name)}" ${selectedCategory===c.name?"selected":""}>${esc(c.emoji)} ${esc(c.name)}</option>`).join("");open(`<h2>＋ Add transaction</h2><div class=row><div class=field><label>TYPE</label><select id=fType><option value=expense>Expense</option><option value=income>Income</option></select></div><div class=field><label>AMOUNT</label><input id=fAmount type=number min=0 step=.01 inputmode=decimal placeholder="0.00" autofocus></div></div><div class=field><label>CATEGORY</label><select id=fCat onchange="handleCategoryChange()">${options}</select></div><div class=field><label>DATE &amp; TIME</label><input id=fDate type=datetime-local value="${localDateTimeValue()}"></div><div class=field><label>DESCRIPTION</label><input id=fNote placeholder="e.g. Dinner"></div><div class=formactions><button class="btn secondary" onclick=closeSheet()>Cancel</button><button class="btn primary" onclick=saveTx()>Save</button></div>`)}
-function saveTx(){const a=Number($("fAmount").value);if(!a||a<0)return showToast("Enter a valid amount.");const q=profile(),type=$("fType").value;const t={id:Date.now(),type,amount:a,category:$("fCat").value,note:$("fNote").value.trim(),date:new Date($("fDate").value||new Date()).toISOString()};q.transactions.push(t);q.balance+=type==="income"?a:-a;save();closeSheet();render();showToast("Transaction saved ✓")}
-function handleCategoryChange(){if($("fCat").value==="Other")openCustomCategoryPicker()}
-function openCustomCategoryPicker(){const custom=getCustomCategories();$("sheet").innerHTML=`<h2>✨ Choose an expense</h2><p class=empty>"Other" is only a starting point. Pick one of your saved custom expenses or create a new one with your own emoji.</p><div class=custom-list>${custom.length?custom.map((c,i)=>`<button class="btn secondary custom-option" style="width:100%;margin:4px 0;text-align:left" onclick="chooseCustomCategory(${i})">${esc(c.emoji)} ${esc(c.name)}</button>`).join(""):`<div class=empty>No custom expenses yet.</div>`}</div><div class=formactions><button class="btn secondary" onclick="txForm()">Back</button><button class="btn primary" onclick="createCustomCategory()">＋ Create expense</button></div>`}
-function chooseCustomCategory(i){const c=getCustomCategories()[i];if(!c)return;txForm(c.name)}
-function createCustomCategory(){$("sheet").innerHTML=`<h2>＋ Create custom expense</h2><div class=field><label>EXPENSE NAME</label><input id=customName maxlength=32 placeholder="e.g. Gym Equipment"></div><div class=field><label>EMOJI</label><input id=customEmoji maxlength=4 placeholder="🏋️"></div><div class=formactions><button class="btn secondary" onclick="openCustomCategoryPicker()">Back</button><button class="btn primary" onclick="saveCustomCategory()">Create expense</button></div>`;setTimeout(()=>$('customName').focus(),30)}
-function saveCustomCategory(){const name=$("customName").value.trim(),emoji=$("customEmoji").value.trim()||"✨";if(!name)return showToast("Enter an expense name.");if(Object.keys(cats).includes(name))return showToast("That name is already a built-in category.");const custom=getCustomCategories();if(custom.some(c=>c.name.toLowerCase()===name.toLowerCase()))return showToast("That custom expense already exists.");custom.push({name,emoji});saveCustomCategories(custom);txForm(name);showToast("Custom expense created ✓")}
-function goalForm(){open(`<h2>🐷 Create savings goal</h2><div class=field><label>WHAT ARE YOU SAVING FOR?</label><input id=gName placeholder="e.g. Goa Trip"></div><div class=row><div class=field><label>TARGET</label><input id=gTarget type=number min=1 placeholder="50000"></div><div class=field><label>ALREADY SAVED</label><input id=gSaved type=number min=0 placeholder="0"></div></div><div class=row><div class=field><label>GOAL DATE</label><input id=gDate type=date></div><div class=field><label>ICON</label><select id=gIcon><option>✈️</option><option>💍</option><option>📱</option><option>🚗</option><option>🎓</option><option>🏠</option><option>🎮</option></select></div></div><div class=formactions><button class="btn secondary" onclick=closeSheet()>Cancel</button><button class="btn primary" onclick=saveGoal()>Create goal</button></div>`)}
-function saveGoal(){let n=$("gName").value.trim(),t=Number($("gTarget").value),s=Number($("gSaved").value)||0,d=$("gDate").value;if(!n||!t||!d)return toast('Complete the goal details.');p().goals.push({id:Date.now(),name:n,target:t,saved:s,date:d,icon:$("gIcon").value});save();closeSheet();render();toast('Goal created 🐷')}
-function subForm(){open(`<h2>🔁 Add subscription</h2><div class=field><label>SUBSCRIPTION NAME</label><input id=sName placeholder="e.g. Netflix"></div><div class=row><div class=field><label>AMOUNT</label><input id=sAmount type=number min=0 placeholder="649"></div><div class=field><label>BILLING</label><select id=sCycle><option>month</option><option>year</option><option>week</option></select></div></div><div class=field><label>NEXT BILLING DATE</label><input id=sNext type=date></div><div class=toggle><span>Are you actively using it?</span><button id=useToggle class="switch on" onclick="this.classList.toggle('on')"><i></i></button></div><div class=formactions><button class="btn secondary" onclick=closeSheet()>Cancel</button><button class="btn primary" onclick=saveSub()>Add subscription</button></div>`)}
-function saveSub(){let n=$("sName").value.trim(),a=Number($("sAmount").value);if(!n||!a)return toast('Enter name and amount.');p().subs.push({id:Date.now(),name:n,amount:a,cycle:$("sCycle").value,next:$("sNext").value,used:$("useToggle").classList.contains('on')});save();closeSheet();render();toast('Subscription added ✓')}
-function budgetForm(){open(`<h2>🎯 Monthly budget</h2><div class=field><label>MONTHLY SPENDING LIMIT</label><input id=fBudget type=number min=0 value="${p().budget||''}" placeholder="25000"></div><div class=formactions><button class="btn secondary" onclick=closeSheet()>Cancel</button><button class="btn primary" onclick="p().budget=Number($(\'fBudget\').value)||0;save();closeSheet();render();toast(\'Budget saved ✓\')">Save budget</button></div>`)}
-function settings(){let q=p();open(`<h2>⚙️ Settings</h2><div class=field><label>APPEARANCE</label><select id=themeSelect><option value=system ${db.theme==='system'?'selected':''}>🖥️ System default</option><option value=light ${db.theme==='light'?'selected':''}>☀️ Light</option><option value=dark ${db.theme==='dark'?'selected':''}>🌙 Dark</option></select></div><div class=field><label>CURRENCY</label><select id=currencySelect>${Object.keys(C).map(x=>`<option value=${x} ${q.currency===x?'selected':''}>${x} — ${C[x]}</option>`).join('')}</select></div><div class=field><label>PROFILE NAME</label><input id=profileEdit value="${esc(q.name)}"></div><div class=toggle><span>Budget alerts</span><button id=budgetToggle class="switch ${db.budgetAlerts?'on':''}" onclick="this.classList.toggle('on')"><i></i></button></div><div class=toggle><span>Browser notifications</span><button id=notifToggle class="switch ${db.notifications?'on':''}" onclick="toggleNotifications(this)"><i></i></button></div><p class=empty>Notifications use your browser permission. SaveWise does not send financial data to a server.</p><div class=formactions><button class="btn secondary" onclick=closeSheet()>Cancel</button><button class="btn primary" onclick=saveSettings()>Save settings</button></div>`)}
-async function toggleNotifications(btn){if(!('Notification' in window))return toast('This browser does not support notifications.');if(Notification.permission!=='granted'){let r=await Notification.requestPermission();if(r!=='granted'){toast('Notification permission was not granted.');return}}btn.classList.toggle('on');db.notifications=btn.classList.contains('on');if(db.notifications)new Notification('SaveWise',{body:'Smart money reminders are enabled.'})}
-function saveSettings(){db.theme=$("themeSelect").value;p().currency=$("currencySelect").value;p().name=$("profileEdit").value.trim()||'You';db.budgetAlerts=$("budgetToggle").classList.contains('on');save();closeSheet();render();toast('Settings saved ✓')}
-function profiles(){open(`<h2>👥 Profiles</h2>${db.profiles.map(x=>`<button class="btn ${x.id===db.active?'primary':'secondary'}" style="width:100%;margin:4px 0;text-align:left" onclick="db.active=${x.id};save();closeSheet();render()">${x.id===db.active?'🟢':'⚪'} ${esc(x.name)}</button>`).join('')}<p class=empty>Up to 3 profiles can be stored on this device.</p><div class=formactions><button class="btn secondary" onclick=closeSheet()>Close</button><button class="btn primary" ${db.profiles.length>=3?'disabled':''} onclick=addProfile()>＋ Add profile</button></div>`)}
-function addProfile(){if(db.profiles.length>=3)return;let n=prompt('Profile name?');if(!n)return;db.profiles.push({id:Date.now(),name:n.trim(),currency:p().currency,balance:0,budget:0,transactions:[],goals:[],subs:[]});db.active=db.profiles.at(-1).id;save();closeSheet();render();toast('Profile created ✓')}
-function applyTheme(){let sys=matchMedia('(prefers-color-scheme:dark)').matches;document.body.classList.toggle('dark',db.theme==='dark'||(db.theme==='system'&&sys));$("themeBtn").textContent=document.body.classList.contains('dark')?'🌙':'☀️'}
-$("prevMonth").onclick=()=>{viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth()-1,1);render()};$("nextMonth").onclick=()=>{let now=new Date(),next=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,1),current=new Date(now.getFullYear(),now.getMonth(),1);if(next<=current){viewMonth=next;render()}};$("fab").onclick=txForm;$("addTx").onclick=txForm;$("expenseBtn").onclick=txForm;$("incomeBtn").onclick=()=>{txForm();setTimeout(()=>$("fType").value='income',30)};$("addGoal").onclick=goalForm;$("goalsNav").onclick=goalForm;$("addSub").onclick=subForm;$("budgetBtn").onclick=budgetForm;$("settingsBtn").onclick=settings;$("settingsNav").onclick=settings;$("profileBtn").onclick=profiles;$("insightsBtn").onclick=insights;$("insightsNav").onclick=insights;$("coachBtn").onclick=insights;$("themeBtn").onclick=()=>{db.theme=document.body.classList.contains('dark')?'light':'dark';render()};$("modal").onclick=e=>{if(e.target.id==='modal')closeSheet()};matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyTheme);render();
-</script><script>if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script></body></html>
+const CURRENCIES={INR:"₹",USD:"$",EUR:"€",GBP:"£",AED:"د.إ",CAD:"C$",AUD:"A$",JPY:"¥",CHF:"CHF",SGD:"S$"};
+const cats={Food:"🍔",Transport:"🚕",Shopping:"🛍️",Subscriptions:"📱",Bills:"🏠",Entertainment:"🎮",Education:"📚",Health:"💊",Travel:"✈️",Other:"•"};
+const KEY="savewise_v1";
+const DEFAULT_PROFILE=()=>({id:1,name:"You",currency:"INR",balance:0,income:0,budget:0,transactions:[],goals:[]});
+function loadDB(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    const parsed=raw?JSON.parse(raw):null;
+    const base=parsed&&typeof parsed==="object"?parsed:{};
+    base.profiles=Array.isArray(base.profiles)&&base.profiles.length?base.profiles:[DEFAULT_PROFILE()];
+    base.profiles=base.profiles.map((p,i)=>({
+      ...DEFAULT_PROFILE(),
+      ...p,
+      id:p?.id??(i+1),
+      name:String(p?.name||"You"),
+      currency:CURRENCIES[p?.currency]?p.currency:"INR",
+      balance:Number(p?.balance)||0,
+      income:Number(p?.income)||0,
+      budget:Number(p?.budget)||0,
+      transactions:Array.isArray(p?.transactions)?p.transactions:[],
+      goals:Array.isArray(p?.goals)?p.goals:[],
+      email:String(p?.email||""),
+      about:String(p?.about||""),
+      avatar:String(p?.avatar||"🙂")
+    }));
+    base.active=base.profiles.some(p=>p.id===base.active)?base.active:base.profiles[0].id;
+    base.theme=["dark","light","system"].includes(base.theme)?base.theme:"dark";
+    return base;
+  }catch(e){
+    return {profiles:[DEFAULT_PROFILE()],active:1,theme:"dark"};
+  }
+}
+let db=loadDB();
+const $=id=>document.getElementById(id), save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+function profile(){return db.profiles.find(p=>p.id===db.active)||db.profiles[0]}
+function money(n){return (CURRENCIES[profile().currency]||"")+Number(n||0).toLocaleString(undefined,{maximumFractionDigits:2})}
+let selectedMonth={year:new Date().getFullYear(),month:new Date().getMonth()};
+let clockTimer=null;
+function monthDate(){return new Date(selectedMonth.year,selectedMonth.month,1)}
+function monthTx(){const p=profile();return (p.transactions||[]).filter(t=>{const x=new Date(t.date);return !Number.isNaN(x.getTime())&&x.getMonth()===selectedMonth.month&&x.getFullYear()===selectedMonth.year})}
+function monthName(){return monthDate().toLocaleDateString(undefined,{month:"long",year:"numeric"})}
+window.SaveWiseTime={
+  timezone:()=>Intl.DateTimeFormat().resolvedOptions().timeZone||"Local",
+  now:()=>new Date()
+};
+function updateClock(){const now=new Date();const timeZone=Intl.DateTimeFormat().resolvedOptions().timeZone||"Local time";$('clockLabel').textContent=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});$('dateLabel').textContent=now.toLocaleDateString([], {weekday:'long',day:'numeric',month:'short',year:'numeric'});$('tzLabel').textContent=`🕐 ${timeZone}`;if(now.getDate()===1&&now.getHours()===0&&now.getMinutes()===0){selectedMonth={year:now.getFullYear(),month:now.getMonth()};render()}}
+function syncTimeLocation(){const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"your device time zone";const done=()=>{updateClock();showToast(`Time synced to ${tz} ✓`)};if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>done(),()=>{done();showToast(`Using device time zone: ${tz}`)},{enableHighAccuracy:false,timeout:7000,maximumAge:600000})}else done()}
+function showToast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$('toast').classList.remove('show'),2300)}
+function render(){
+const p=profile(); p.transactions=Array.isArray(p.transactions)?p.transactions:[]; p.goals=Array.isArray(p.goals)?p.goals:[]; const tx=p.transactions,m=monthTx(),inc=m.filter(x=>x.type==="income").reduce((a,x)=>a+Number(x.amount||0),0),exp=m.filter(x=>x.type==="expense").reduce((a,x)=>a+Number(x.amount||0),0);
+if($("profileName")) $("profileName").textContent=p.name;$("balance").textContent=money(p.balance);$("income").textContent="+ "+money(inc);$("expense").textContent="− "+money(exp);
+$("monthLabel").textContent=monthName();const now=new Date(),isCurrent=selectedMonth.year===now.getFullYear()&&selectedMonth.month===now.getMonth();$("monthMeta").textContent=`${m.length} transaction${m.length===1?'':'s'} ${isCurrent?'this month':'in this month'}`;
+const totals={};m.filter(x=>x.type==="expense").forEach(x=>totals[x.category]=(totals[x.category]||0)+x.amount);const max=Math.max(...Object.values(totals),1);
+$("bars").innerHTML=Object.keys(totals).length?Object.entries(totals).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([c,v])=>`<div class="barrow"><span>${cats[c]||"•"} ${esc(c)}</span><div class="track"><i style="width:${v/max*100}%"></i></div><b>${money(v)}</b></div>`).join(""):`<div class="empty">No spending recorded for ${monthName()}.</div>`;
+const mt=tx.filter(t=>{const x=new Date(t.date);return x.getMonth()===selectedMonth.month&&x.getFullYear()===selectedMonth.year});
+$("transactions").innerHTML=mt.length?mt.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5).map(t=>`<div class="tx"><div class="txleft"><div class="txicon">${t.type==="income"?"💰":cats[t.category]||"•"}</div><div><div class="txname">${esc(t.note||t.category||"Transaction")}</div><div class="txdate">${new Date(t.date).toLocaleDateString()}</div></div></div><div class="txamt ${t.type==="income"?"income":"expense"}">${t.type==="income"?"+":"−"} ${money(t.amount)}</div></div>`).join(""):`<div class="empty">No transactions in ${monthName()}. Tap + to add one.</div>`;
+$("goals").innerHTML=p.goals.length?p.goals.map(g=>{const pct=Math.min(100,g.saved/g.target*100);const remain=Math.max(0,g.target-g.saved);const weeks=Math.max(1,Math.ceil((new Date(g.date)-new Date())/604800000));return `<div class="goal"><div class="goaltop"><span>${g.icon} ${esc(g.name)}</span><span>${Math.round(pct)}%</span></div><small>${money(g.saved)} of ${money(g.target)}</small><div class="goalbar"><i style="width:${pct}%"></i></div><div class="goalfoot"><span>${money(remain)} left</span><span>≈ ${money(remain/weeks)}/week</span></div></div>`}).join(""):`<div class="empty">Create a goal and SaveWise will calculate how much to save.</div>`;
+let coachTitle="You're ready to build your money picture",coachText=`Add transactions for ${monthName()} and SaveWise will look for useful patterns.`;
+if(exp>0&&p.budget>0){const pct=exp/p.budget*100;coachTitle=pct>=90?"⚠️ Budget nearly used":"💚 Spending looks manageable";coachText=pct>=90?`You've used ${Math.round(pct)}% of the budget. Open Insights for practical ways to reduce spending.`:`You've used ${Math.round(pct)}% of the budget. Keep your current pace and check Insights for savings ideas.`}
+else if(inc>0){coachTitle="💡 Nice start";coachText=`You've recorded ${money(inc)} of income in ${monthName()}. Add your regular expenses to uncover savings opportunities.`}
+$("coachTitle").textContent=coachTitle;$("coachText").textContent=coachText;applyTheme();save();updateClock();
+}
+function changeMonth(delta){selectedMonth.month+=delta;const d=monthDate();selectedMonth={year:d.getFullYear(),month:d.getMonth()};render()}
+function currentMonth(){const d=new Date();selectedMonth={year:d.getFullYear(),month:d.getMonth()};render()}
+function insightData(){const p=profile(),m=monthTx(),expenses=m.filter(t=>t.type==="expense"),income=m.filter(t=>t.type==="income").reduce((a,x)=>a+x.amount,0),spent=expenses.reduce((a,x)=>a+x.amount,0),totals={};expenses.forEach(x=>totals[x.category]=(totals[x.category]||0)+x.amount);const top=Object.entries(totals).sort((a,b)=>b[1]-a[1]);return {p,m,expenses,income,spent,totals,top,budget:p.budget||0}}
+function buildInsights(){const d=insightData(),ideas=[];if(!d.m.length){ideas.push(["Start with visibility","Add a few income and expense entries. Once SaveWise has data, it can point out your biggest spending areas."]);ideas.push(["Use specific descriptions","Write things like “₹320 lunch at college” instead of a vague label. Your future review will be much easier."]);ideas.push(["Set a monthly budget","A budget gives SaveWise a threshold to compare against and makes warnings more useful."]);}else{if(d.top[0])ideas.push([`Watch ${d.top[0][0]}`,`${money(d.top[0][1])} went to ${d.top[0][0]} in ${monthName()}. Try a small reduction here first; even 10% would save about ${money(d.top[0][1]*.1)}.`]);if(d.top[1])ideas.push([`Review ${d.top[1][0]}`,`${money(d.top[1][1])} was spent here. Look for repeat purchases, subscriptions or purchases you could delay.`]);if(d.budget){const pct=d.spent/d.budget*100;ideas.push([pct>=90?"Slow down before the limit":"Keep your current pace",`You've used ${Math.round(pct)}% of your ${money(d.budget)} budget for ${monthName()}. ${pct>=90?'Prioritize essentials for the rest of the month.':'A small buffer now can prevent a rush at month-end.'}`]);}else ideas.push(["Set a budget target","Add a monthly budget so SaveWise can tell you when spending is approaching the limit."]);if(d.income>0&&d.spent>0){const rate=Math.max(0,(d.income-d.spent)/d.income*100);ideas.push(["Protect your leftover money",`Your recorded income minus expenses leaves about ${money(d.income-d.spent)} in ${monthName()} — roughly ${Math.round(rate)}% of recorded income. Consider moving part of it toward a goal.`]);}}
+const summary=d.spent?`For ${monthName()}, you've recorded ${money(d.spent)} in expenses across ${d.expenses.length} transaction${d.expenses.length===1?'':'s'}.`:`There isn't enough spending data for ${monthName()} yet, so these are starter recommendations.`;return {summary,ideas}}
+function openInsights(){
+  const d=insightData();
+  const colors=["#ff1744","#ff7a00","#ffd166","#34d399","#38bdf8","#a78bfa","#f472b6","#94a3b8"];
+  const entries=Object.entries(d.totals).sort((a,b)=>b[1]-a[1]);
+  let angle=0;
+  const slices=entries.map(([cat,val],i)=>{
+    const pct=d.spent?val/d.spent*100:0;
+    const start=angle; angle+=pct;
+    return `${colors[i%colors.length]} ${start}% ${angle}%`;
+  });
+  const donutBg=entries.length?`conic-gradient(${slices.join(",")})`:`conic-gradient(#2a2a2e 0 100%)`;
+  const leftover=d.income-d.spent;
+  const incomePct=d.income?Math.round(d.spent/d.income*100):0;
+  const summary=d.spent
+    ? `You've recorded ${money(d.spent)} in expenses across ${d.expenses.length} transaction${d.expenses.length===1?"":"s"} for ${monthName()}.`
+    : `No expenses are recorded for ${monthName()} yet. Add transactions to unlock a useful spending breakdown.`;
+  const built=buildInsights();
+
+  $("insightPeriod").textContent=`${monthName()} • ${d.income?money(d.income)+" income":"No income recorded"}`;
+  $("insightsBody").innerHTML=`
+    <div class="insights-overview">
+      <div class="insight-chart-card">
+        <div class="donut-wrap">
+          <div class="donut" style="background:${donutBg}">
+            <div class="donut-hole"><strong>${money(d.spent)}</strong><span>Total spent</span></div>
+          </div>
+          <div class="donut-caption">${d.income?`${incomePct}% of recorded income spent`:"Spending distribution by category"}</div>
+        </div>
+      </div>
+      <div class="insight-stat-card">
+        <div class="stat-grid">
+          <div class="insight-stat spent"><small>Total spent</small><strong>${money(d.spent)}</strong></div>
+          <div class="insight-stat income"><small>Total income</small><strong>${money(d.income)}</strong></div>
+          <div class="insight-stat"><small>Left after spending</small><strong>${money(leftover)}</strong></div>
+        </div>
+        <div class="insight-section-title">Spending by category</div>
+        <div class="legend">
+          ${entries.length?entries.map(([cat,val],i)=>{
+            const pct=d.spent?Math.round(val/d.spent*100):0;
+            const ofIncome=d.income?Math.round(val/d.income*100):0;
+            return `<div class="legend-row">
+              <span class="legend-dot" style="background:${colors[i%colors.length]};color:${colors[i%colors.length]}"></span>
+              <div><div class="legend-name">${cats[cat]||"•"} ${esc(cat)}</div><div class="legend-meta">${pct}% of expenses${d.income?` • ${ofIncome}% of income`:""}</div></div>
+              <div class="legend-amount">${money(val)}</div>
+            </div>`;
+          }).join(""):`<div class="empty">No category spending yet.</div>`}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-summary">
+      <span class="ai-badge">✦ Money coach</span>
+      <h3>${d.spent?`Your ${monthName()} spending check`:`Let's build your ${monthName()} picture`}</h3>
+      <p>${esc(summary)}</p>
+    </div>
+
+    <div class="insight-section-title">Ways SaveWise can help you save</div>
+    <div class="ai-insight-list">
+      ${built.ideas.map((x,i)=>`<div class="ai-insight-card"><strong>${i+1}. ${esc(x[0])}</strong><p>${esc(x[1])}</p></div>`).join("")}
+    </div>
+    <div class="insights-scroll-hint">Scroll for more • Ask SaveWise anytime with ✦</div>
+  `;
+  $("aiPanel").classList.remove("show");
+  $("insightsModal").classList.add("show");
+}
+
+function askAI(){
+  const q=$("aiQuestion").value.trim().toLowerCase(),d=insightData();
+  if(!q)return;
+  let ans;
+  if(q.includes("where")||q.includes("save")||q.includes("saving")){
+    if(d.top[0]) ans=`Your biggest recorded expense area is ${d.top[0][0]} at ${money(d.top[0][1])}. Start there: set a smaller limit, compare alternatives, and delay non-essential purchases. A 10% reduction would save about ${money(d.top[0][1]*.1)}.`;
+    else ans=`Start by recording expenses for ${monthName()}. Then I can identify your biggest categories and show where a reduction could have the biggest impact.`;
+  }else if(q.includes("budget")){
+    ans=d.budget?`Your budget is ${money(d.budget)} and recorded spending is ${money(d.spent)}, so you've used ${Math.round(d.spent/d.budget*100)}%.`:"You haven't set a monthly budget yet. Set one from Quick Actions so SaveWise can track your progress.";
+  }else if(q.includes("expense")||q.includes("spent")||q.includes("spend")){
+    ans=d.spent?`You've recorded ${money(d.spent)} of expenses in ${monthName()}. Your largest category is ${d.top[0]?.[0]||"not available"}.`:`No expenses are recorded for ${monthName()} yet.`;
+  }else if(q.includes("income")){
+    ans=`Recorded income for ${monthName()} is ${money(d.income)}.`;
+  }else if(q.includes("left")||q.includes("remaining")||q.includes("leftover")){
+    ans=`Based on recorded transactions, you have ${money(d.income-d.spent)} left after ${monthName()} spending.`;
+  }else{
+    ans=`I can help with spending, budgets, saving ideas, income, categories and goals. Try “Where can I save money?”, “How much have I spent?” or “How much is left?”`;
+  }
+  $("aiAnswer").textContent=ans;
+  $("aiAnswer").classList.add("show");
+}
+
+function closeInsights(){$("insightsModal").classList.remove("show")}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function openSheet(type){
+const p=profile();let title="",body="";
+if(type==="tx")body=`<h2>＋ Add transaction</h2><div class="row"><div class="field"><label>TYPE</label><select id="fType"><option value="expense">Expense</option><option value="income">Income</option></select></div><div class="field"><label>AMOUNT</label><input id="fAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" autofocus></div></div><div class="field"><label>CATEGORY</label><select id="fCat">${Object.keys(cats).map(c=>`<option>${c}</option>`).join("")}</select></div><div class="field"><label>DESCRIPTION</label><input id="fNote" placeholder="e.g. Dinner with friends"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveTx()">Save transaction</button></div>`;
+if(type==="goal")body=`<h2>🐷 Create savings goal</h2><div class="field"><label>WHAT ARE YOU SAVING FOR?</label><input id="gName" placeholder="e.g. Goa Trip"></div><div class="row"><div class="field"><label>TARGET AMOUNT</label><input id="gTarget" type="number" min="1" placeholder="50000"></div><div class="field"><label>ALREADY SAVED</label><input id="gSaved" type="number" min="0" placeholder="0"></div></div><div class="row"><div class="field"><label>GOAL DATE</label><input id="gDate" type="date"></div><div class="field"><label>ICON</label><select id="gIcon"><option>✈️</option><option>💍</option><option>📱</option><option>💻</option><option>🚗</option><option>🎓</option><option>🚨</option><option>🎮</option></select></div></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveGoal()">Create goal</button></div>`;
+if(type==="budget")body=`<h2>🎯 Monthly budget</h2><div class="field"><label>HOW MUCH CAN YOU SPEND THIS MONTH?</label><input id="fBudget" type="number" min="0" value="${p.budget||""}" placeholder="25000"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveBudget()">Save budget</button></div>`;
+if(type==="profiles")body=`<h2>👥 Profiles</h2><div>${db.profiles.map(x=>`<button class="btn ${x.id===db.active?"primary":"secondary"}" style="width:100%;margin:4px 0;text-align:left" onclick="switchProfile(${x.id})">${x.id===db.active?"🟢":"⚪"} ${esc(x.name)}</button>`).join("")}</div><p class="empty">Up to 3 profiles are supported on this device.</p><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Close</button><button class="btn primary" onclick="addProfile()" ${db.profiles.length>=3?"disabled":""}>＋ Add profile</button></div>`;
+if(type==="settings")body=`<h2>⚙️ Settings</h2><div class="field"><label>APPEARANCE</label><select id="themeSelect"><option value="system" ${db.theme==="system"?"selected":""}>🖥️ System Default</option><option value="light" ${db.theme==="light"?"selected":""}>☀️ Light</option><option value="dark" ${db.theme==="dark"?"selected":""}>🌙 Dark</option></select></div><div class="field"><label>CURRENCY</label><select id="currencySelect">${Object.keys(CURRENCIES).map(c=>`<option value="${c}" ${p.currency===c?"selected":""}>${c} — ${CURRENCIES[c]}</option>`).join("")}</select></div><div class="field"><label>PROFILE NAME</label><input id="profileEdit" value="${esc(p.name)}"></div><div class="formactions"><button class="btn secondary" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveSettings()">Save settings</button></div>`;
+$("sheet").innerHTML=body;$("modal").classList.add("show");setTimeout(()=>{const f=$("fAmount")||$("gName");if(f)f.focus()},50)
+}
+function closeSheet(){$("modal").classList.remove("show")}
+function saveTx(){const a=Number($("fAmount").value);if(!a||a<0)return showToast("Enter a valid amount.");const p=profile(),type=$("fType").value;const t={id:Date.now(),type,amount:a,category:$("fCat").value,note:$("fNote").value,date:new Date().toISOString()};p.transactions.push(t);p.balance+=type==="income"?a:-a;closeSheet();render();showToast("Transaction saved ✓")}
+function saveGoal(){const name=$("gName").value.trim(),target=Number($("gTarget").value),saved=Number($("gSaved").value)||0,date=$("gDate").value;if(!name||!target||!date)return showToast("Complete the goal details.");profile().goals.push({id:Date.now(),name,target,saved,date,icon:$("gIcon").value});closeSheet();render();showToast("Savings goal created 🐷")}
+function saveBudget(){profile().budget=Number($("fBudget").value)||0;closeSheet();render();showToast("Budget updated ✓")}
+function saveSettings(){db.theme=$("themeSelect").value;profile().currency=$("currencySelect").value;profile().name=$("profileEdit").value.trim()||"You";closeSheet();render();showToast("Settings saved ✓")}
+function addProfile(){if(db.profiles.length>=3)return;const name=prompt("Profile name?");if(!name)return;const id=Date.now();db.profiles.push({id,name:name.trim(),currency:profile().currency,balance:0,income:0,budget:0,transactions:[],goals:[]});db.active=id;closeSheet();render();showToast("Profile created ✓")}
+function switchProfile(id){db.active=id;closeSheet();render()}
+function applyTheme(){
+  const system=matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDark=db.theme==="dark"||(db.theme==="system"&&system);
+  document.body.classList.toggle("dark",isDark);
+  document.body.classList.toggle("light",!isDark);
+  const themeBtn=$("themeBtn"); if(themeBtn) themeBtn.textContent=isDark?"🌙":"☀️";
+  const swThemeBtn=$("swThemeBtn"); if(swThemeBtn){
+    swThemeBtn.textContent=isDark?"Switch to Light":"Switch to Dark";
+    swThemeBtn.setAttribute("aria-label",isDark?"Switch to light theme":"Switch to dark theme");
+  }
+}
+window.openPage=window.openPage||function(){};
+$("insightAiFab").onclick=()=>{$("aiPanel").classList.toggle("show");if($("aiPanel").classList.contains("show"))setTimeout(()=>$("aiQuestion")?.focus(),80)};
+$("askAiBtn").onclick=askAI;
+$("aiQuestion").onkeydown=e=>{if(e.key==="Enter")askAI()};
+$("fab").onclick=()=>openSheet("tx");$("expenseBtn").onclick=()=>openSheet("tx");$("incomeBtn").onclick=()=>{openSheet("tx");setTimeout(()=>{$("fType").value="income"},50)};$("addExpenseLink").onclick=()=>openSheet("tx");$("addGoal").onclick=()=>openSheet("goal");$("budgetBtn").onclick=()=>openSheet("budget");if($("profileBtn")) $("profileBtn").onclick=()=>openSheet("profiles");$("settingsBtn").onclick=()=>openSheet("settings");$("settingsNav").onclick=()=>openPage?.("settingsPage");$("goalsNav").onclick=()=>openPage?.("goalsPage");$("insightsNav").onclick=openInsights;$("allInsights").onclick=openInsights;$("themeBtn").onclick=()=>{db.theme=db.theme==="dark"?"light":"dark";save();applyTheme();showToast(db.theme==="dark"?"Dark theme enabled ✓":"Light theme enabled ✓")};$("prevMonth").onclick=()=>changeMonth(-1);$("nextMonth").onclick=()=>changeMonth(1);$("syncTimeBtn").onclick=syncTimeLocation;$("modal").onclick=e=>{if(e.target.id==="modal")closeSheet()};$("insightsModal").onclick=e=>{if(e.target.id==="insightsModal")closeInsights()};$("closeInsights").onclick=closeInsights;
+let insightTouchStart=0;$("insightsSheet").addEventListener("touchstart",e=>{insightTouchStart=e.touches[0].clientY},{passive:true});$("insightsSheet").addEventListener("touchend",e=>{const dy=e.changedTouches[0].clientY-insightTouchStart;if(dy>90&&$("insightsBody").scrollTop<=0)closeInsights()},{passive:true});
+window.addEventListener("focus",()=>{updateClock();const d=new Date();if(selectedMonth.year!==d.getFullYear()||selectedMonth.month!==d.getMonth()){} });if(clockTimer)clearInterval(clockTimer);clockTimer=setInterval(updateClock,1000);if(window.matchMedia){const mq=matchMedia("(prefers-color-scheme: dark)"); if(mq.addEventListener) mq.addEventListener("change",applyTheme); else if(mq.addListener) mq.addListener(applyTheme);}
+render();
+</script>
+
+<!-- SaveWise Settings Page -->
+<div aria-hidden="true" class="sw-page-layer" id="settingsPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="settingsPage">‹</button>
+<div><div class="sw-page-title">Settings</div><div class="sw-page-sub">Control how SaveWise works for you</div></div>
+</div>
+<div class="sw-page-grid">
+<div class="sw-setting-card"><div class="sw-setting-row"><div><h3>🌙 Appearance</h3><p>Switch between Light, Dark or System mode.</p></div><button class="btn secondary" id="swThemeBtn">Dark</button></div></div>
+<div class="sw-setting-card"><div class="sw-setting-row"><div><h3>🕐 Date &amp; Time</h3><p id="swSettingsTimezone">Using device timezone</p></div><button class="btn secondary" id="swSyncTimeBtn">Sync</button></div></div>
+<div class="sw-setting-card" data-sw-action="notifications"><div class="sw-setting-row"><div><h3>🔔 Notifications</h3><p>Manage reminders and money alerts.</p></div><button class="btn secondary" id="swNotifyBtn" type="button">Manage</button></div></div>
+<div class="sw-setting-card" data-sw-action="backup"><div class="sw-setting-row"><div><h3>💾 Backup</h3><p>Export or restore your local SaveWise data.</p></div><button class="btn secondary" id="swBackupBtn" type="button">Backup</button></div></div>
+<div class="sw-setting-card" data-sw-action="profile"><div class="sw-setting-row"><div><h3>👤 Profile</h3><p>Set your name, Bitmoji-style avatar and personal details.</p></div><button class="btn secondary" id="swProfileBtn" type="button">Open profile</button></div></div>
+<div class="sw-setting-card" data-sw-action="privacy"><div class="sw-setting-row"><div><h3>🔒 Privacy</h3><p>Review how local data and permissions work.</p></div><button class="btn secondary" type="button" data-open-legal="privacy">Open</button></div></div>
+<div class="sw-setting-card" data-sw-action="terms"><div class="sw-setting-row"><div><h3>📜 Terms &amp; Conditions</h3><p>Review the rules for using SaveWise.</p></div><button class="btn secondary" type="button" data-open-legal="terms">Open</button></div></div>
+<div class="sw-setting-card sw-danger" data-sw-action="reset"><div class="sw-setting-row"><div><h3>⚠️ Reset local data</h3><p>Permanently erase SaveWise data stored on this device.</p></div><button class="btn secondary" id="swResetBtn" type="button">Reset</button></div></div>
+</div>
+</div>
+</div>
+<!-- SaveWise Goals Page -->
+<div aria-hidden="true" class="sw-page-layer" id="goalsPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="goalsPage">‹</button>
+<div><div class="sw-page-title">Savings Goals</div><div class="sw-page-sub">Plan what you're saving for</div></div>
+<button class="btn primary" id="swAddGoalBtn" style="margin-left:auto">＋ Goal</button>
+</div>
+<div id="swGoalsContent"></div>
+</div>
+</div>
+<!-- Dedicated Goal Creation Page: never uses the old transaction modal -->
+<div aria-hidden="true" class="sw-page-layer" id="goalCreatePage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" id="swGoalCreateBack" type="button">‹</button>
+<div><div class="sw-page-title">Create savings goal</div><div class="sw-page-sub">Give your goal a name, target and deadline</div></div>
+</div>
+<div class="sw-setting-card" style="max-width:900px;margin:0 auto">
+<div class="field"><label>WHAT ARE YOU SAVING FOR?</label><input autocomplete="off" id="swGoalName" placeholder="e.g. Goa Trip"/></div>
+<div class="row">
+<div class="field"><label>TARGET AMOUNT</label><input id="swGoalTarget" inputmode="decimal" min="1" placeholder="50000" step="1" type="number"/></div>
+<div class="field"><label>ALREADY SAVED</label><input id="swGoalSaved" inputmode="decimal" min="0" placeholder="0" step="1" type="number"/></div>
+</div>
+<div class="row">
+<div class="field"><label>GOAL DATE</label><input id="swGoalDate" type="date"/></div>
+<div class="field"><label>ICON</label>
+<select id="swGoalIcon">
+<option>✈️</option><option>💍</option><option>📱</option><option>💻</option>
+<option>🚗</option><option>🎓</option><option>🏠</option><option>🎮</option>
+<option>💰</option><option>🏖️</option><option>🛍️</option><option>🚨</option>
+</select>
+</div>
+</div>
+<div class="formactions">
+<button class="btn secondary" id="swGoalCancel" type="button">Cancel</button>
+<button class="btn primary" id="swGoalSave" type="button">Create goal</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Legal pages -->
+<div aria-hidden="true" class="sw-page-layer" id="legalPage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="legalPage">‹</button>
+<div><div class="sw-page-title" id="legalTitle">Privacy</div><div class="sw-page-sub">SaveWise information</div></div>
+</div>
+<div class="sw-setting-card sw-legal" id="legalContent"></div>
+</div>
+</div>
+<!-- First-run Terms + Privacy consent -->
+<div class="sw-consent" id="firstRunConsent">
+<div class="sw-consent-card">
+<div style="font-size:24px;font-weight:950">Welcome to SaveWise 🔴</div>
+<p style="color:#a5a5ae;line-height:1.55">Before you start, please review the Privacy Notice and Terms &amp; Conditions. SaveWise is a personal budgeting tool and stores core financial records locally on your device.</p>
+<div class="sw-setting-card sw-legal">
+<h3>Privacy Notice — summary</h3>
+<p>SaveWise is designed to keep core transaction and budgeting data on the user's device. Optional permissions, such as location, are requested only when needed for a feature such as timezone/location assistance. SaveWise should not collect precise location merely to display local time.</p>
+<h3>Terms &amp; Conditions — summary</h3>
+<p>SaveWise provides budgeting and educational suggestions, not financial, investment, tax or legal advice. You are responsible for reviewing your records and decisions. Features may change as the app develops.</p>
+<p style="color:#777;font-size:10px">These are product-facing terms for the current prototype and should be reviewed by a qualified lawyer before commercial release.</p>
+</div>
+<label class="sw-check"><input id="swConsentCheck" type="checkbox"/> <span>I have read and agree to the SaveWise Privacy Notice and Terms &amp; Conditions.</span></label>
+<div class="sw-consent-actions"><button class="btn secondary" id="swReadPrivacy">Privacy</button><button class="btn secondary" id="swReadTerms">Terms</button><button class="btn primary" disabled="" id="swAccept">Continue</button></div>
+</div>
+</div>
+
+<!-- SaveWise Notifications Page -->
+<div aria-hidden="true" class="sw-page-layer" id="notificationsPage">
+<div class="sw-page-inner"><div class="sw-page-top"><button class="sw-back" data-close-page="notificationsPage" type="button">‹</button><div><div class="sw-page-title">Notifications</div><div class="sw-page-sub">Money reminders and alerts</div></div></div>
+<div class="sw-setting-card"><h3>🔔 Money alerts</h3><p>Browser notifications can be enabled when your browser allows them.</p><button class="btn primary" id="swRequestNotifications" type="button">Enable notifications</button><p id="swNotificationStatus" style="margin-top:10px">Status: Not requested</p></div></div></div>
+<!-- SaveWise Backup Page -->
+<div aria-hidden="true" class="sw-page-layer" id="backupPage">
+<div class="sw-page-inner"><div class="sw-page-top"><button class="sw-back" data-close-page="backupPage" type="button">‹</button><div><div class="sw-page-title">Backup</div><div class="sw-page-sub">Protect your local SaveWise records</div></div></div>
+<div class="sw-setting-card"><h3>💾 Export backup</h3><p>Download all current SaveWise data as a JSON backup.</p><button class="btn primary" id="swExportBackup" type="button">Export JSON</button></div>
+<div class="sw-setting-card" style="margin-top:12px"><h3>📥 Restore backup</h3><p>Select a SaveWise JSON backup previously exported from this app.</p><input id="swImportBackup" type="file" accept="application/json,.json" style="margin-top:10px;width:100%"/><p style="margin-top:10px">Restoring replaces the current local data on this device.</p></div></div></div>
+
+<!-- SaveWise Profile Page -->
+<div aria-hidden="true" class="sw-page-layer" id="profilePage">
+<div class="sw-page-inner">
+<div class="sw-page-top">
+<button class="sw-back" data-close-page="profilePage">‹</button>
+<div><div class="sw-page-title">Your Profile</div><div class="sw-page-sub">Personalize your SaveWise account</div></div>
+</div>
+<div class="sw-profile-hero">
+<button aria-label="Choose avatar" class="sw-avatar-big" id="swAvatarPreview" type="button">🙂</button>
+<div>
+<h2 id="swProfilePreviewName">You</h2>
+<p>Choose an avatar and add a few details about yourself.</p>
+</div>
+</div>
+<div class="sw-setting-card">
+<h3>😊 Choose your avatar</h3>
+<p class="sw-muted">Pick a Bitmoji-style emoji avatar. It stays only on this device.</p>
+<div class="sw-avatar-grid" id="swAvatarGrid"></div>
+</div>
+<div class="sw-setting-card">
+<h3>👤 Your details</h3>
+<div class="sw-form-grid">
+<label>Display name<input id="swProfileName" maxlength="40" placeholder="Your name"/></label>
+<label>Email <span class="sw-muted">(optional)</span><input id="swProfileEmail" maxlength="100" placeholder="you@example.com" type="email"/></label>
+<label>About you <span class="sw-muted">(optional)</span><textarea id="swProfileAbout" maxlength="180" placeholder="e.g. Saving for my first car"></textarea></label>
+</div>
+<button class="btn primary" id="swSaveProfile">Save profile</button>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const $=id=>document.getElementById(id);
+  const CONSENT="savewise_terms_privacy_accepted_v1";
+  const AVATARS=["🙂","😎","🤓","😄","🥳","🤩","😇","🤑","😌","🧑","👨","👩","🧔","👨‍💻","👩‍💻","🧑‍🎨","🦸","🧙","🐼","🐯","🦊","🐸","🐨","🐵"];
+
+  function openPage(id){
+    document.querySelectorAll('.sw-page-layer').forEach(p=>{p.classList.remove('show');p.setAttribute('aria-hidden','true')});
+    const p=$(id); if(!p)return;
+    p.classList.add('show'); p.setAttribute('aria-hidden','false'); p.scrollTop=0;
+    document.body.style.overflow='hidden';
+    if(id==='settingsPage'){
+      const z=$('swSettingsTimezone'); if(z)z.textContent='Timezone: '+(Intl.DateTimeFormat().resolvedOptions().timeZone||'Device time');
+    }
+    if(id==='goalsPage')renderGoalsPage();
+    if(id==='profilePage')renderProfile();
+  }
+  function closePage(id){
+    const p=$(id); if(p){p.classList.remove('show');p.setAttribute('aria-hidden','true')}
+    document.body.style.overflow='';
+  }
+  window.openPage=openPage;
+  window.SaveWiseOpenPage=openPage;
+
+  // Rebind the main navigation after the original preview script has loaded.
+  if($('settingsNav'))$('settingsNav').onclick=()=>openPage('settingsPage');
+  if($('settingsBtn'))$('settingsBtn').onclick=()=>openPage('settingsPage');
+  if($('goalsNav'))$('goalsNav').onclick=()=>openPage('goalsPage');
+  if($('addGoal'))$('addGoal').onclick=()=>openPage('goalsPage');
+  if($('headerAvatar'))$('headerAvatar').onclick=()=>openPage('profilePage');
+
+  document.querySelectorAll('[data-close-page]').forEach(b=>b.onclick=()=>closePage(b.dataset.closePage));
+  document.querySelectorAll('[data-open-legal]').forEach(b=>b.onclick=()=>{openPage('legalPage');renderLegal(b.dataset.openLegal)});
+
+  function renderLegal(type){
+    if($('legalTitle'))$('legalTitle').textContent=type==='privacy'?'Privacy Notice':'Terms & Conditions';
+    if(!$('legalContent'))return;
+    $('legalContent').innerHTML=type==='privacy'?`
+      <h3>1. What SaveWise stores</h3><p>Core budgeting records are intended to remain on your device in this prototype. You control your data through the app and browser/device storage.</p>
+      <h3>2. Permissions</h3><p>Optional permissions are requested when a feature needs them. Timezone detection normally uses the device/browser timezone and does not require precise GPS.</p>
+      <h3>3. Backups</h3><p>Because local storage can be cleared or lost when a device/browser is reset, export a backup when available.</p>
+      <h3>4. AI features</h3><p>SaveWise suggestions are budgeting assistance, not professional financial, investment, tax, legal or medical advice.</p>
+      <h3>5. Privacy</h3><p>Do not enter passwords, payment card numbers, government IDs or other highly sensitive information into free-text fields.</p>`:`
+      <h3>1. Intended use</h3><p>SaveWise is a personal budgeting and expense-tracking tool. Use it lawfully and responsibly.</p>
+      <h3>2. Financial decisions</h3><p>Suggestions are informational. SaveWise does not guarantee savings, financial outcomes, investment returns or suitability.</p>
+      <h3>3. Accuracy</h3><p>You are responsible for checking transaction amounts, categories, dates and goals.</p>
+      <h3>4. Availability</h3><p>Prototype features may change or contain errors. Keep independent backups of important records.</p>
+      <h3>5. Acceptable use</h3><p>Do not use SaveWise to harass, threaten, abuse, impersonate or facilitate unlawful activity.</p>`;
+  }
+  if($('swReadPrivacy'))$('swReadPrivacy').onclick=()=>{openPage('legalPage');renderLegal('privacy')};
+  if($('swReadTerms'))$('swReadTerms').onclick=()=>{openPage('legalPage');renderLegal('terms')};
+
+  function renderGoalsPage(){
+    const host=$('swGoalsContent'); if(!host)return;
+    let p; try{p=profile()}catch(e){p=null}
+    const goals=Array.isArray(p?.goals)?p.goals:[];
+    if(!goals.length){
+      host.innerHTML='<div class="sw-setting-card" style="text-align:center;padding:35px"><div style="font-size:34px">🐷</div><h3 style="margin:10px 0 4px">No savings goals yet</h3><p>Create a goal for a trip, emergency fund, wedding, gadget or anything important to you.</p><button class="btn primary" id="swEmptyAddGoal" type="button">Create your first goal</button></div>';
+      $('swEmptyAddGoal').onclick=openGoalCreate;
+      return;
+    }
+    host.innerHTML='<div class="sw-page-grid">'+goals.map(g=>{
+      const target=Number(g.target||0), saved=Number(g.saved||0), pct=target?Math.min(100,saved/target*100):0;
+      return `<div class="sw-goal-card"><h3>${g.icon||'🎯'} ${esc(String(g.name||'Goal'))}</h3><p>${moneySafe(saved)} of ${moneySafe(target)} • ${Math.round(pct)}%</p><div class="goalbar"><i style="width:${pct}%"></i></div><p>Goal date: ${g.date?new Date(g.date+'T00:00:00').toLocaleDateString(): 'Not set'}</p></div>`;
+    }).join('')+'</div>';
+  }
+  function moneySafe(n){
+    try{return money(n)}catch(e){return '₹'+Number(n||0).toLocaleString()}
+  }
+  function openGoalCreate(){
+    openPage('goalCreatePage');
+    const date=$('swGoalDate');
+    if(date&&!date.value){const d=new Date();d.setMonth(d.getMonth()+1);date.value=d.toISOString().slice(0,10)}
+    setTimeout(()=>{$('swGoalName')?.focus()},100);
+  }
+  window.SaveWiseOpenGoalCreate=openGoalCreate;
+  if($('swAddGoalBtn'))$('swAddGoalBtn').onclick=openGoalCreate;
+  if($('swGoalCreateBack'))$('swGoalCreateBack').onclick=()=>{closePage('goalCreatePage');openPage('goalsPage')};
+  if($('swGoalCancel'))$('swGoalCancel').onclick=()=>{closePage('goalCreatePage');openPage('goalsPage')};
+  if($('swGoalSave'))$('swGoalSave').onclick=saveNewGoal;
+  function saveNewGoal(){
+    const name=($('swGoalName')?.value||'').trim(), target=Number($('swGoalTarget')?.value||0), saved=Number($('swGoalSaved')?.value||0), date=$('swGoalDate')?.value||'', icon=$('swGoalIcon')?.value||'🎯';
+    if(!name)return showToast('Please enter a goal name.');
+    if(target<=0)return showToast('Please enter a valid target amount.');
+    if(saved<0||saved>target)return showToast('Already saved must be between 0 and the target.');
+    if(!date)return showToast('Please choose a goal date.');
+    const p=profile(); if(!Array.isArray(p.goals))p.goals=[];
+    p.goals.push({id:Date.now(),name,target,saved,date,icon}); save();
+    ['swGoalName','swGoalTarget','swGoalSaved','swGoalDate'].forEach(id=>{if($(id))$(id).value=''});
+    closePage('goalCreatePage');openPage('goalsPage');renderGoalsPage();render();showToast('Savings goal created ✓');
+  }
+
+  // Settings — one destination, every visible control wired.
+  if($('swThemeBtn'))$('swThemeBtn').onclick=()=>{
+    db.theme=db.theme==='dark'?'light':'dark';
+    save();
+    applyTheme();
+    showToast(db.theme==='dark'?'Dark theme enabled ✓':'Light theme enabled ✓');
+  };
+  if($('swSyncTimeBtn'))$('swSyncTimeBtn').onclick=()=>{syncTimeLocation();const z=$('swSettingsTimezone');if(z)z.textContent='Timezone: '+(Intl.DateTimeFormat().resolvedOptions().timeZone||'Device time')};
+  if($('swNotifyBtn'))$('swNotifyBtn').onclick=()=>{
+    if(!('Notification' in window))return showToast('Notifications are not supported by this browser.');
+    Notification.requestPermission().then(r=>showToast(r==='granted'?'Notifications enabled ✓':'Notifications permission not granted.'));
+  };
+  if($('swBackupBtn'))$('swBackupBtn').onclick=()=>{
+    try{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='savewise-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);showToast('Backup downloaded ✓')}catch(e){showToast('Backup could not be created.')}
+  };
+  if($('swResetBtn'))$('swResetBtn').onclick=()=>{if(confirm('Reset SaveWise data on this device? This cannot be undone.')){localStorage.removeItem('savewise_v1');localStorage.removeItem(CONSENT);location.reload()}};
+  if($('swProfileBtn'))$('swProfileBtn').onclick=()=>openPage('profilePage');
+
+  // Profile — the only profile destination.
+  function renderProfile(){
+    const p=profile();if(!p)return;
+    const avatar=p.avatar||'🙂',name=p.name||'You';
+    if($('swProfileName'))$('swProfileName').value=name;
+    if($('swProfileEmail'))$('swProfileEmail').value=p.email||'';
+    if($('swProfileAbout'))$('swProfileAbout').value=p.about||'';
+    if($('swProfilePreviewName'))$('swProfilePreviewName').textContent=name;
+    if($('swAvatarPreview'))$('swAvatarPreview').textContent=avatar;
+    if($('headerAvatar'))$('headerAvatar').textContent=avatar;
+    const grid=$('swAvatarGrid');if(!grid)return;
+    grid.innerHTML=AVATARS.map(a=>`<button type="button" class="sw-avatar-choice ${a===avatar?'active':''}" data-avatar="${a}">${a}</button>`).join('');
+    grid.querySelectorAll('[data-avatar]').forEach(b=>b.onclick=()=>{p.avatar=b.dataset.avatar;grid.querySelectorAll('.sw-avatar-choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');if($('swAvatarPreview'))$('swAvatarPreview').textContent=p.avatar;if($('headerAvatar'))$('headerAvatar').textContent=p.avatar;save()});
+  }
+  if($('swSaveProfile'))$('swSaveProfile').onclick=()=>{
+    const p=profile();p.name=($('swProfileName')?.value||'You').trim()||'You';p.email=($('swProfileEmail')?.value||'').trim();p.about=($('swProfileAbout')?.value||'').trim();p.avatar=p.avatar||'🙂';save();if($('headerAvatar'))$('headerAvatar').textContent=p.avatar;render();showToast('Profile saved ✓');
+  };
+
+  // Consent gate for first run.
+  if($('swConsentCheck')&&$('swAccept')){
+    $('swConsentCheck').onchange=()=>{$('swAccept').disabled=!$('swConsentCheck').checked};
+    $('swAccept').onclick=()=>{if(!$('swConsentCheck').checked)return;localStorage.setItem(CONSENT,'yes');$('firstRunConsent')?.classList.remove('show')};
+  }
+  if(localStorage.getItem(CONSENT)!=='yes')$('firstRunConsent')?.classList.add('show');
+
+  // Robust settings event delegation. This intentionally handles clicks at document level so
+  // re-rendering or other preview handlers cannot disconnect the Settings controls.
+  function exportBackup(){
+    try{
+      const payload=JSON.stringify(db,null,2), blob=new Blob([payload],{type:'application/json'});
+      const url=URL.createObjectURL(blob), a=document.createElement('a');
+      a.href=url; a.download='savewise-backup-'+new Date().toISOString().slice(0,10)+'.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),500); showToast('Backup exported ✓');
+    }catch(e){showToast('Backup export failed.');}
+  }
+  function requestNotifications(){
+    const status=$('swNotificationStatus');
+    if(!('Notification' in window)){if(status)status.textContent='Status: Notifications are not supported in this browser.';return showToast('Notifications are not supported here.')}
+    Notification.requestPermission().then(r=>{if(status)status.textContent='Status: '+(r==='granted'?'Enabled ✓':r);showToast(r==='granted'?'Notifications enabled ✓':'Notification permission was not granted.')}).catch(()=>{if(status)status.textContent='Status: Permission request unavailable in this preview.';showToast('Notification permission is unavailable in this preview.')});
+  }
+  function resetData(){
+    if(!confirm('Reset SaveWise data on this device? This cannot be undone.'))return;
+    localStorage.removeItem('savewise_v1');localStorage.removeItem(CONSENT);location.reload();
+  }
+  document.addEventListener('click',function(e){
+    const el=e.target.closest('[data-sw-action],#swNotifyBtn,#swBackupBtn,#swProfileBtn,#swResetBtn,#swRequestNotifications,#swExportBackup,[data-open-legal]');
+    if(!el)return;
+    e.preventDefault(); e.stopPropagation();
+    const action=el.dataset.swAction;
+    if(action==='notifications'||el.id==='swNotifyBtn'){openPage('notificationsPage');return}
+    if(action==='backup'||el.id==='swBackupBtn'){openPage('backupPage');return}
+    if(action==='profile'||el.id==='swProfileBtn'){openPage('profilePage');return}
+    if(action==='privacy'||el.dataset.openLegal==='privacy'){openPage('legalPage');renderLegal('privacy');return}
+    if(action==='terms'||el.dataset.openLegal==='terms'){openPage('legalPage');renderLegal('terms');return}
+    if(action==='reset'||el.id==='swResetBtn'){resetData();return}
+    if(el.id==='swRequestNotifications'){requestNotifications();return}
+    if(el.id==='swExportBackup'){exportBackup();return}
+  },true);
+  if($('swImportBackup'))$('swImportBackup').onchange=(e)=>{
+    const file=e.target.files?.[0];if(!file)return;
+    const reader=new FileReader();reader.onload=()=>{try{const incoming=JSON.parse(reader.result);if(!incoming||typeof incoming!=='object'||!Array.isArray(incoming.profiles))throw new Error();localStorage.setItem('savewise_v1',JSON.stringify(incoming));location.reload()}catch(err){showToast('Invalid SaveWise backup file.')}};reader.readAsText(file);
+  };
+
+  // Apply the persisted theme immediately, including the full interface.
+  applyTheme();
+
+  // Initial header/profile sync.
+  try{const p=profile();if(p&&$('headerAvatar'))$('headerAvatar').textContent=p.avatar||'🙂'}catch(e){}
+})();
+</script></body></html>
