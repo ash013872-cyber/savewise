@@ -1,5 +1,5 @@
-const VERSION="savewise-v25";
-const CORE=["./","./index.html?v=25","./manifest.webmanifest?v=25","./icon.svg?v=25","./icon-192.png?v=25","./icon-512.png?v=25","./fix.js?v=25"];
+const VERSION="savewise-v26";
+const CORE=["./","./index.html?v=26","./manifest.webmanifest?v=26","./icon.svg?v=26","./icon-192.png?v=26","./icon-512.png?v=26","./fix.js?v=25","./navigation-fix-v26.js?v=26"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("savewise-")&&k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener("fetch",event=>{
@@ -11,7 +11,9 @@ self.addEventListener("fetch",event=>{
    const type=res.headers.get("content-type")||"";
    if(type.includes("text/html")){
     const text=await res.text();
-    const injected=text.includes("fix.js?v=25")?text:text.replace(/<\/body>/i,'<script src="./fix.js?v=25"></script></body>');
+    let injected=text;
+    if(!injected.includes("fix.js?v=25"))injected=injected.replace(/<\/body>/i,'<script src="./fix.js?v=25"></script></body>');
+    if(!injected.includes("navigation-fix-v26.js"))injected=injected.replace(/<\/body>/i,'<script src="./navigation-fix-v26.js?v=26"></script></body>');
     const headers=new Headers(res.headers);headers.set("cache-control","no-store");
     const out=new Response(injected,{status:res.status,statusText:res.statusText,headers});
     caches.open(VERSION).then(c=>c.put(req,out.clone())).catch(()=>{});return out;
